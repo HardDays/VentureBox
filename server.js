@@ -3,7 +3,7 @@ const express = require('express');
 const app = express();
 // Run the app by serving the static files
 // in the dist directory
-const root = __dirname + '/dist/betrip-tools';
+const root = __dirname + '/dist/VentureBox';
 app.use(express.static(root));
 //app.use(fallback('index.html', { root }))
 
