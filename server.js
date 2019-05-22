@@ -10,7 +10,7 @@ app.use(express.static(root));
 // Start the app by listening on the default
 // Heroku port
 app.get('*', function(req, res) {
-  res.sendfile('./dist/betrip-tools/index.html')
+  res.sendfile('./dist/VentureBox/index.html')
 })
 var port = process.env.PORT || 8000
 app.listen(port, function(){
