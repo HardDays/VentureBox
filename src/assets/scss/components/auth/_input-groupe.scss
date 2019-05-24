@@ -1,0 +1,49 @@
+@import "layout/var";
+
+.input-groupe {
+    &__label {
+        margin-bottom: 10px;
+        display: block;
+        font-size: 14px;
+        line-height: 19px;
+        font-weight: $semiBold;
+    }
+
+    &__input {
+        padding: 9px 15px;
+        display: block;
+        width: 100%;
+        font-size: 14px;
+        line-height: 19px;
+        background: #fff;
+        border: 1px solid $grey400;
+        transition: border-color 0.3s, background-color 0.3s;
+        color: #000;
+
+        &:focus {
+            border-color: $black;
+        }
+
+        &--error {
+            border-color: $red;   
+        }
+
+        &--textarea {
+            height: 107px;
+            resize: none;
+        }
+
+        &--textarea_less_height {
+            height: 80px;
+            resize: none;
+        }
+    }
+
+    &__error {
+        padding: 0 16px;
+        min-height: 16px;
+        color: $red;
+        font-size: 12px;
+        line-height: 16px;
+    }
+}

@@ -1,8 +1,17 @@
 import { BrowserModule } from '@angular/platform-browser';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { FormsModule,ReactiveFormsModule } from '@angular/forms';
+import { HttpModule } from '@angular/http';
+import { HttpClientModule, HttpClient } from '@angular/common/http';
+import { RouterModule } from '@angular/router';
+
 import { NgModule } from '@angular/core';
 
-import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
+import { AppAccessGuard } from './app.guard';
+import { AuthComponent } from './auth/auth.component';
+import { AppRoutingModule } from './app.routing';
+import { AuthService } from './core/services/auth.service';
 
 @NgModule({
   declarations: [
@@ -10,9 +19,18 @@ import { AppComponent } from './app.component';
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    BrowserAnimationsModule,
+    FormsModule,
+    HttpModule,
+    RouterModule,
+    AppRoutingModule,
+    HttpClientModule
   ],
-  providers: [],
+  providers: [
+    AppAccessGuard,
+    HttpModule,
+    AuthService
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

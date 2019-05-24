@@ -1,0 +1,118 @@
+<ng-container *ngIf="Value == 'investor'">
+    <h1 class="auth-form__title">Register account</h1>
+    <div class="auth-two-cols">
+        <div class="auth-two-cols__side">
+            <div class="input-groupe auth-form__input-groupe">
+                <label class="input-groupe__label" for="name">Name</label>
+                <!-- input-groupe__input--error класс ошибки для инпута-->
+                <input type="text" class="input-groupe__input" id="name" name="name">
+                <p class="input-groupe__error"><!--сюда текст ошибки если есть--></p>
+            </div>
+            <div class="input-groupe auth-form__input-groupe">
+                <label class="input-groupe__label" for="surname">Surname</label>
+                <input type="text" class="input-groupe__input" id="surname" name="surname">
+                <p class="input-groupe__error"></p>
+            </div>
+            <div class="input-groupe auth-form__input-groupe">
+                <label class="input-groupe__label" for="mail">E-mail</label>
+                <input type="text" class="input-groupe__input" id="mail" name="mail">
+                <p class="input-groupe__error"></p>
+            </div>
+            <div class="input-groupe auth-form__input-groupe">
+                <p class="input-groupe__label">Roles</p>
+            </div>
+            <div class="checkboxes-row">
+                <div class="one-checkbox checkboxes-row__check-box">
+                    <div class="one-checkbox__check-style">
+                        <input type="radio" [checked]="Value === 'startup'" (change)="TypeChange('startup')" value="'startup'" class="one-checkbox__checkbox" name="role" id="checkbox-1" >
+                        <label for="checkbox-1"></label>
+                    </div>
+                    <p class="one-checkbox__label">Startup</p>
+                </div>
+                <div class="one-checkbox checkboxes-row__check-box">
+                    <div class="one-checkbox__check-style">
+                        <input type="radio" [checked]="Value === 'investor'" (change)="TypeChange('investor')" value="'investor'"   class="one-checkbox__checkbox" name="role" id="checkbox-2">
+                        <label for="checkbox-2"></label>
+                    </div>
+                    <p class="one-checkbox__label">Investor</p>
+                </div>
+            </div>
+        </div>
+        <div class="auth-two-cols__side">
+            <div class="input-groupe auth-form__input-groupe">
+                <label class="input-groupe__label" for="password">Password</label>
+                <input type="password" class="input-groupe__input" id="password" name="password">
+                <p class="input-groupe__error"></p>
+            </div>
+            <div class="input-groupe auth-form__input-groupe">
+                <label class="input-groupe__label" for="verify-password">Verify password</label>
+                <input type="password" class="input-groupe__input" id="verify-password" name="verify-password">
+                <p class="input-groupe__error"></p>
+            </div>
+            <div class="input-groupe auth-form__input-groupe">
+                <label class="input-groupe__label" for="descroption">Descripe your goals here</label>
+                <textarea class="input-groupe__input input-groupe__input--textarea" id="descroption" name="descroption"></textarea>
+                <p class="input-groupe__error"></p>
+            </div>
+        </div>
+    </div>
+</ng-container>
+<ng-container *ngIf="Value == 'startup'">
+
+    <h1 class="auth-form__title">Register startup</h1>
+    <div class="input-groupe auth-form__input-groupe">
+        <label class="input-groupe__label" for="name">Company name</label>
+        <!-- input-groupe__input--error класс ошибки для инпута-->
+        <input type="text" class="input-groupe__input" id="name" name="name">
+        <p class="input-groupe__error"><!--сюда текст ошибки если есть--></p>
+    </div>
+    <div class="input-groupe auth-form__input-groupe">
+        <label class="input-groupe__label" for="website">Company website</label>
+        <input type="text" class="input-groupe__input" id="website" name="website">
+        <p class="input-groupe__error"></p>
+    </div>
+    <div class="input-groupe auth-form__input-groupe">
+        <label class="input-groupe__label" for="mail">Contact e-mail</label>
+        <input type="text" class="input-groupe__input" id="mail" name="mail">
+        <p class="input-groupe__error"></p>
+    </div>
+
+    <div class="input-groupe auth-form__input-groupe">
+        <label class="input-groupe__label" for="upload">Upload logo company</label>
+        <div class="upload-file">
+            <p class="upload-file__name-file"></p>
+            <input class="upload-file__input-file" type="file" id="upload">
+            <label class="upload-file__button-label" for="upload">
+                <img src="assets/img/file.svg" class="upload-file__img img-responsive" alt="">
+            </label>
+        </div>
+        <p class="input-groupe__error"></p>
+    </div>
+    <div class="input-groupe auth-form__input-groupe">
+        <label class="input-groupe__label" for="descroption">Company description</label>
+        <textarea class="input-groupe__input input-groupe__input--textarea_less_height" id="descroption" name="descroption"></textarea>
+        <p class="input-groupe__error"></p>
+    </div>
+    <div class="checkboxes-row">
+        <div class="one-checkbox checkboxes-row__check-box">
+            <div class="one-checkbox__check-style">
+                <input type="radio" [checked]="Value === 'startup'" (change)="TypeChange('startup')" value="'startup'" class="one-checkbox__checkbox" name="role" id="checkbox-1" >
+                <label for="checkbox-1"></label>
+            </div>
+            <p class="one-checkbox__label">Startup</p>
+        </div>
+        <div class="one-checkbox checkboxes-row__check-box">
+            <div class="one-checkbox__check-style">
+                <input type="radio" [checked]="Value === 'investor'" (change)="TypeChange('investor')" value="'investor'"   class="one-checkbox__checkbox" name="role" id="checkbox-2">
+                <label for="checkbox-2"></label>
+            </div>
+            <p class="one-checkbox__label">Investor</p>
+        </div>
+    </div>
+</ng-container>
+
+
+    
+<div class="button-wrapper">
+    <button class="button-wrapper__button">Sign up</button>
+</div>
