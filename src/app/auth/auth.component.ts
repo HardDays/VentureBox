@@ -1,4 +1,4 @@
-import { Component, OnInit, OnDestroy } from '@angular/core';
+import { Component, OnInit, OnDestroy, ChangeDetectorRef } from '@angular/core';
 import { Router, NavigationStart } from '@angular/router';
 import { SignUpComponent } from './singup/signup.component';
 import { AuthService } from '../core/services/auth.service';
@@ -9,28 +9,19 @@ import { Subscription } from 'rxjs';
   selector: 'auth-cmp',
   templateUrl: './auth.component.html'
 })
-export class AuthComponent implements OnInit, OnDestroy {
+export class AuthComponent implements OnInit{
     BigForm = false;
-    Subscriptions = {
-        change_form_size: null
-    };
-    constructor(private auth: AuthService)
+    constructor(private auth: AuthService, private cdr: ChangeDetectorRef)
     {   
-        this.Subscriptions.change_form_size = this.auth.FormSizeBig.subscribe(
-            (val) => {
+        this.auth.FormSizeBig.subscribe(
+            (val) => 
+            {
                 this.BigForm = val;
             }
         )
     }
   ngOnInit() 
   {
-  }
-
-  ngOnDestroy()
-  {
-      for(const item in this.Subscriptions)
-      {
-          this.Subscriptions[item].unsubscribe();
-      }
+    this.cdr.detectChanges();
   }
 }

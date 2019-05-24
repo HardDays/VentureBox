@@ -1,4 +1,4 @@
-<ng-container *ngIf="Value == 'investor'">
+<ng-container *ngIf="Step == 1">
     <h1 class="auth-form__title">Register account</h1>
     <div class="auth-two-cols">
         <div class="auth-two-cols__side">
@@ -56,8 +56,12 @@
             </div>
         </div>
     </div>
+
+    <div class="button-wrapper">
+        <button type="submit" (click)="Value == 'startup'? NextStep() : Register()" class="button-wrapper__button">{{Value == 'startup' ? 'Next' : 'Sign up'}}</button>
+    </div>
 </ng-container>
-<ng-container *ngIf="Value == 'startup'">
+<ng-container *ngIf="Step == 2">
 
     <h1 class="auth-form__title">Register startup</h1>
     <div class="input-groupe auth-form__input-groupe">
@@ -93,26 +97,11 @@
         <textarea class="input-groupe__input input-groupe__input--textarea_less_height" id="descroption" name="descroption"></textarea>
         <p class="input-groupe__error"></p>
     </div>
-    <div class="checkboxes-row">
-        <div class="one-checkbox checkboxes-row__check-box">
-            <div class="one-checkbox__check-style">
-                <input type="radio" [checked]="Value === 'startup'" (change)="TypeChange('startup')" value="'startup'" class="one-checkbox__checkbox" name="role" id="checkbox-1" >
-                <label for="checkbox-1"></label>
-            </div>
-            <p class="one-checkbox__label">Startup</p>
-        </div>
-        <div class="one-checkbox checkboxes-row__check-box">
-            <div class="one-checkbox__check-style">
-                <input type="radio" [checked]="Value === 'investor'" (change)="TypeChange('investor')" value="'investor'"   class="one-checkbox__checkbox" name="role" id="checkbox-2">
-                <label for="checkbox-2"></label>
-            </div>
-            <p class="one-checkbox__label">Investor</p>
-        </div>
+
+    <div class="button-wrapper">
+        <button type="submit" (click)="Register()" class="button-wrapper__button">Sign up</button>
     </div>
 </ng-container>
 
 
     
-<div class="button-wrapper">
-    <button class="button-wrapper__button">Sign up</button>
-</div>
