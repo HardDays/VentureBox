@@ -11,17 +11,14 @@ import { Subscription } from 'rxjs';
 })
 export class AuthComponent implements OnInit{
     BigForm = false;
-    constructor(private auth: AuthService, private cdr: ChangeDetectorRef)
-    {   
+    constructor(private auth: AuthService, private cdr: ChangeDetectorRef) {
         this.auth.FormSizeBig.subscribe(
-            (val) => 
-            {
+            (val) => {
                 this.BigForm = val;
             }
-        )
+        );
     }
-  ngOnInit() 
-  {
+  ngOnInit() {
     this.cdr.detectChanges();
   }
 }

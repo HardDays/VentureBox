@@ -7,15 +7,12 @@ import { Injectable } from '@angular/core';
 export class AuthAccessGuard implements CanActivate{
     canActivate(router:ActivatedRouteSnapshot, state: RouterStateSnapshot): Observable<boolean>|boolean{
 
-        switch(router.routeConfig.path)
-        {
-            default:{
+        switch (router.routeConfig.path) {
+            default: {
                 return true;
             }
-
         }
     }
 
-    LoginNavigate()
-    {}
+    LoginNavigate() {}
 }

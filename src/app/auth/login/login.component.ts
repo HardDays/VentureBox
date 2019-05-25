@@ -1,22 +1,31 @@
 import { Component, OnInit } from '@angular/core';
 import { AuthService } from 'src/app/core/services/auth.service';
+import { LoginModel } from 'src/app/core/models/login.model';
 
 @Component({
   selector: 'login-cmp',
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.css']
 })
-export class LoginComponent implements OnInit 
-{
+export class LoginComponent implements OnInit {
 
-    constructor(private auth: AuthService)
-    {
+    LoginModel: LoginModel = new LoginModel();
+
+    constructor(private auth: AuthService) {
     }
 
-    ngOnInit()
-    {
+    ngOnInit() {
         this.auth.FormSizeBig.next(false);
     }
-  
+
+    Login () {
+      this.auth.Login(this.LoginModel)
+        .subscribe(
+          (res) => {
+            console.log(res); // token
+          }
+        );
+    }
+
 
 }
