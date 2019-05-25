@@ -1,0 +1,4 @@
+<b>Comming Soon</b><br/>
+<a routerLink="/auth/login" *ngIf="!IsLoggedIn">Log In</a><br/>
+<a (click)="Logout()" *ngIf="IsLoggedIn">Log Out</a><br/>
+<router-outlet></router-outlet>
