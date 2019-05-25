@@ -41,17 +41,21 @@ export class AuthService {
     {
       return this.http.CommonRequest(
         () => this.http.PostData('/auth/logout', {}),
-        (res) => {
-          console.log(res);
+        (res) => 
+        {
           this.ClearSession()
         }
       )
 
       return ;
     }
-    ForgotPassword(email: string) 
+    ForgotPassword(email: string,  success?: (data) => void, fail?: (err) => void) 
     {
-      return this.http.PostData('/auth/forgot_password', {email});
+      return this.http.CommonRequest(
+        () => this.http.PostData('/auth/forgot_password', {email}),
+        success,
+        fail
+      )
     }
 
 
