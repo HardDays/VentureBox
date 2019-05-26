@@ -1,3 +1,4 @@
+import { TypeService } from './../../core/services/type.service';
 import { Component, OnInit } from '@angular/core';
 import { AuthService } from 'src/app/core/services/auth.service';
 
@@ -6,39 +7,38 @@ import { AuthService } from 'src/app/core/services/auth.service';
   templateUrl: './password.component.html',
   styleUrls: ['./password.component.css']
 })
-export class PasswordComponent implements OnInit 
-{
+export class PasswordComponent implements OnInit {
     IsSend = false;
     IsError = false;
-    ErrorMsg = "";
+    ErrorMsg = '';
 
-    constructor(private auth: AuthService)
-    {
+    Email = '';
 
-    }
+    constructor(private auth: AuthService, private type: TypeService) {}
 
-    ngOnInit()
-    {
+    ngOnInit() {
         this.auth.FormSizeBig.next(false);
     }
 
-    protected RestorePassword()
-    {
+    protected RestorePassword() {
         this.IsError = false;
-        const i = Math.floor(Math.random() * 2);
 
-        if(i%2)
-        {
-            this.IsError = true;
-        }
-        else
-        {
-            this.IsError = false;
-        }
-
-        if(!this.IsError)
-        {
-            this.IsSend = true;
-        }
+        this.auth.ForgotPassword(this.Email)
+          .subscribe(
+            (res) => {
+              this.IsError = false;
+            },
+            (err) => {
+              this.IsError = true;
+              this.ErrorMsg = this.type.GetErrorText(err.json().error);
+            },
+            () => {
+              if (!this.IsError) {
+                  this.IsSend = true;
+              } else {
+                this.IsSend = false;
+              }
+            }
+          );
     }
 }

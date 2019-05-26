@@ -5,18 +5,18 @@
             <div class="input-groupe auth-form__input-groupe">
                 <label class="input-groupe__label" for="name">Name</label>
                 <!-- input-groupe__input--error класс ошибки для инпута-->
-                <input type="text" class="input-groupe__input" id="name" name="name">
-                <p class="input-groupe__error"><!--сюда текст ошибки если есть--></p>
+                <input [(ngModel)]="User.name" type="text" class="input-groupe__input" [ngClass]="{'input-groupe__input--error':ErrorsUser.name}" id="name" name="name">
+                <p class="input-groupe__error">{{ErrorsUser.name}}</p>
             </div>
             <div class="input-groupe auth-form__input-groupe">
                 <label class="input-groupe__label" for="surname">Surname</label>
-                <input type="text" class="input-groupe__input" id="surname" name="surname">
-                <p class="input-groupe__error"></p>
+                <input [(ngModel)]="User.surname" type="text" class="input-groupe__input" [ngClass]="{'input-groupe__input--error':ErrorsUser.surname}" id="surname" name="surname">
+                <p class="input-groupe__error">{{ErrorsUser.surname}}</p>
             </div>
             <div class="input-groupe auth-form__input-groupe">
                 <label class="input-groupe__label" for="mail">E-mail</label>
-                <input type="text" class="input-groupe__input" id="mail" name="mail">
-                <p class="input-groupe__error"></p>
+                <input [(ngModel)]="User.email" type="text" class="input-groupe__input" [ngClass]="{'input-groupe__input--error':ErrorsUser.email}" id="mail" name="mail">
+                <p class="input-groupe__error">{{ErrorsUser.email}}</p>
             </div>
             <div class="input-groupe auth-form__input-groupe">
                 <p class="input-groupe__label">Roles</p>
@@ -41,17 +41,17 @@
         <div class="auth-two-cols__side">
             <div class="input-groupe auth-form__input-groupe">
                 <label class="input-groupe__label" for="password">Password</label>
-                <input type="password" class="input-groupe__input" id="password" name="password">
-                <p class="input-groupe__error"></p>
+                <input [(ngModel)]="User.password"  type="password" class="input-groupe__input" [ngClass]="{'input-groupe__input--error':ErrorsUser.password}" id="password" name="password">
+                <p class="input-groupe__error">{{ErrorsUser.password}}</p>
             </div>
             <div class="input-groupe auth-form__input-groupe">
                 <label class="input-groupe__label" for="verify-password">Verify password</label>
-                <input type="password" class="input-groupe__input" id="verify-password" name="verify-password">
-                <p class="input-groupe__error"></p>
+                <input [(ngModel)]="User.password_confirmation" type="password" class="input-groupe__input" [ngClass]="{'input-groupe__input--error':ErrorsUser.password_confirmation}" id="verify-password" name="verify-password">
+                <p class="input-groupe__error">{{ErrorsUser.password_confirmation}}</p>
             </div>
             <div class="input-groupe auth-form__input-groupe">
                 <label class="input-groupe__label" for="descroption">Descripe your goals here</label>
-                <textarea class="input-groupe__input input-groupe__input--textarea" id="descroption" name="descroption"></textarea>
+                <textarea [(ngModel)]="User.goals" class="input-groupe__input input-groupe__input--textarea" id="descroption" name="descroption"></textarea>
                 <p class="input-groupe__error"></p>
             </div>
         </div>
@@ -64,39 +64,133 @@
 <ng-container *ngIf="Step == 2">
 
     <h1 class="auth-form__title">Register startup</h1>
-    <div class="input-groupe auth-form__input-groupe">
-        <label class="input-groupe__label" for="name">Company name</label>
-        <!-- input-groupe__input--error класс ошибки для инпута-->
-        <input type="text" class="input-groupe__input" id="name" name="name">
-        <p class="input-groupe__error"><!--сюда текст ошибки если есть--></p>
-    </div>
-    <div class="input-groupe auth-form__input-groupe">
-        <label class="input-groupe__label" for="website">Company website</label>
-        <input type="text" class="input-groupe__input" id="website" name="website">
-        <p class="input-groupe__error"></p>
-    </div>
-    <div class="input-groupe auth-form__input-groupe">
-        <label class="input-groupe__label" for="mail">Contact e-mail</label>
-        <input type="text" class="input-groupe__input" id="mail" name="mail">
-        <p class="input-groupe__error"></p>
-    </div>
+            <div class="auth-two-cols">
+                <div class="auth-two-cols__side">
+                    <div class="input-groupe auth-form__input-groupe">
+                        <label class="input-groupe__label" for="name">Company name</label>
+                        <!-- input-groupe__input--error класс ошибки для инпута-->
+                        <input [(ngModel)]="Company.name" type="text" class="input-groupe__input" [ngClass]="{'input-groupe__input--error':ErrorsCompany.name}" id="name" name="name">
+                        <p class="input-groupe__error">{{ErrorsCompany.name}}</p>
+                    </div>
+                    <div class="input-groupe auth-form__input-groupe">
+                        <label class="input-groupe__label" for="website">Company website</label>
+                        <input [(ngModel)]="Company.website" type="text" class="input-groupe__input" [ngClass]="{'input-groupe__input--error':ErrorsCompany.website}" id="website" name="website">
+                        <p class="input-groupe__error">{{ErrorsCompany.website}}</p>
+                    </div>
+                    <div class="input-groupe auth-form__input-groupe">
+                        <label class="input-groupe__label" for="mail">Contact e-mail</label>
+                        <input [(ngModel)]="Company.contact_email" type="text" class="input-groupe__input" [ngClass]="{'input-groupe__input--error':ErrorsCompany.contact_email}" id="mail" name="mail">
+                        <p class="input-groupe__error">{{ErrorsCompany.contact_email}}</p>
+                    </div>
+                    <div class="input-groupe auth-form__input-groupe">
+                        <label class="input-groupe__label" for="upload">Upload logo company</label>
+                        <div class="upload-file">
+                            <p class="upload-file__name-file">{{ImagePath}}</p>
+                            <input (change)="uploadImage($event)" class="upload-file__input-file" accept=".jpg, .jpeg, .png" type="file" id="upload">
+                            <label class="upload-file__button-label" for="upload">
+                                <img src="./../../../assets/img/file.svg" class="upload-file__img img-responsive" alt="">
+                            </label>
+                        </div>
+                        <p class="input-groupe__error"></p>
+                    </div>
 
-    <div class="input-groupe auth-form__input-groupe">
-        <label class="input-groupe__label" for="upload">Upload logo company</label>
-        <div class="upload-file">
-            <p class="upload-file__name-file"></p>
-            <input class="upload-file__input-file" type="file" id="upload">
-            <label class="upload-file__button-label" for="upload">
-                <img src="assets/img/file.svg" class="upload-file__img img-responsive" alt="">
-            </label>
-        </div>
-        <p class="input-groupe__error"></p>
-    </div>
-    <div class="input-groupe auth-form__input-groupe">
-        <label class="input-groupe__label" for="descroption">Company description</label>
-        <textarea class="input-groupe__input input-groupe__input--textarea_less_height" id="descroption" name="descroption"></textarea>
-        <p class="input-groupe__error"></p>
-    </div>
+                    <div class="input-groupe auth-form__input-groupe">
+                        <label class="input-groupe__label" for="descroption">Company description</label>
+                        <textarea [(ngModel)]="Company.description" class="input-groupe__input input-groupe__input--textarea_less_height" [ngClass]="{'input-groupe__input--error':ErrorsCompany.description}" id="descroption" name="descroption"></textarea>
+                        <p class="input-groupe__error">{{ErrorsCompany.description}}</p>
+                    </div>
+                </div>
+                <div class="auth-two-cols__side">
+                    <div class="input-groupe auth-form__input-groupe">
+                        <p class="input-groupe__label">Stage of funding*</p>
+                        <!--select--opened если открытый селект-->
+                        <div class="select" [ngClass]="{'select--opened': isStageOfFundingOpened}" (click)="isStageOfFundingOpened = !isStageOfFundingOpened">
+                            <!--добавляем select__input-hidden для связки самописного селекта с формой(для взаимодействия с template driven или reactive forms).
+                                    Этот класс скрывает элемент. в данном случае нужно юзать список из чекбоксов т.к. можно выбрать все элементы-->
+                            <select class="select__input-hidden">
+                                <option>sdf</option>
+                            </select>
+                            <div class="select__lable">
+                              <ng-container *ngFor="let item of StageOfFunding">
+                                <p *ngIf="item.isSelected" class="select__picked">{{item.name}}</p>
+                              </ng-container>
+                            </div>
+                            <div class="select-dropdown select__dropdown">
+                                <ul class="select-dropdown__list">
+                                    <!-- select-dropdown__item--active для активного элемента -->
+                                    <li *ngFor="let item of StageOfFunding" (click)="item.isSelected = !item.isSelected" class="select-dropdown__item" [ngClass]="{'select-dropdown__item--active': item.isSelected}">{{item.name}}</li>
+                                </ul>
+                            </div>
+                        </div>
+                        <p class="input-groupe__error"><!--сюда текст ошибки если есть--></p>
+                    </div>
+                    <div class="row-generate">
+                        <div class="row-generate__coll">
+                            <div class="input-groupe auth-form__input-groupe">
+                                <label class="input-groupe__label" for="investment">Investment amount</label>
+                                <!-- input-groupe__input--error класс ошибки для инпута-->
+                                <input type="text" class="input-groupe__input" id="investment" name="investment">
+                                <p class="input-groupe__error"><!--сюда текст ошибки если есть--></p>
+                            </div>
+                        </div>
+                        <div class="row-generate__coll">
+                            <div class="input-groupe auth-form__input-groupe">
+                                <label class="input-groupe__label" for="percent">Equity amount</label>
+                                <!-- input-groupe__input--error класс ошибки для инпута-->
+                                <div class="with-value">
+                                    <input type="text" class="input-groupe__input input-groupe__input--value-right" id="percent" name="percent">
+                                    <span class="with-value__value with-value__value--right">%</span>
+                                </div>
+                                <p class="input-groupe__error"><!--сюда текст ошибки если есть--></p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <ng-container *ngFor="let item of Teams; let i = index; let first = first">
+
+                    <div class="row-generate" [ngClass]="{'row-generate--generated': !first}">
+                        <button *ngIf="!first" (click)="deleteTeamItem(i)" class="row-generate__delete"></button>
+                        <div class="row-generate__coll">
+                            <div class="input-groupe auth-form__input-groupe">
+                                <label class="input-groupe__label" for="team-1">Team member name</label>
+                                <!-- input-groupe__input--error класс ошибки для инпута-->
+                                <input [(ngModel)]="item.name" type="text" class="input-groupe__input" id="team-1" name="team-1">
+                                <p class="input-groupe__error"><!--сюда текст ошибки если есть--></p>
+                            </div>
+                        </div>
+                        <div class="row-generate__coll">
+                            <div class="input-groupe auth-form__input-groupe">
+                                <p class="input-groupe__label">C- Level</p>
+                                <!--select--opened если открытый селект-->
+                                <div class="select" [ngClass]="{'select--opened': item.isOpened}" (click)="item.isOpened = !item.isOpened">
+                                    <!--добавляем select__input-hidden для связки самописного селекта с формой(для взаимодействия с template driven или reactive forms).
+                                            Этот класс скрывает элемент. в данном случае нужно юзать список из чекбоксов т.к. можно выбрать все элементы-->
+                                    <select class="select__input-hidden">
+                                        <option>sdf</option>
+                                    </select>
+                                    <div class="select__lable">
+                                        <p class="select__picked">{{item.level}}</p>
+
+                                    </div>
+                                    <div class="select-dropdown select__dropdown">
+                                        <ul class="select-dropdown__list">
+                                            <!-- select-dropdown__item--active для активного элемента -->
+                                            <li *ngFor="let level of TeamLevels" (click)="item.level = level" [ngClass]="{'select-dropdown__item--active': item.level == level}" class="select-dropdown__item">{{level}}</li>
+                                        </ul>
+                                    </div>
+                                </div>
+                                <p class="input-groupe__error"><!--сюда текст ошибки если есть--></p>
+                            </div>
+                        </div>
+                    </div>
+
+                    </ng-container>
+                    <div (click)="addTeamMember()" class="add-row-generate">
+                        <button class="add-row-generate__butt"></button>
+                        <p class="add-row-generate__text">Add another</p>
+                    </div>
+                </div>
+            </div>
 
     <div class="button-wrapper">
         <button type="submit" (click)="Register()" class="button-wrapper__button">Sign up</button>
@@ -104,4 +198,4 @@
 </ng-container>
 
 
-    
+

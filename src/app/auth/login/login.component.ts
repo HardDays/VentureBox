@@ -22,7 +22,7 @@ export class LoginComponent implements OnInit {
       this.auth.Login(this.LoginModel)
         .subscribe(
           (res) => {
-            console.log(res); // token
+            this.auth.SetCurrentUser(res.json());
           }
         );
     }

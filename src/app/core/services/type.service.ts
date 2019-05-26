@@ -63,6 +63,59 @@ export class TypeService {
       return new Date(date.getTime() + date.getTimezoneOffset() * 60 * 1000).toISOString();
     }
 
+    GetErrorText (error) {
+      const errors = {
+        'LOGIN_DOES_NOT_EXIST' : 'Login doesn\'t exist'
+      };
+
+      return errors[error] ? errors[error] : error;
+
+    }
+
+    GetErrorsByResponse (errors) {
+      let Errors = '';
+      // tslint:disable-next-line: forin
+      for (const key in errors) {
+        const value = errors[key];
+        for (const item of value) {
+          Errors += key.slice(0, 1).toUpperCase() + key.slice(1).replace('_', ' ').toLowerCase();
+          Errors += ' ' + item.replace('_', ' ').toLowerCase() + '. ';
+        }
+      }
+      return Errors;
+    }
+
+    GetErrorsDictByResponse (errors, type) {
+      let Errors = type;
+      for (const key in Errors) {
+          Errors[key] = '';
+      }
+      for (const key in errors) {
+        const value = errors[key];
+        let errs = '';
+        for (const item of value) {
+          errs += key.slice(0, 1).toUpperCase() + key.slice(1).replace('_', ' ').toLowerCase();
+          errs += ' ' + item.replace('_', ' ').toLowerCase() + '. ';
+        }
+        Errors[key] = errs;
+      }
+      return Errors;
+    }
+
+    ReadImages(files: any, callback?: (params?) => any) {
+      for ( const f of files) {
+          const file: File = f;
+          if (!file) {
+            break;
+          }
+          const myReader: FileReader = new FileReader();
+          myReader.onloadend = (e) => {
+              callback(myReader.result);
+          };
+          myReader.readAsDataURL(file);
+      }
+    }
+
 }
 
 
