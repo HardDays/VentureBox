@@ -1,6 +1,7 @@
 import { TypeService } from './../../core/services/type.service';
 import { Component, OnInit } from '@angular/core';
 import { AuthService } from 'src/app/core/services/auth.service';
+import { Validator } from '../../core/base/field.validator';
 
 @Component({
   selector: 'password-cmp',
@@ -11,7 +12,6 @@ export class PasswordComponent implements OnInit {
     IsSend = false;
     IsError = false;
     ErrorMsg = '';
-
     Email = '';
 
     constructor(private auth: AuthService, private type: TypeService) {}
@@ -23,22 +23,38 @@ export class PasswordComponent implements OnInit {
     protected RestorePassword() {
         this.IsError = false;
 
-        this.auth.ForgotPassword(this.Email)
-          .subscribe(
+        var res = Validator.ValidateEmail(this.Email);
+        if(!res)
+        {
+            this.IsError = true;
+            this.ErrorMsg = "Email is incorrect";
+            return;
+        }
+
+
+        this.auth.ForgotPassword(this.Email,
             (res) => {
-              this.IsError = false;
+                this.IsSend = true;
             },
             (err) => {
-              this.IsError = true;
-              this.ErrorMsg = this.type.GetErrorText(err.json().error);
-            },
-            () => {
-              if (!this.IsError) {
-                  this.IsSend = true;
-              } else {
-                this.IsSend = false;
-              }
+                if(err.status == 401)
+                {
+                    if(err.body.error == "LOGIN_DOES_NOT_EXIST")
+                    {
+                        this.ErrorMsg = "Email does not exist!";
+                    }
+                    else
+                    {
+                        this.ErrorMsg = this.type.GetErrorText(err.json().error);
+                    }
+                }
+                else
+                {
+                    this.ErrorMsg = this.type.GetErrorText(err.json().error);
+                }
+                this.IsError = true;
+                // console.log(err);
             }
-          );
+        );
     }
 }

@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import {Http, RequestOptions} from '@angular/http';
 import {Response, Headers, URLSearchParams} from '@angular/http';
 import { TokenModel } from '../models/token.model';
+import { Observable } from 'rxjs';
 
 declare var Buffer: any;
 @Injectable()
@@ -15,7 +16,8 @@ export class HttpService {
         this.BaseHeadersInit();
     }
 
-    BaseInitByToken(data: string) {
+    BaseInitByToken(data: string) 
+    {
         if (data) {
             if (this.headers.has('Authorization')) {
                 this.headers.delete('Authorization');
@@ -25,52 +27,95 @@ export class HttpService {
         }
     }
 
-    BaseHeadersInit() {
-        if (!this.headers.has('Content-Type')) {
+    BaseHeadersInit() 
+    {
+        if (!this.headers.has('Content-Type')) 
+        {
             this.headers.append('Content-Type', 'application/json');
         }
     }
 
-    GetToken(): TokenModel {
+    GetToken(): TokenModel 
+    {
         return this.token;
     }
 
-    GetQueryStr(method: string, params?: string) {
+    validResp(resp){
+        let body = resp._body;
+        if(body==" ")return false;
+        return true;
+    }
+
+    CommonRequest(fun:()=>Observable<Response>, success?: (data) => void, fail?: (err) => void)
+    {
+        this.BaseHeadersInit();
+
+        return fun()
+            .subscribe(
+                (resp: Response) =>
+                {
+                    if(success && typeof success == "function")
+                    {
+                        success(this.validResp(resp)?resp.json():"");
+                    }
+                },
+                (error) =>
+                {
+                    if(fail && typeof fail == "function")
+                    {
+                        let errObj = error;
+                        errObj.body = this.validResp(error)?error.json():""
+                        fail(errObj);
+                    }
+                } 
+            )
+    }
+
+    GetQueryStr(method: string, params?: string) 
+    {
         return this.serverUrl + method + '?' + params;
     }
 
-    GetData(method: string, params?: string) {
+    GetData(method: string, params?: string) 
+    {
         return this.http.get(this.serverUrl + method + '?' + params, {headers: this.headers});
     }
 
-    DeleteData(method: string) {
+    DeleteData(method: string) 
+    {
         return this.http.delete(this.serverUrl + method, {headers: this.headers});
     }
 
-    DeleteDataWithBody(method: string, body: any) {
+    DeleteDataWithBody(method: string, body: any) 
+    {
         return this.http.delete(this.serverUrl + method, new RequestOptions({
             headers: this.headers,
             body: body
           }));
     }
 
-    DeleteDataWithParam(method: string, param) {
+    DeleteDataWithParam(method: string, param) 
+    {
         return this.http.delete(this.serverUrl + method + '?' + param, {headers: this.headers});
     }
 
-    PostData(method: string, data: any) {
+    PostData(method: string, data: any) 
+    {
         return this.http.post(this.serverUrl + method, data, {headers: this.headers});
     }
 
-    PatchData(method: string, data: any) {
+    PatchData(method: string, data: any) 
+    {
         return this.http.patch(this.serverUrl + method, data, {headers: this.headers});
     }
 
-    PutData(method: string, data: string) {
+    PutData(method: string, data: string) 
+    {
         return this.http.put(this.serverUrl + method, data, {headers: this.headers});
     }
 
-    GetDataFromOtherUrl(url: string) {
+    GetDataFromOtherUrl(url: string) 
+    {
         return this.http.get(url);
     }
 }

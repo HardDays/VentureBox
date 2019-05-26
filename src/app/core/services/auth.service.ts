@@ -4,12 +4,14 @@ import { HttpService } from './http.service';
 import { Injectable } from "@angular/core";
 import { Subject } from 'rxjs';
 import { UserModel } from '../models/user.model';
+import { TokenModel } from '../models/token.model';
 
 @Injectable()
 export class AuthService {
 
     public onAuthChange$: Subject<boolean>;
     public Me: any;
+    public IsLoggedIn: boolean = false;
 
     public FormSizeBig = new Subject<boolean>();
     public CurrentSize: boolean = false;
@@ -19,7 +21,13 @@ export class AuthService {
             this.CurrentSize = val;
         });
 
-        this.onAuthChange$ = new Subject();
+        this.onAuthChange$.subscribe(
+          (val) =>
+          {
+            this.IsLoggedIn = val;
+          }
+        )
+
         this.onAuthChange$.next(false);
     }
 
@@ -54,14 +62,60 @@ export class AuthService {
       }
     }
 
-    Login(loginModel: LoginModel) {
-      return this.http.PostData('/auth/login', loginModel);
+    Login(loginModel: LoginModel,  success?: (data) => void, fail?: (err) => void)
+    {
+      return this.http.CommonRequest(
+        () => this.http.PostData('/auth/login', loginModel),
+        success,
+        fail
+      )
     }
-    Logout() {
-      return this.http.PostData('/auth/logout', {});
+    Logout()
+    {
+      return this.http.CommonRequest(
+        () => this.http.PostData('/auth/logout', {}),
+        (res) =>
+        {
+          this.ClearSession()
+        }
+      )
+
+      return ;
     }
-    ForgotPassword(email: string) {
-      return this.http.PostData('/auth/forgot_password', {email});
+    ForgotPassword(email: string,  success?: (data) => void, fail?: (err) => void)
+    {
+      return this.http.CommonRequest(
+        () => this.http.PostData('/auth/forgot_password', {email}),
+        success,
+        fail
+      )
+    }
+
+
+    BaseInitAfterLogin(data:TokenModel)
+    {
+        localStorage.setItem('token',data.token);
+        this.http.BaseInitByToken(data.token);
+        this.onAuthChange$.next(true);
+    }
+
+    TryToLoginWithToken()
+    {
+        let token = localStorage.getItem('token');
+        if(token)
+        {
+            this.BaseInitAfterLogin(new TokenModel(token));
+            this.onAuthChange$.next(true);
+        }
+    }
+
+
+    ClearSession()
+    {
+        this.http.token = null;
+        this.http.headers.delete('Authorization');
+        this.onAuthChange$.next(false);
+        localStorage.removeItem('token');
     }
 
     CreateUser(user: UserModel) {
