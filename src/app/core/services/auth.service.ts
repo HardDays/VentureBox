@@ -92,7 +92,7 @@ export class AuthService {
     }
 
 
-    BaseInitAfterLogin(data:TokenModel)
+    BaseInitAfterLogin(data: TokenModel)
     {
         localStorage.setItem('token',data.token);
         this.http.BaseInitByToken(data.token);
