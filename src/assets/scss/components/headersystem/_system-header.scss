@@ -1,0 +1,53 @@
+@import "layout/var";
+
+.system-header{
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    min-height: 61px;
+    padding: 10px 30px;
+    background: #fff;
+    margin-bottom: 15px;
+
+    @media (max-width: 991px) {
+        justify-content: space-between;
+
+    }
+
+    @media (max-width: 767px) {
+        padding: 10px 15px;
+    }
+
+    &__user {
+        position: relative;
+
+        @media (max-width: 767px) {
+            max-width: 230px;
+        }
+    }
+
+    &__open-sidebar {
+        display: none;
+        width: 30px;
+        height: 18px;
+        border: none;
+        background: none;
+        padding: 0;
+        cursor: pointer;
+
+        span{
+            display: block;
+            width: 30px;
+            height: 2px;
+            background: $black;
+
+        }
+
+        @media (max-width: 991px) {
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+    }
+
+}

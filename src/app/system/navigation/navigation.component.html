@@ -1,0 +1,13 @@
+<div class="side-bar main__side-bar">
+    <div class="side-bar__logo">
+        <img src="assets/img/logo.svg" class="img-responsive" alt="">
+    </div>
+    <ul class="side-bar-menu">
+            <li class="side-bar-menu__item"  *ngFor="let item of MenuItems">
+                <a [routerLink]="item.url" [ngClass]="{'side-bar-menu__link--active': item.url === CurrentPage}"  class="side-bar-menu__link">
+                    <img [src]="item.image" class="side-bar-menu__icon img-responsive" alt="">
+                    <span class="side-bar-menu__text">{{item.label}}</span>
+                </a>
+            </li>
+    </ul>
+</div>

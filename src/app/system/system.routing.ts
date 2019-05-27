@@ -2,13 +2,19 @@ import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { MainComponent } from './main/main.component';
 import { SystemComponent } from './system.component';
+import { SystemAccessGuard } from './system.guard';
+import { NewsComponent } from './news/news.component';
 
 const routes: Routes =
 [
-    { path: '', redirectTo: 'main', pathMatch: 'full'},
     { path: '', component: SystemComponent, children:
         [
-            { path: 'main', component: MainComponent}
+          { path: "", pathMatch:"full", redirectTo: "my_products"},
+          {path: 'my_products', loadChildren: './products/products.module#ProductsModule',canActivate:[SystemAccessGuard]},
+          {
+            path: "my_news", component: NewsComponent, canActivate:[SystemAccessGuard]
+          },
+          { path: '**', component: MainComponent}
         ]
     }
 

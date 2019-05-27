@@ -9,7 +9,7 @@ import { TokenModel } from '../models/token.model';
 @Injectable()
 export class AuthService {
 
-    public onAuthChange$: Subject<boolean>;
+    public onAuthChange$: Subject<boolean> = new Subject<boolean>();
     public Me: any;
     public IsLoggedIn: boolean = false;
 

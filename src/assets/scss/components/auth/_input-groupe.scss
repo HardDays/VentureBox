@@ -33,8 +33,27 @@
             resize: none;
         }
 
+        &--textarea_lg {
+            height: 295px;
+            resize: none;
+        }
+
         &--textarea_less_height {
             height: 80px;
+            resize: none;
+        }
+
+        &--value-left {
+            padding-left: 20px;
+        }
+
+        &--value-right {
+            text-align: right;
+            padding-right: 30px;
+        }
+
+        &--textarea-sm {
+            height: 193px;
             resize: none;
         }
     }
