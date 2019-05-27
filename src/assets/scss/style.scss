@@ -10,3 +10,26 @@
 @import "components/auth/check-boxes-row";
 @import "components/auth/one-checkbox";
 @import "components/auth/upload-file";
+@import "components/auth/with-value";
+@import "components/auth/select";
+@import "components/auth/select-dropdown";
+@import "components/auth/row-generate";
+@import "components/auth/add-row-generate";
+//main
+@import "components/main/main";
+//sidebar
+@import "components/sidebar/side-bar";
+@import "components/sidebar/side-bar-menu";
+//system
+@import "components/system/system";
+@import "components/system/system-copyright";
+//system header
+@import "components/headersystem/system-header";
+@import "components/headersystem/header-user";
+//create product
+@import "components/createproduct/create-product";
+@import "components/createproduct/upload-image";
+//my products
+@import "components/myproducts/my-products";
+@import "components/myproducts/product";
+@import "components/myproducts/product-tags";

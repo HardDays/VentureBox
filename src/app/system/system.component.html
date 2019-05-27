@@ -1,4 +1,30 @@
-<b>Comming Soon</b><br/>
-<a routerLink="/auth/login" *ngIf="!IsLoggedIn">Log In</a><br/>
-<a (click)="Logout()" *ngIf="IsLoggedIn">Log Out</a><br/>
-<router-outlet></router-outlet>
+<!-- main--visible_sidebar добавляем при клике на кнопку "system-header__open-sidebar" делаем remove класса при клике на body-->
+<section class="main">
+    <navigation-cmp></navigation-cmp>
+    <div class="system main__system">
+        <div class="system__content">
+            <div class="system-header">
+                <button class="system-header__open-sidebar">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </button>
+                <div class="system-header__user">
+                    <div class="header-user">
+                        <div class="header-user__ava">NS</div>
+                        <div class="header-user__info">
+                            <p class="header-user__name">Name Surname</p>
+                            <p class="header-user__role">Startup</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="system__wrapper">
+                <router-outlet></router-outlet>
+            </div>
+        </div>
+        <div class="system-copyright system__copyright">
+            <p class="system-copyright__text">©2019 Venture Box. All right recerved. <a href="#" class="system-copyright__link">Privacy policy</a> & <a href="#" class="system-copyright__link">Terms of servise</a></p>
+        </div>
+    </div>
+</section>
