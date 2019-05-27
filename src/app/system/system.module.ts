@@ -9,13 +9,15 @@ import { SystemRoutingModule } from './system.routing';
 import { SystemAccessGuard } from './system.guard';
 import { SystemComponent } from './system.component';
 import { NavigationComponent } from './navigation/navigation.component';
+import { NewsComponent } from './news/news.component';
 
 
 @NgModule({
   declarations: [
     SystemComponent,
     MainComponent,
-    NavigationComponent
+    NavigationComponent,
+    NewsComponent
   ],
   imports: [
     CommonModule,
