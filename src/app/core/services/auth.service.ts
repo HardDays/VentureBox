@@ -12,6 +12,7 @@ export class AuthService {
 
     public onAuthChange$: Subject<boolean> = new Subject<boolean>();
     public Me: any;
+    public onMeChange$: Subject<boolean> = new Subject<boolean>();
     public IsLoggedIn: boolean = false;
 
     public FormSizeBig = new Subject<boolean>();
@@ -27,7 +28,12 @@ export class AuthService {
           {
             this.IsLoggedIn = val;
 
-            if (!this.IsLoggedIn) {
+            if (this.IsLoggedIn) {
+              this.GetMeByToken();
+            }
+            else {
+              this.Me = null;
+              this.onMeChange$.next(this.Me);
               this.router.navigate(['/auth']);
             }
           }
@@ -94,6 +100,21 @@ export class AuthService {
         success,
         fail
       )
+    }
+
+    GetMeByToken() {
+      return this.http.CommonRequest(
+        () => this.http.GetData('/users/me', ''),
+        (res) =>
+        {
+          this.Me = res;
+          this.onMeChange$.next(this.Me);
+        }
+      )
+    }
+
+    GetMe() {
+      return this.Me;
     }
 
 

@@ -10,11 +10,20 @@ import { Subscription } from 'rxjs';
 })
 export class SystemComponent implements OnInit{
     IsLoggedIn = false;
+    Me = {
+      name: '',
+      surname: '',
+      role: ''
+    };
     constructor(private cdr: ChangeDetectorRef,
         private auth: AuthService, private router: Router)
     {
         this.auth.onAuthChange$.subscribe((val) => {
             this.IsLoggedIn = val;
+
+        });
+        this.auth.onMeChange$.subscribe((val) => {
+            this.Me = this.auth.GetMe();
         });
     }
     ngOnInit() {
@@ -22,6 +31,7 @@ export class SystemComponent implements OnInit{
 
         this.IsLoggedIn = this.auth.IsLoggedIn;
 
+        this.Me = this.auth.GetMe();
     }
 
     Logout()
