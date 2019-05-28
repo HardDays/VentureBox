@@ -7,10 +7,32 @@ export class UserModel {
         public password_confirmation?: string,
         public phone?: string,
         public role?: string,
-        public goals?: string
+        public goals?: string,
+
+        public company_name?: string,
+        public website?: string,
+        public description?: string,
+        public contact_email?: string,
+        public image?: string,
+        public stage_of_funding?: string,
+        public investment_amount?: number,
+        public equality_amount?: number,
+        public team_members?: TeamMember[]
     ) {
       if (!role) {
         this.role = 'startup';
       }
+      if (! team_members) {
+        this.team_members = [];
+      }
     }
+}
+
+export class TeamMember {
+   constructor(
+        public team_member_name?: string,
+        public c_level?: string,
+        public c_level_name?: string,
+        public isOpened?: boolean
+    ) {}
 }

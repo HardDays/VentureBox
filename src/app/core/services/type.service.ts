@@ -94,10 +94,11 @@ export class TypeService {
         const value = errors[key];
         let errs = '';
         for (const item of value) {
-          errs += key.slice(0, 1).toUpperCase() + key.slice(1).replace('_', ' ').toLowerCase();
-          errs += ' ' + item.replace('_', ' ').toLowerCase() + '. ';
+          errs += key.slice(0, 1).toUpperCase() + key.slice(1).replace(new RegExp('_', 'g'), ' ').toLowerCase();
+          errs += ' ' + item.replace(new RegExp('_', 'g'), ' ').toLowerCase() + '. ';
         }
-        Errors[key] = errs;
+        if(Errors[key] == '')
+          Errors[key] = errs;
       }
       return Errors;
     }
@@ -114,6 +115,15 @@ export class TypeService {
           };
           myReader.readAsDataURL(file);
       }
+    }
+
+
+
+    GetEnumStageOfFunding() {
+      return this.http.GetData('/enums/stage_of_funding', '');
+    }
+    GetEnumClevels() {
+      return this.http.GetData('/enums/c_level', '');
     }
 
 }

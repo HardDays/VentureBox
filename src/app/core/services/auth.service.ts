@@ -76,7 +76,7 @@ export class AuthService {
         () => this.http.PostData('/auth/logout', {}),
         (res) =>
         {
-          this.ClearSession()
+          this.ClearSession();
         }
       )
 

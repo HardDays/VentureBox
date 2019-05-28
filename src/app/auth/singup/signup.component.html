@@ -5,18 +5,18 @@
             <div class="input-groupe auth-form__input-groupe">
                 <label class="input-groupe__label" for="name">Name</label>
                 <!-- input-groupe__input--error класс ошибки для инпута-->
-                <input [(ngModel)]="User.name" type="text" class="input-groupe__input" [ngClass]="{'input-groupe__input--error':ErrorsUser.name}" id="name" name="name">
-                <p class="input-groupe__error">{{ErrorsUser.name}}</p>
+                <input [(ngModel)]="User.name" type="text" class="input-groupe__input" [ngClass]="{'input-groupe__input--error':ErrorsUserPage1.name}" id="name" name="name">
+                <p class="input-groupe__error">{{ErrorsUserPage1.name}}</p>
             </div>
             <div class="input-groupe auth-form__input-groupe">
                 <label class="input-groupe__label" for="surname">Surname</label>
-                <input [(ngModel)]="User.surname" type="text" class="input-groupe__input" [ngClass]="{'input-groupe__input--error':ErrorsUser.surname}" id="surname" name="surname">
-                <p class="input-groupe__error">{{ErrorsUser.surname}}</p>
+                <input [(ngModel)]="User.surname" type="text" class="input-groupe__input" [ngClass]="{'input-groupe__input--error':ErrorsUserPage1.surname}" id="surname" name="surname">
+                <p class="input-groupe__error">{{ErrorsUserPage1.surname}}</p>
             </div>
             <div class="input-groupe auth-form__input-groupe">
                 <label class="input-groupe__label" for="mail">E-mail</label>
-                <input [(ngModel)]="User.email" type="text" class="input-groupe__input" [ngClass]="{'input-groupe__input--error':ErrorsUser.email}" id="mail" name="mail">
-                <p class="input-groupe__error">{{ErrorsUser.email}}</p>
+                <input [(ngModel)]="User.email" type="text" class="input-groupe__input" [ngClass]="{'input-groupe__input--error':ErrorsUserPage1.email}" id="mail" name="mail">
+                <p class="input-groupe__error">{{ErrorsUserPage1.email}}</p>
             </div>
             <div class="input-groupe auth-form__input-groupe">
                 <p class="input-groupe__label">Roles</p>
@@ -41,13 +41,13 @@
         <div class="auth-two-cols__side">
             <div class="input-groupe auth-form__input-groupe">
                 <label class="input-groupe__label" for="password">Password</label>
-                <input [(ngModel)]="User.password"  type="password" class="input-groupe__input" [ngClass]="{'input-groupe__input--error':ErrorsUser.password}" id="password" name="password">
-                <p class="input-groupe__error">{{ErrorsUser.password}}</p>
+                <input [(ngModel)]="User.password"  type="password" class="input-groupe__input" [ngClass]="{'input-groupe__input--error':ErrorsUserPage1.password}" id="password" name="password">
+                <p class="input-groupe__error">{{ErrorsUserPage1.password}}</p>
             </div>
             <div class="input-groupe auth-form__input-groupe">
                 <label class="input-groupe__label" for="verify-password">Verify password</label>
-                <input [(ngModel)]="User.password_confirmation" type="password" class="input-groupe__input" [ngClass]="{'input-groupe__input--error':ErrorsUser.password_confirmation}" id="verify-password" name="verify-password">
-                <p class="input-groupe__error">{{ErrorsUser.password_confirmation}}</p>
+                <input [(ngModel)]="User.password_confirmation" type="password" class="input-groupe__input" [ngClass]="{'input-groupe__input--error':ErrorsUserPage1.password_confirmation}" id="verify-password" name="verify-password">
+                <p class="input-groupe__error">{{ErrorsUserPage1.password_confirmation}}</p>
             </div>
             <div class="input-groupe auth-form__input-groupe">
                 <label class="input-groupe__label" for="descroption">Descripe your goals here</label>
@@ -69,18 +69,18 @@
                     <div class="input-groupe auth-form__input-groupe">
                         <label class="input-groupe__label" for="name">Company name</label>
                         <!-- input-groupe__input--error класс ошибки для инпута-->
-                        <input [(ngModel)]="Company.name" type="text" class="input-groupe__input" [ngClass]="{'input-groupe__input--error':ErrorsCompany.name}" id="name" name="name">
-                        <p class="input-groupe__error">{{ErrorsCompany.name}}</p>
+                        <input [(ngModel)]="User.company_name" type="text" class="input-groupe__input" [ngClass]="{'input-groupe__input--error':ErrorsUserPage2.company_name}" id="name" name="name">
+                        <p class="input-groupe__error">{{ErrorsUserPage2.company_name}}</p>
                     </div>
                     <div class="input-groupe auth-form__input-groupe">
                         <label class="input-groupe__label" for="website">Company website</label>
-                        <input [(ngModel)]="Company.website" type="text" class="input-groupe__input" [ngClass]="{'input-groupe__input--error':ErrorsCompany.website}" id="website" name="website">
-                        <p class="input-groupe__error">{{ErrorsCompany.website}}</p>
+                        <input [(ngModel)]="User.website" type="text" class="input-groupe__input" [ngClass]="{'input-groupe__input--error':ErrorsUserPage2.website}" id="website" name="website">
+                        <p class="input-groupe__error">{{ErrorsUserPage2.website}}</p>
                     </div>
                     <div class="input-groupe auth-form__input-groupe">
                         <label class="input-groupe__label" for="mail">Contact e-mail</label>
-                        <input [(ngModel)]="Company.contact_email" type="text" class="input-groupe__input" [ngClass]="{'input-groupe__input--error':ErrorsCompany.contact_email}" id="mail" name="mail">
-                        <p class="input-groupe__error">{{ErrorsCompany.contact_email}}</p>
+                        <input [(ngModel)]="User.contact_email" type="text" class="input-groupe__input" [ngClass]="{'input-groupe__input--error':ErrorsUserPage2.contact_email}" id="mail" name="mail">
+                        <p class="input-groupe__error">{{ErrorsUserPage2.contact_email}}</p>
                     </div>
                     <div class="input-groupe auth-form__input-groupe">
                         <label class="input-groupe__label" for="upload">Upload logo company</label>
@@ -96,8 +96,8 @@
 
                     <div class="input-groupe auth-form__input-groupe">
                         <label class="input-groupe__label" for="descroption">Company description</label>
-                        <textarea [(ngModel)]="Company.description" class="input-groupe__input input-groupe__input--textarea_less_height" [ngClass]="{'input-groupe__input--error':ErrorsCompany.description}" id="descroption" name="descroption"></textarea>
-                        <p class="input-groupe__error">{{ErrorsCompany.description}}</p>
+                        <textarea [(ngModel)]="User.description" class="input-groupe__input input-groupe__input--textarea_less_height" [ngClass]="{'input-groupe__input--error':ErrorsUserPage2.description}" id="descroption" name="descroption"></textarea>
+                        <p class="input-groupe__error">{{ErrorsUserPage2.description}}</p>
                     </div>
                 </div>
                 <div class="auth-two-cols__side">
@@ -118,18 +118,18 @@
                             <div class="select-dropdown select__dropdown">
                                 <ul class="select-dropdown__list">
                                     <!-- select-dropdown__item--active для активного элемента -->
-                                    <li *ngFor="let item of StageOfFunding" (click)="item.isSelected = !item.isSelected" class="select-dropdown__item" [ngClass]="{'select-dropdown__item--active': item.isSelected}">{{item.name}}</li>
+                                    <li *ngFor="let item of StageOfFunding" (click)="setStageOfFunding(item)" class="select-dropdown__item" [ngClass]="{'select-dropdown__item--active': item.isSelected}">{{item.name}}</li>
                                 </ul>
                             </div>
                         </div>
-                        <p class="input-groupe__error"><!--сюда текст ошибки если есть--></p>
+                        <p class="input-groupe__error">{{ErrorsUserPage2.stage_of_funding}}</p>
                     </div>
                     <div class="row-generate">
                         <div class="row-generate__coll">
                             <div class="input-groupe auth-form__input-groupe">
                                 <label class="input-groupe__label" for="investment">Investment amount</label>
                                 <!-- input-groupe__input--error класс ошибки для инпута-->
-                                <input type="text" class="input-groupe__input" id="investment" name="investment">
+                                <input [(ngModel)]="User.investment_amount" type="text" class="input-groupe__input" id="investment" name="investment">
                                 <p class="input-groupe__error"><!--сюда текст ошибки если есть--></p>
                             </div>
                         </div>
@@ -138,7 +138,7 @@
                                 <label class="input-groupe__label" for="percent">Equity amount</label>
                                 <!-- input-groupe__input--error класс ошибки для инпута-->
                                 <div class="with-value">
-                                    <input type="text" class="input-groupe__input input-groupe__input--value-right" id="percent" name="percent">
+                                    <input [(ngModel)]="User.equality_amount" type="text" class="input-groupe__input input-groupe__input--value-right" id="percent" name="percent">
                                     <span class="with-value__value with-value__value--right">%</span>
                                 </div>
                                 <p class="input-groupe__error"><!--сюда текст ошибки если есть--></p>
@@ -146,7 +146,7 @@
                         </div>
                     </div>
 
-                    <ng-container *ngFor="let item of Teams; let i = index; let first = first">
+                    <ng-container *ngFor="let item of User.team_members; let i = index; let first = first">
 
                     <div class="row-generate" [ngClass]="{'row-generate--generated': !first}">
                         <button *ngIf="!first" (click)="deleteTeamItem(i)" class="row-generate__delete"></button>
@@ -154,8 +154,8 @@
                             <div class="input-groupe auth-form__input-groupe">
                                 <label class="input-groupe__label" for="team-1">Team member name</label>
                                 <!-- input-groupe__input--error класс ошибки для инпута-->
-                                <input [(ngModel)]="item.name" type="text" class="input-groupe__input" id="team-1" name="team-1">
-                                <p class="input-groupe__error"><!--сюда текст ошибки если есть--></p>
+                                <input [(ngModel)]="item.team_member_name" type="text" class="input-groupe__input" id="team-1" name="team-1">
+                                <p class="input-groupe__error">{{!item.team_member_name?ErrorsUserPage2.team_member_name:''}}</p>
                             </div>
                         </div>
                         <div class="row-generate__coll">
@@ -169,17 +169,16 @@
                                         <option>sdf</option>
                                     </select>
                                     <div class="select__lable">
-                                        <p class="select__picked">{{item.level}}</p>
-
+                                        <p class="select__picked">{{item.c_level_name}}</p>
                                     </div>
                                     <div class="select-dropdown select__dropdown">
                                         <ul class="select-dropdown__list">
                                             <!-- select-dropdown__item--active для активного элемента -->
-                                            <li *ngFor="let level of TeamLevels" (click)="item.level = level" [ngClass]="{'select-dropdown__item--active': item.level == level}" class="select-dropdown__item">{{level}}</li>
+                                            <li *ngFor="let level of TeamLevels" (click)="item.c_level_name = level.name; item.c_level = level.value" [ngClass]="{'select-dropdown__item--active': item.c_level_name == level.name}" class="select-dropdown__item">{{level.name}}</li>
                                         </ul>
                                     </div>
                                 </div>
-                                <p class="input-groupe__error"><!--сюда текст ошибки если есть--></p>
+                                <p class="input-groupe__error">{{!item.team_member_name?ErrorsUserPage2.c_level:''}}</p>
                             </div>
                         </div>
                     </div>

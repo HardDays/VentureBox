@@ -11,7 +11,7 @@ import { Subscription } from 'rxjs';
 export class SystemComponent implements OnInit{
     IsLoggedIn = false;
     constructor(private cdr: ChangeDetectorRef,
-        private auth: AuthService) 
+        private auth: AuthService, private router: Router)
     {
         this.auth.onAuthChange$.subscribe((val) => {
             this.IsLoggedIn = val;

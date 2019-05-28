@@ -1,6 +1,6 @@
-import { CompanyModel, TeamMember } from './../../core/models/company.model';
+import { CompanyModel } from './../../core/models/company.model';
 import { TypeService } from './../../core/services/type.service';
-import { UserModel } from './../../core/models/user.model';
+import { UserModel, TeamMember } from './../../core/models/user.model';
 import { Component, OnInit, Input } from '@angular/core';
 import { Subject } from 'rxjs';
 import { AuthService } from '../../core/services/auth.service';
@@ -20,27 +20,28 @@ export class SignUpComponent implements OnInit {
     User: UserModel = new UserModel();
     Value = this.User.role;
 
-    ErrorsUser = {
+    ErrorsUserPage1 = {
       name: '',
       surname: '',
       email: '',
       password: '',
       password_confirmation: ''
     };
+    ErrorsUserPage2 = {
+      company_name: '',
+      website: '',
+      description: '',
+      contact_email: '',
+      stage_of_funding: '',
+      c_level: '',
+      team_member_name: ''
+    };
 
     Company: CompanyModel = new CompanyModel();
 
-    StageOfFunding: {name: string, isSelected: boolean}[] = [
-      {name : 'Idea', isSelected: false},
-      {name : 'Pre-seed', isSelected: false},
-      {name : 'Seed', isSelected: false},
-      {name : 'Serial A', isSelected: false},
-      {name : 'Serial B', isSelected: false},
-      {name : 'Serial C', isSelected: false}
-    ];
+    StageOfFunding: {name: string, value: string, isSelected: boolean}[] = [];
     isStageOfFundingOpened = false;
-    Teams: TeamMember[] = [];
-    TeamLevels = ['CTO', 'CFO', 'CIO', 'COO', 'CCO', 'CKO', 'CSO', 'CDO', 'CMO'];
+    TeamLevels: {name: string, value: string, isSelected: boolean}[] = [];
     ImagePath = '';
 
     ErrorsCompany = {
@@ -60,6 +61,46 @@ export class SignUpComponent implements OnInit {
     ngOnInit() {
         this.auth.FormSizeBig.next(true);
         this.addTeamMember();
+
+        this.InitTypes();
+    }
+
+    InitTypes() {
+      this.type.GetEnumStageOfFunding()
+        .subscribe(
+          (res) => {
+            this.StageOfFunding =  [];
+            const arr = res.json();
+            for (let key in arr) {
+              this.StageOfFunding.push({name: arr[key], value: key, isSelected: false});
+            }
+          }
+        );
+
+      this.type.GetEnumClevels()
+        .subscribe(
+          (res) => {
+            this.TeamLevels =  [];
+            const arr = res.json();
+            for (let key in arr) {
+              this.TeamLevels.push({name: arr[key], value: key, isSelected: false});
+            }
+          }
+        );
+    }
+
+    setStageOfFunding(item) {
+      for (let item of this.StageOfFunding) {
+        item.isSelected = false;
+      }
+      this.StageOfFunding.find(x=>x.name == item.name).isSelected = true;
+    }
+
+    setClevel(item) {
+      for (let item of this.TeamLevels) {
+        item.isSelected = false;
+      }
+      this.TeamLevels.find(x=>x.name == item.name).isSelected = true;
     }
 
     TypeChange(Value) {
@@ -68,12 +109,9 @@ export class SignUpComponent implements OnInit {
     }
 
     NextStep() {
-      this.RegisterUser( (user) => {
-          this.Step = 2;
+      this.Step = 2;
           this.auth.FormSizeBig.next(true);
-          this.Company.user_id = user.id;
-        }
-      );
+
     }
 
     NavigateToLogin() {
@@ -83,61 +121,52 @@ export class SignUpComponent implements OnInit {
     }
 
     Register() {
-      if (this.Step === 1) {
-        this.RegisterUser( () => {
-            this.NavigateToLogin();
-          }
-        );
-      } else if (this.Step === 2) {
-        this.RegisterCompany();
+      if (this.User.role === 'startup') {
+        const tmp = this.StageOfFunding.find(x => x.isSelected === true);
+        this.User.stage_of_funding = tmp ? tmp.value : '';
       }
+      this.RegisterUser();
     }
 
-    RegisterUser ( callback: (any) => void) {
+    RegisterUser () {
       this.auth.CreateUser(this.User)
         .subscribe(
           (res) => {
-            console.log(res.json()); // token here
+            // console.log(res.json()); // token here
             this.auth.SetCurrentToken(res.json()['token']);
-            callback(res.json());
+            this.auth.TryToLoginWithToken();
+            this.router.navigate(['/system']);
           },
           (err) => {
-            this.ErrorsUser = this.type.GetErrorsDictByResponse(err.json(), this.ErrorsUser);
-          }
-        );
-    }
-
-    RegisterCompany () {
-      this.auth.CreateCompany(this.Company)
-        .subscribe(
-          (res) => {
-            this.NavigateToLogin();
-          },
-          (err) => {
-            console.log(err.json());
-             this.ErrorsCompany = this.type.GetErrorsDictByResponse(err.json(), this.ErrorsCompany);
+            this.ErrorsUserPage1 = this.type.GetErrorsDictByResponse(err.json(), this.ErrorsUserPage1);
+            this.ErrorsUserPage2 = this.type.GetErrorsDictByResponse(err.json(), this.ErrorsUserPage2);
+            for (let key in this.ErrorsUserPage1) {
+              if (this.ErrorsUserPage1[key] !== '') {
+                this.Step = 1;
+              }
+            }
           }
         );
     }
 
     addTeamMember() {
-      this.Teams.push(new TeamMember());
+      this.User.team_members.push(new TeamMember());
     }
 
     deleteTeamItem(index: number) {
-      this.Teams.splice(index, 1);
+       this.User.team_members.splice(index, 1);
     }
 
     uploadImage($event) {
       const paths = $event.srcElement.value.split("\\");
       const path = paths[paths.length-1];
-    this.type.ReadImages(
-        $event.target.files,
-        (res: string) => {
-            this.Company.image = res;
-            this.ImagePath = path;
-        }
-    );
+      this.type.ReadImages(
+          $event.target.files,
+          (res: string) => {
+              this.User.image = res;
+              this.ImagePath = path;
+          }
+      );
   }
 
 
