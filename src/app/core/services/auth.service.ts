@@ -5,6 +5,7 @@ import { Injectable } from "@angular/core";
 import { Subject } from 'rxjs';
 import { UserModel } from '../models/user.model';
 import { TokenModel } from '../models/token.model';
+import { Router } from '@angular/router';
 
 @Injectable()
 export class AuthService {
@@ -16,7 +17,7 @@ export class AuthService {
     public FormSizeBig = new Subject<boolean>();
     public CurrentSize: boolean = false;
 
-    constructor(private http: HttpService) {
+    constructor(private http: HttpService, private router: Router) {
         this.FormSizeBig.subscribe((val) => {
             this.CurrentSize = val;
         });
@@ -25,6 +26,10 @@ export class AuthService {
           (val) =>
           {
             this.IsLoggedIn = val;
+
+            if (!this.IsLoggedIn) {
+              this.router.navigate(['/auth']);
+            }
           }
         )
 
