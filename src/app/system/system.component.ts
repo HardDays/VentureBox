@@ -15,6 +15,7 @@ export class SystemComponent implements OnInit{
       surname: '',
       role: ''
     };
+    Initials = '';
     constructor(private cdr: ChangeDetectorRef,
         private auth: AuthService, private router: Router)
     {
@@ -24,6 +25,7 @@ export class SystemComponent implements OnInit{
         });
         this.auth.onMeChange$.subscribe((val) => {
             this.Me = this.auth.GetMe();
+            this.getInitials();
         });
     }
     ngOnInit() {
@@ -32,6 +34,14 @@ export class SystemComponent implements OnInit{
         this.IsLoggedIn = this.auth.IsLoggedIn;
 
         this.Me = this.auth.GetMe();
+        this.getInitials();
+    }
+
+    getInitials() {
+      if (this.Me && this.Me.name && this.Me.surname) {
+          this.Initials = this.Me.name.slice(0, 1).toUpperCase();
+          this.Initials += this.Me.surname.slice(0, 1).toUpperCase();
+        }
     }
 
     Logout()
