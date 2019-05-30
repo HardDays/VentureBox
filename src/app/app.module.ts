@@ -1,3 +1,4 @@
+import { NewsService } from './core/services/news.service';
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
@@ -33,7 +34,8 @@ import { TypeService } from './core/services/type.service';
     HttpModule,
     AuthService,
     HttpService,
-    TypeService
+    TypeService,
+    NewsService
   ],
   bootstrap: [AppComponent]
 })

@@ -11,8 +11,8 @@ import { Router } from '@angular/router';
 export class AuthService {
 
     public onAuthChange$: Subject<boolean> = new Subject<boolean>();
-    public Me: any;
-    public onMeChange$: Subject<boolean> = new Subject<boolean>();
+    public Me: UserModel = new UserModel();
+    public onMeChange$: Subject<UserModel> = new Subject<UserModel>();
     public IsLoggedIn: boolean = false;
 
     public FormSizeBig = new Subject<boolean>();

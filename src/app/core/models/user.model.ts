@@ -1,5 +1,6 @@
 export class UserModel {
     constructor(
+        public id?: number,
         public email?: string,
         public password?: string,
         public name?: string,
@@ -17,7 +18,10 @@ export class UserModel {
         public stage_of_funding?: string,
         public investment_amount?: number,
         public equality_amount?: number,
-        public team_members?: TeamMember[]
+        public team_members?: TeamMember[],
+
+        public company_id?: number,
+        public token?: string
     ) {
       if (!role) {
         this.role = 'startup';

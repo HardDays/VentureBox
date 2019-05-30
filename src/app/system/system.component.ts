@@ -2,6 +2,7 @@ import { Component, OnInit, OnDestroy, ChangeDetectorRef } from '@angular/core';
 import { Router, NavigationStart } from '@angular/router';
 import { AuthService } from '../core/services/auth.service';
 import { Subscription } from 'rxjs';
+import { UserModel } from '../core/models/user.model';
 
 
 @Component({
@@ -10,11 +11,7 @@ import { Subscription } from 'rxjs';
 })
 export class SystemComponent implements OnInit{
     IsLoggedIn = false;
-    Me = {
-      name: '',
-      surname: '',
-      role: ''
-    };
+    Me: UserModel = new UserModel();
     Initials = '';
     constructor(private cdr: ChangeDetectorRef,
         private auth: AuthService, private router: Router)
