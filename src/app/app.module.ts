@@ -18,6 +18,8 @@ import { TypeService } from './core/services/type.service';
 import { ProductsService } from './core/services/products.service';
 import { MilestonesService } from './core/services/milestones.service';
 
+
+
 @NgModule({
   declarations: [
     AppComponent
@@ -29,7 +31,7 @@ import { MilestonesService } from './core/services/milestones.service';
     HttpModule,
     RouterModule,
     AppRoutingModule,
-    HttpClientModule
+    HttpClientModule,
   ],
   providers: [
     AppAccessGuard,

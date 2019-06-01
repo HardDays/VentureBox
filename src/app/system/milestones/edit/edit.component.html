@@ -1,41 +1,43 @@
 <!-- system__title--whith-arrow если есть стрелка и внутри кнопка-->
-                    <div class="system__sm-wrapper">
-                        <h1 class="system__title">
-                            Create milestone
-                        </h1>
-                        <form class="create-milestone">
-                            <div class="input-groupe create-milestone__input-groupe">
-                                <label class="input-groupe__label" for="milestone-name">Milestone title</label>
-                                <!-- input-groupe__input--error класс ошибки для инпута-->
-                                <input [(ngModel)]="Milestone.title" [ngClass]="{'input-groupe__input--error': Errors.title}" type="text" class="input-groupe__input" id="milestone-name" name="milestone-name">
-                                <p class="input-groupe__error">{{Errors.title}}</p>
-                            </div>
-                            <div class="input-groupe create-milestone__input-groupe">
-                                <label class="input-groupe__label" for="date">Finish date</label>
-                                <!-- input-groupe__input--error класс ошибки для инпута-->
-                                <div class="input-groupe__with-sm-butt">
-                                    <input [(ngModel)]="Milestone.finish_date" [ngClass]="{'input-groupe__input--error': Errors.finish_date}" type="text" class="input-groupe__input" id="date" name="date">
-                                    <button class="input-groupe__sm-butt">
-                                        <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                            <path d="M13.5998 1.60001H12.7998V0H11.1998V1.60001H4.79981V0H3.1998V1.60001H2.39982C1.51583 1.60001 0.80783 2.316 0.80783 3.20002L0.799805 14.4C0.799805 15.284 1.51579 16 2.39982 16H13.5998C14.4838 16 15.1998 15.284 15.1998 14.4V3.19999C15.1998 2.316 14.4838 1.60001 13.5998 1.60001ZM13.5998 14.4H2.39982V5.59998H13.5998V14.4Z" fill="white"/>
-                                        </svg>
-                                    </button>
-                                </div>
-                                <p class="input-groupe__error">{{Errors.finish_date}}</p>
-                            </div>
-                            <div class="input-groupe create-milestone__input-groupe">
-                                <label class="input-groupe__label" for="description">Describe goal</label>
-                                <!-- input-groupe__input--error класс ошибки для инпута-->
-                                <textarea [(ngModel)]="Milestone.description" class="input-groupe__input input-groupe__input--textarea_lg" id="description" name="description"></textarea>
-                                <p class="input-groupe__error"><!--сюда текст ошибки если есть--></p>
-                            </div>
-                            <div class="two-col-buttons">
-                                <div class="button-wrapper two-col-buttons__item">
-                                    <a [routerLink]="['/system', 'my_milestones']" class="button-wrapper__button button-wrapper__button--border_theme">Cancel</a>
-                                </div>
-                                <div class="button-wrapper two-col-buttons__item">
-                                    <button (click)="saveMilestone()" class="button-wrapper__button">Save</button>
-                                </div>
-                            </div>
-                        </form>
-                    </div>
+<div class="system__sm-wrapper">
+    <h1 class="system__title">
+        Create milestone
+    </h1>
+    <form class="create-milestone">
+        <div class="input-groupe create-milestone__input-groupe">
+            <label class="input-groupe__label" for="milestone-name">Milestone title</label>
+            <!-- input-groupe__input--error класс ошибки для инпута-->
+            <input [(ngModel)]="Milestone.title" [ngClass]="{'input-groupe__input--error': Errors.title}" type="text" class="input-groupe__input" id="milestone-name" name="milestone-name">
+            <p class="input-groupe__error">{{Errors.title}}</p>
+        </div>
+        <div class="input-groupe create-milestone__input-groupe">
+            <label class="input-groupe__label" for="date">Finish date</label>
+            <!-- input-groupe__input--error класс ошибки для инпута-->
+            <div class="input-groupe__with-sm-butt">
+                <input [(ngModel)]="Milestone.finish_date" [ngClass]="{'input-groupe__input--error': Errors.finish_date}" type="text" class="input-groupe__input" id="date" name="date">
+
+                <button (click)="isShowDatapicker = !isShowDatapicker" class="input-groupe__sm-butt">
+                    <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M13.5998 1.60001H12.7998V0H11.1998V1.60001H4.79981V0H3.1998V1.60001H2.39982C1.51583 1.60001 0.80783 2.316 0.80783 3.20002L0.799805 14.4C0.799805 15.284 1.51579 16 2.39982 16H13.5998C14.4838 16 15.1998 15.284 15.1998 14.4V3.19999C15.1998 2.316 14.4838 1.60001 13.5998 1.60001ZM13.5998 14.4H2.39982V5.59998H13.5998V14.4Z" fill="white"/>
+                    </svg>
+                </button>
+            </div>
+            <my-date-picker *ngIf="isShowDatapicker" style="margin-left: calc(100% - 252px );" (dateChanged)="onDateChanged($event)" [options]="myDatePickerOptions" ></my-date-picker>
+            <p class="input-groupe__error">{{Errors.finish_date}}</p>
+        </div>
+        <div class="input-groupe create-milestone__input-groupe">
+            <label class="input-groupe__label" for="description">Describe goal</label>
+            <!-- input-groupe__input--error класс ошибки для инпута-->
+            <textarea [(ngModel)]="Milestone.description" class="input-groupe__input input-groupe__input--textarea_lg" id="description" name="description"></textarea>
+            <p class="input-groupe__error"><!--сюда текст ошибки если есть--></p>
+        </div>
+        <div class="two-col-buttons">
+            <div class="button-wrapper two-col-buttons__item">
+                <a [routerLink]="['/system', 'my_milestones']" class="button-wrapper__button button-wrapper__button--border_theme">Cancel</a>
+            </div>
+            <div class="button-wrapper two-col-buttons__item">
+                <button (click)="saveMilestone()" class="button-wrapper__button">Save</button>
+            </div>
+        </div>
+    </form>
+</div>

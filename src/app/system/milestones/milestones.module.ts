@@ -11,6 +11,7 @@ import { MilestonesListsComponent } from './lists/lists.component';
 import { MilestonesEditComponent } from './edit/edit.component';
 import { MilestonesCreateComponent } from './create/create.component';
 import { MilestonesListItemComponent } from './lists/milestones-list-item/milestones-list-item.component';
+import { MyDatePickerModule } from 'mydatepicker';
 
 
 @NgModule({
@@ -27,7 +28,8 @@ import { MilestonesListItemComponent } from './lists/milestones-list-item/milest
     HttpModule,
     CommonModule,
     RouterModule,
-    MilestonesRoutingModule
+    MilestonesRoutingModule,
+    MyDatePickerModule
   ],
   providers: [
       MilestonesAccessGuard

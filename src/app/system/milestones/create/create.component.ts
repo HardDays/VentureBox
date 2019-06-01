@@ -4,6 +4,7 @@ import { Router } from '@angular/router';
 import { Component, OnInit } from '@angular/core';
 import { MilestonesModel } from 'src/app/core/models/milestones.model';
 import { MilestonesService } from 'src/app/core/services/milestones.service';
+import {IMyDpOptions} from 'mydatepicker';
 
 @Component({
   selector: 'milestones-create-cmp',
@@ -20,6 +21,9 @@ export class MilestonesCreateComponent implements OnInit {
     };
 
     Milestone: MilestonesModel = new MilestonesModel();
+
+    isShowDatapicker = false;
+
     constructor(
                 private auth: AuthService,
                 private milsestonesService: MilestonesService,
@@ -46,6 +50,16 @@ export class MilestonesCreateComponent implements OnInit {
             this.Errors = this.type.GetErrorsDictByResponse(err.json(), this.Errors);
           }
         );
+    }
+
+    public myDatePickerOptions: IMyDpOptions = {
+        dateFormat: 'yyyy-mm-dd',
+        inline: true
+    };
+
+    onDateChanged(event) {
+      this.Milestone.finish_date = event.formatted;
+      this.isShowDatapicker = false;
     }
 
 
