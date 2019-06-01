@@ -29,6 +29,13 @@ export class UserModel {
       if (! team_members) {
         this.team_members = [];
       }
+
+      if(! name)
+      {
+        this.name = "";
+      }
+      if(!surname)
+        this.surname = "";
     }
 }
 

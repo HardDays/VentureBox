@@ -15,6 +15,7 @@ import { AppRoutingModule } from './app.routing';
 import { AuthService } from './core/services/auth.service';
 import { HttpService } from './core/services/http.service';
 import { TypeService } from './core/services/type.service';
+import { ProductsService } from './core/services/products.service';
 import { MilestonesService } from './core/services/milestones.service';
 
 @NgModule({
@@ -37,6 +38,7 @@ import { MilestonesService } from './core/services/milestones.service';
     HttpService,
     TypeService,
     NewsService,
+    ProductsService,
     MilestonesService
   ],
   bootstrap: [AppComponent]
