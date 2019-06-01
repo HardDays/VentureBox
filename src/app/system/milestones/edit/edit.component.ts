@@ -26,6 +26,7 @@ export class MilestonesEditComponent implements OnInit {
     Milestone: MilestonesModel = new MilestonesModel();
     Id = 0;
     isShowDatapicker = false;
+    isCompletedListOpened = false;
 
 
     constructor(
