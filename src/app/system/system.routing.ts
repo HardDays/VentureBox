@@ -14,6 +14,9 @@ const routes: Routes =
           {
             path: "my_news", component: NewsComponent, canActivate:[SystemAccessGuard]
           },
+          {
+            path: "my_milestones", loadChildren: './milestones/milestones.module#MilestonesModule', canActivate:[SystemAccessGuard]
+          },
           { path: '**', component: MainComponent}
         ]
     }

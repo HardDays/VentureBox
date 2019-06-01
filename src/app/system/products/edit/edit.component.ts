@@ -12,7 +12,7 @@ export class ProductsEditComponent implements OnInit {
     constructor(private _location: Location) {
     }
 
-    ngOnInit() 
+    ngOnInit()
     {
 
     }

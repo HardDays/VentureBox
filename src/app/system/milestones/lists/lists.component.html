@@ -1,0 +1,22 @@
+
+<!-- system__title--whith-arrow если есть стрелка и внутри кнопка-->
+<!-- system__title--with-button если есть черная кнопка-->
+<h1 class="system__title system__title--with-button">
+    My milestones
+    <a routerLink="../create" class="system__black-link">
+        <svg width="14" height="14" viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M14 6H8V-9.53674e-07H6V6H0V8H6V14H8V8H14V6Z" fill="white"/>
+        </svg>
+        Add new milestone
+    </a>
+</h1>
+
+<div class="my-milestones">
+
+  <div class="my-milestones__item" *ngFor="let item of Milestones">
+    <app-milestones-list-item
+      [Item]="item"
+    ></app-milestones-list-item>
+  </div>
+
+</div>

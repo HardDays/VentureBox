@@ -1,6 +1,8 @@
+import { AuthService } from './../../core/services/auth.service';
 import { Component, OnInit } from '@angular/core';
 import { Router, NavigationEnd } from '@angular/router';
 import { IMenuItem } from '../../core/interfaces/menu.item.interface';
+import { UserModel } from 'src/app/core/models/user.model';
 
 @Component({
   selector: 'navigation-cmp',
@@ -8,7 +10,7 @@ import { IMenuItem } from '../../core/interfaces/menu.item.interface';
   styleUrls: ['./navigation.component.css']
 })
 export class NavigationComponent implements OnInit {
-
+    Me: UserModel = new UserModel();
     CurrentPage = "";
     MenuItems: IMenuItem[] = [
         {
@@ -42,7 +44,7 @@ export class NavigationComponent implements OnInit {
             label : "My milestones"
         }
     ];
-    constructor(private router: Router) 
+    constructor(private router: Router, private auth: AuthService)
     {
         this.router.events.subscribe((event) =>{
             if(event instanceof NavigationEnd)
@@ -58,8 +60,14 @@ export class NavigationComponent implements OnInit {
         });
     }
 
-    ngOnInit() 
+    ngOnInit()
     {
+      this.Me = this.auth.Me;
+      this.auth.onMeChange$.subscribe(
+        (res) => {
+          this.Me = this.auth.Me;
+        }
+      );
     }
 
 

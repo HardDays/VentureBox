@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Location } from '@angular/common';
 
 @Component({
   selector: 'products-create-cmp',
@@ -8,12 +9,15 @@ import { Component, OnInit } from '@angular/core';
 export class ProductsCreateComponent implements OnInit {
 
     Mode = "create";
-    constructor() {
+    constructor(private _location: Location) {
     }
 
     ngOnInit() {
     }
 
-
+    GoBack()
+    {
+        this._location.back();
+    }
 
 }
