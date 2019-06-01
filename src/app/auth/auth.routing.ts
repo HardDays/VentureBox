@@ -9,12 +9,13 @@ import { SignUpComponent } from './singup/signup.component';
 
 const routes: Routes =
 [
-    { path: '', redirectTo: 'login', pathMatch: 'full'},
+    
     { path: '', component: AuthComponent, children:
         [
-            { path: 'login', component: LoginComponent},
-            { path: 'remind', component: PasswordComponent},
-            { path: 'signup', component: SignUpComponent}
+          { path: '', redirectTo: 'login', pathMatch: 'full'},
+          { path: 'login', component: LoginComponent},
+          { path: 'remind', component: PasswordComponent},
+          { path: 'signup', component: SignUpComponent}
         ]
     }
 

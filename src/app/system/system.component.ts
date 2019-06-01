@@ -34,11 +34,22 @@ export class SystemComponent implements OnInit{
         this.getInitials();
     }
 
-    getInitials() {
-      if (this.Me && this.Me.name && this.Me.surname) {
-          this.Initials = this.Me.name.slice(0, 1).toUpperCase();
-          this.Initials += this.Me.surname.slice(0, 1).toUpperCase();
-        }
+    getInitials() 
+    {
+        let initials = "";
+        if (this.Me && this.Me.name && this.Me.surname) 
+        {
+            if(this.Me.name && this.Me.name.length > 0)
+            {
+                initials += this.Me.name[0].toUpperCase();
+            }
+
+            if(this.Me.surname && this.Me.surname.length > 0)
+            {
+                initials += this.Me.surname[0].toUpperCase();
+            }
+        }   
+        this.Initials = initials;
     }
 
     Logout()

@@ -23,22 +23,12 @@ export class AppAccessGuard implements CanActivate
         }
     }
 
-    private LoginHandler(router:ActivatedRouteSnapshot, state: RouterStateSnapshot):boolean
-    {
-        return true;
-    }
-
     SystemNavigate()
     {
         if(this.auth.IsLoggedIn)
         {
             this.router.navigate(["/system"]);
         }
-        return !this.auth.IsLoggedIn;
-    }
-
-    LoginNavigate()
-    {
         return !this.auth.IsLoggedIn;
     }
 }
