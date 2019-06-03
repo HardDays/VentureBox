@@ -52,10 +52,13 @@ export class MilestonesCreateComponent implements OnInit {
         );
     }
 
+    Today = new Date();
     public myDatePickerOptions: IMyDpOptions = {
         dateFormat: 'yyyy-mm-dd',
-        inline: true
+        inline: true,
+        disableUntil: {year: this.Today.getFullYear(), month: this.Today.getMonth() + 1, day: this.Today.getDay() + 1}
     };
+
 
     onDateChanged(event) {
       this.Milestone.finish_date = event.formatted;

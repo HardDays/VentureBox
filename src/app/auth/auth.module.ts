@@ -10,7 +10,7 @@ import { RouterModule } from '@angular/router';
 import { AuthRoutingModule } from './auth.routing';
 import { PasswordComponent } from './password/password.component';
 import { SignUpComponent } from './singup/signup.component';
-
+import { TextMaskModule } from 'angular2-text-mask';
 
 @NgModule({
   declarations: [
@@ -25,7 +25,8 @@ import { SignUpComponent } from './singup/signup.component';
     HttpModule,
     CommonModule,
     RouterModule,
-    AuthRoutingModule
+    AuthRoutingModule,
+    TextMaskModule
   ],
   providers: [ AuthAccessGuard]
 })

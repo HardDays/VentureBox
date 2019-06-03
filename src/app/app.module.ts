@@ -7,6 +7,7 @@ import { HttpClientModule, HttpClient } from '@angular/common/http';
 import { RouterModule } from '@angular/router';
 
 import { NgModule } from '@angular/core';
+import { TextMaskModule } from 'angular2-text-mask';
 
 import { AppComponent } from './app.component';
 import { AppAccessGuard } from './app.guard';
@@ -31,7 +32,8 @@ import { MilestonesService } from './core/services/milestones.service';
     HttpModule,
     RouterModule,
     AppRoutingModule,
-    HttpClientModule
+    HttpClientModule,
+    TextMaskModule
   ],
   providers: [
     AppAccessGuard,

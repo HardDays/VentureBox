@@ -5,7 +5,7 @@ import { Component, OnInit, Input } from '@angular/core';
 import { Subject } from 'rxjs';
 import { AuthService } from '../../core/services/auth.service';
 import { Router } from '@angular/router';
-
+import { Validator } from '../../core/base/field.validator';
 
 
 @Component({
@@ -127,6 +127,12 @@ export class SignUpComponent implements OnInit {
       } else {
         this.ErrorsUserPage1.email = '';
       }
+      if (!Validator.ValidateEmail(this.User.email)) {
+        this.ErrorsUserPage1.email = 'Email is incorrect';;
+        return;
+      } else {
+        this.ErrorsUserPage1.email = '';
+      }
       if (!this.User.password){
         this.ErrorsUserPage1.password = 'Password can\'t be blank.';
         return;
@@ -153,6 +159,12 @@ export class SignUpComponent implements OnInit {
       if (this.User.role === 'startup') {
         const tmp = this.StageOfFunding.find(x => x.isSelected === true);
         this.User.stage_of_funding = tmp ? tmp.value : '';
+        if (!this.User.stage_of_funding) {
+          this.ErrorsUserPage2.stage_of_funding = 'Stage of funding can\'t be blank.';
+          return;
+        } else {
+          this.ErrorsUserPage2.stage_of_funding = '';
+        }
       }
       this.RegisterUser();
     }
@@ -197,6 +209,8 @@ export class SignUpComponent implements OnInit {
           }
       );
   }
+
+  public mask = [/[1-9]/, /[0-9]/];
 
 
 }
