@@ -9,7 +9,7 @@ export class SystemAccessGuard implements CanActivate{
     {}
     canActivate(router:ActivatedRouteSnapshot, state: RouterStateSnapshot): Observable<boolean>|boolean
     {
-        console.log(router.routeConfig.path);
+        // console.log(router.routeConfig.path);
         switch (router.routeConfig.path) {
             case 'my_products' : {
                 return this.MyProductsNavigate();
