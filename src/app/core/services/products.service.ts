@@ -115,6 +115,11 @@ export class ProductsService {
     {
         const validate: IDictionary = {} as IDictionary;
 
+        if(!product.image)
+        {
+            validate['image'] = 'empty';
+        }
+
         if(!product.name)
         {
             validate['name'] = 'empty';

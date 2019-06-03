@@ -24,7 +24,7 @@
                     </span>
                 </label>
                 <!-- сюда текст ошибки если есть -->
-                <p class="input-groupe__error"></p>
+                <p class="input-groupe__error" *ngIf="ErrorMsgs['image']">{{ErrorMsgs['image']}}</p>
             </div>
         </div>
         <div class="create-product__coll">
