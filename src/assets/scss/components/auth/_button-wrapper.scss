@@ -35,5 +35,33 @@
                 color: #fff;
             }
         }
+
+        &--full_width {
+            max-width: 100%;
+        }
+
+        &--sm_height {
+            padding: 10px;
+        }
+
+        &[disabled]{
+            background: $grey300;
+            border-color: $grey300;
+            color: #6D6D6D;
+            cursor: default;
+        }
+    }
+
+    &--select_theme {
+        padding-top: 0;
+
+        .button-wrapper__button {
+            padding: 8px 10px;
+            white-space: nowrap;
+        }
+    }
+
+    &--less_dispance {
+        padding-top: 5px;
     }
 }

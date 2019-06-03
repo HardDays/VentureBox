@@ -9,14 +9,17 @@
 <form class="create-product">
     <div class="create-product__row">
         <div class="upload-image create-product__upload-image">
-            <div class="input-groupe create-product__input-groupe">
-                <input id="upload-image" class="upload-image__input" type="file">
+            <div class="input-groupe create-product__input-groupe" >
+                <input id="upload-image" accept=".jpg, .jpeg, .png" type="file" (change)="ReadImage($event)" class="upload-image__input">
                 <!-- upload-image__label--error если ничего не загружено -->
                 <!-- также если загружено фото вставляем его в style этого блока свойством "background-image" -->
                 <!-- upload-image__label--uploaded если загружено фото -->
-                <label class="upload-image__label" for="upload-image">
+                <label class="upload-image__label" 
+                [ngClass]="{'upload-image__label--error': !Product.image, 'upload-image__label--uploaded': Product.image}" 
+                [ngStyle]="{'background-image': 'url(' + Product.image + ')'}"
+                for="upload-image">
                     <span class="upload-image__add">
-                        <img src="assets/img/plus.svg" class="upload-image__plus img-responsive" alt="">
+                        <img  src="assets/img/plus.svg" class="upload-image__plus img-responsive" alt="">
                         <span class="upload-image__text">Upload image</span>
                     </span>
                 </label>
@@ -28,34 +31,34 @@
             <div class="input-groupe create-product__input-groupe">
                 <label class="input-groupe__label" for="product-name">Product name</label>
                 <!-- input-groupe__input--error класс ошибки для инпута -->
-                <input type="text" class="input-groupe__input" id="product-name" name="product-name">
+                <input type="text" [(ngModel)]="Product.name" class="input-groupe__input" [ngClass]="{'input-groupe__input--error': ErrorMsgs['name']}" id="product-name" name="product-name">
                 <!-- сюда текст ошибки если есть -->
-                <p class="input-groupe__error"></p>
+                <p class="input-groupe__error" *ngIf="ErrorMsgs['name']">{{ErrorMsgs['name']}}</p>
             </div>
             <div class="input-groupe create-product__input-groupe">
                 <label class="input-groupe__label" for="price">Price</label>
                 <!-- input-groupe__input--error класс ошибки для инпута -->
                 <div class="with-value">
-                    <input type="text" class="input-groupe__input input-groupe__input--value-left" id="price" name="price">
+                    <input type="text" class="input-groupe__input input-groupe__input--value-left" [ngClass]="{'input-groupe__input--error': ErrorMsgs['price']}" id="price" name="price" [(ngModel)]="Product.price">
                     <span class="with-value__value">$</span>
                 </div>
                 <!-- сюда текст ошибки если есть -->
-                <p class="input-groupe__error"></p>
+                <p class="input-groupe__error" *ngIf="ErrorMsgs['price']">{{ErrorMsgs['price']}}</p>
             </div>
         </div>
         <div class="create-product__coll">
             <div class="input-groupe create-product__input-groupe">
                 <label class="input-groupe__label" for="product-link">Product link</label>
                 <!-- input-groupe__input--error класс ошибки для инпута -->
-                <input type="text" class="input-groupe__input" id="product-link" name="product-link">
+                <input type="text" class="input-groupe__input"  [ngClass]="{'input-groupe__input--error': ErrorMsgs['link_to_store']}" id="product-link" [(ngModel)]="Product.link_to_store" name="product-link">
                 <!-- сюда текст ошибки если есть -->
-                <p class="input-groupe__error"></p>
+                <p class="input-groupe__error" *ngIf="ErrorMsgs['link_to_store']">{{ErrorMsgs['link_to_store']}}</p>
             </div>
 
             <div class="input-groupe create-product__input-groupe">
                 <p class="input-groupe__label">Tags</p>
                 <!-- select--opened если открытый селект -->
-                <div class="select">
+                <div class="select" [ngClass]="{'select--opened': IsTagsOpened}" (click)="IsTagsOpened = !IsTagsOpened">
                     <!-- добавляем select__input-hidden для связки самописного селекта с формой(для взаимодействия с template driven или reactive forms). -->
                     <!-- Этот класс скрывает элемент. в данном случае нужно юзать список из чекбоксов т.к. можно выбрать все элементы -->
                     <select class="select__input-hidden">
@@ -63,21 +66,21 @@
                     </select>
                     <div class="select__lable select__lable--tag-theme">
                         <!-- <p class="select__picked">CTO</p> -->
-                        <div class="select__tag">
-                            <p class="select__tag-text">Tag_1</p>
-                            <button class="select__tag-delete"></button>
-                        </div>
+                        <ng-container *ngFor="let item of Tags">
+                            <div class="select__tag" *ngIf="item.isSelected">
+                                <p class="select__tag-text">{{item.name}}</p>
+                                <button class="select__tag-delete"></button>
+                            </div>
+                        </ng-container>
+                        
                     </div>
                     <div class="select-dropdown select__dropdown">
                         <ul class="select-dropdown__list">
-                            <!-- select-dropdown__item--active для активного элемента -->
-                            <li class="select-dropdown__item select-dropdown__item--active">Tag_1</li>
-                            <li class="select-dropdown__item">Tag_2</li>
-                            <li class="select-dropdown__item">Tag_3</li>
-                            <li class="select-dropdown__item">Tag_4</li>
-                            <li class="select-dropdown__item">Tag_5</li>
-                            <li class="select-dropdown__item">Tag_6</li>
-                            <li class="select-dropdown__item">Tag_7</li>
+                            <li class="select-dropdown__item select-dropdown__item--active" 
+                                *ngFor="let item of Tags" 
+                                (click)="item.isSelected = !item.isSelected" 
+                                class="select-dropdown__item" 
+                                [ngClass]="{'select-dropdown__item--active': item.isSelected}">{{item.name}}</li>
                         </ul>
                     </div>
                 </div>
@@ -90,11 +93,11 @@
     <div class="input-groupe create-product__input-groupe">
         <label class="input-groupe__label" for="description">Description</label>
         <!-- input-groupe__input--error класс ошибки для инпута -->
-        <textarea class="input-groupe__input input-groupe__input--textarea_lg" id="description" name="description"></textarea>
+        <textarea class="input-groupe__input input-groupe__input--textarea_lg" [ngClass]="{'input-groupe__input--error': ErrorMsgs['description']}"  id="description"  [ngModel]="Product.description" (ngModelChange)="Product.description = $event" name="description"></textarea>
         <!-- сюда текст ошибки если есть -->
-        <p class="input-groupe__error"></p>
+        <p class="input-groupe__error" *ngIf="ErrorMsgs['description']">{{ErrorMsgs['description']}}</p>
     </div>
     <div class="button-wrapper ">
-        <button class="button-wrapper__button">Save product</button>
+        <button type="submit" (click)="Save()" class="button-wrapper__button">Save product</button>
     </div>
 </form>

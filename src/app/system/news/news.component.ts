@@ -28,7 +28,6 @@ export class NewsComponent implements OnInit {
       this.news.PostStartupNews(this.News)
         .subscribe (
           (res) => {
-            console.log(res.json());
             this.News.text = '';
             this.GetListNews();
           }

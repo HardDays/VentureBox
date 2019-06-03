@@ -31,7 +31,7 @@ import { MilestonesService } from './core/services/milestones.service';
     HttpModule,
     RouterModule,
     AppRoutingModule,
-    HttpClientModule,
+    HttpClientModule
   ],
   providers: [
     AppAccessGuard,

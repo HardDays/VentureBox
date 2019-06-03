@@ -6,14 +6,18 @@ import { Subject } from 'rxjs';
 import { UserModel } from '../models/user.model';
 import { TokenModel } from '../models/token.model';
 import { Router } from '@angular/router';
-
 @Injectable()
-export class AuthService {
+export class AuthService 
+{
+    protected token_field:string = "token";
 
     public onAuthChange$: Subject<boolean> = new Subject<boolean>();
     public Me: UserModel = new UserModel();
     public onMeChange$: Subject<UserModel> = new Subject<UserModel>();
     public IsLoggedIn: boolean = false;
+
+    public MyCompany: CompanyModel = new CompanyModel();
+    public onMyCompanyChange$: Subject<CompanyModel> = new Subject<CompanyModel>();
 
     public FormSizeBig = new Subject<boolean>();
     public CurrentSize: boolean = false;
@@ -23,18 +27,31 @@ export class AuthService {
             this.CurrentSize = val;
         });
 
-        this.onAuthChange$.subscribe(
+        this.onMeChange$.subscribe((val) => {
+          if(val && val.company_id && val.role == "startup")
+          {
+            this.GetMyCompany();
+          }
+          else{
+            this.InitMyCompany(null);
+          }
+        });
+
+        this.onAuthChange$.subscribe
+        (
           (val) =>
           {
             this.IsLoggedIn = val;
 
-            if (this.IsLoggedIn) {
+            if (this.IsLoggedIn) 
+            {
               this.GetMeByToken();
             }
-            else {
+            else 
+            {
               this.Me = null;
               this.onMeChange$.next(this.Me);
-              this.router.navigate(['/auth']);
+              // this.router.navigate(['/auth']);
             }
           }
         )
@@ -44,31 +61,32 @@ export class AuthService {
 
     SetCurrentToken(token: string) {
       if (token) {
-        if (localStorage.getItem('token')) {
-          localStorage.removeItem('token');
+        if (localStorage.getItem(this.token_field)) {
+          localStorage.removeItem(this.token_field);
         }
-        localStorage.setItem('token', token);
+        localStorage.setItem(this.token_field, token);
         this.http.BaseInitByToken(token);
       } else {
-        localStorage.removeItem('token');
+        localStorage.removeItem(this.token_field);
       }
     }
 
-    SetCurrentUser(user) {
+    SetCurrentUser(user) 
+    {
       this.Me = user;
       this.SetCurrentToken(this.Me.token);
       this.onAuthChange$.next(true);
     }
 
     SetUserByCurrentToken() {
-      if (localStorage.getItem('token')) {
+      if (localStorage.getItem(this.token_field)) {
 
         // get my user by token
         // this.Me = user
 
         this.onAuthChange$.next(true);
       } else {
-        localStorage.removeItem('token');
+        localStorage.removeItem(this.token_field);
         this.onAuthChange$.next(false);
       }
     }
@@ -102,7 +120,8 @@ export class AuthService {
       )
     }
 
-    GetMeByToken() {
+    GetMeByToken() 
+    {
       return this.http.CommonRequest(
         () => this.http.GetData('/users/me', ''),
         (res) =>
@@ -113,21 +132,47 @@ export class AuthService {
       )
     }
 
-    GetMe() {
+    GetMyCompany()
+    {
+      return this.http.CommonRequest(
+        () => this.http.GetData("/companies/" + this.Me.company_id + ".json"),
+        (res : CompanyModel) => {
+          if(res && res.id == this.Me.company_id)
+          {
+            this.InitMyCompany(res);
+          }
+          else{
+            this.InitMyCompany(null);
+          }
+        },
+        (err) => {
+          this.InitMyCompany(null);
+        }
+      );
+    }
+
+    GetMe() 
+    {
       return this.Me;
+    }
+
+    InitMyCompany(company?: CompanyModel)
+    {
+      this.MyCompany = company;
+      this.onMyCompanyChange$.next(this.MyCompany);
     }
 
 
     BaseInitAfterLogin(data: TokenModel)
     {
-        localStorage.setItem('token',data.token);
+        localStorage.setItem(this.token_field ,data.token);
         this.http.BaseInitByToken(data.token);
         this.onAuthChange$.next(true);
     }
 
     TryToLoginWithToken()
     {
-        let token = localStorage.getItem('token');
+        let token = localStorage.getItem(this.token_field);
         if(token)
         {
             this.BaseInitAfterLogin(new TokenModel(token));
@@ -141,7 +186,7 @@ export class AuthService {
         this.http.token = null;
         this.http.headers.delete('Authorization');
         this.onAuthChange$.next(false);
-        localStorage.removeItem('token');
+        localStorage.removeItem(this.token_field);
     }
 
     CreateUser(user: UserModel) {

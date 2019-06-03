@@ -11,6 +11,7 @@ export class CompanyModel {
         public stage_of_funding?: string,
         public investment_amount?: number,
         public equality_amount?: number,
-        public team_members?: TeamMember[]
+        public team_members?: TeamMember[],
+        public id?: number
     ) {}
 }

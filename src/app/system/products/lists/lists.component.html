@@ -9,8 +9,13 @@
 </h1>
 
 <div class="my-products">
-    <div class="my-products__item" *ngFor="let item of Products">
-        <div class="product my-products__product">
+    
+    <!-- <ng-container *ngFor="let item of Products">
+        
+    </ng-container> -->
+    <div class="my-products__item"  *ngFor="let item of Products">
+        <app-single-product-cmp [product]="item"></app-single-product-cmp>
+        <!-- <div class="product my-products__product">
             <div class="product__image-wrapper">
                 <img src="assets/img/logo-product.jpg" class="product__image img-responsive">
             </div>
@@ -33,6 +38,6 @@
                     Edit
                 </a>
             </div>
-        </div>
+        </div> -->
     </div>
 </div>

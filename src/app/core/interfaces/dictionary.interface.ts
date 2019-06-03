@@ -1,3 +1,4 @@
-export interface IDictionary {
+export interface IDictionary 
+{
     [index: string]: string;
 }

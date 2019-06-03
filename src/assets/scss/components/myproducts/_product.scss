@@ -92,37 +92,16 @@
         margin-bottom: 6px;
     }
 
-    &__edit-wrapper {
-        display: flex;
+    &__edit-button {
         margin-top: auto;
     }
+    
 
-    &__edit {
-        display: flex;
-        align-items: center;
-        color: #000;
-        font-size: 14px;
-        line-height: 19px;
-        text-decoration: none;
-        transition: color 0.3s;
+    &--without_actions {
+        padding-bottom: 5px;
 
-        &:hover {
-            color: $blue;
-
-            svg{
-                path{
-                    fill: $blue;
-                }
-            }
-        }
-        
-        svg{
-            flex-shrink: 0;
-            display: block;
-            margin-right: 10px;
-            path{
-                transition: fill 0.3s;
-            }
+        .product__description {
+            margin-bottom: 13px;
         }
     }
 }

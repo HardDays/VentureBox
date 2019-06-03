@@ -9,7 +9,8 @@ export class ProductModel{
         public startup_name?: string,
         public created_at?: Date,
         public updated_at?: Date,
-        public tags?: string[]
+        public tags?: string[],
+        public has_image?: boolean
     ){
         if(!startup_name)
             this.startup_name = "Some Startup";

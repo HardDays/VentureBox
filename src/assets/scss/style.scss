@@ -33,6 +33,18 @@
 @import "components/myproducts/my-products";
 @import "components/myproducts/product";
 @import "components/myproducts/product-tags";
+@import "components/myproducts/edit-button";
 //my news
 @import "components/mynews/my-news";
 @import "components/mynews/my-new";
+//create milestone
+@import "components/createmilestone/create-milestone";
+//my-milestones
+@import "components/mymilestones/my-milestones";
+@import "components/mymilestones/my-milestone";
+//sturtup profile  
+@import "components/sturtupprofile/sturtup-profile";
+@import "components/sturtupprofile/sturtup-card";
+@import "components/sturtupprofile/sturtup-info";
+//sturtups list
+@import "components/sturtupslist/sturtups-list";

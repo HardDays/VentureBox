@@ -65,4 +65,36 @@
         font-size: 12px;
         line-height: 16px;
     }
+
+    &__with-sm-butt {
+        display: flex;
+        
+        .input-groupe__input {
+            border-right: none;
+        }
+    }
+
+    &__sm-butt {
+        flex-shrink: 0;
+        width: 40px;
+        display: block;
+        border: 1px solid $black;
+        background: $black;
+        padding: 0;
+        transition: border-color 0.3s, color 0.3s, background-color 0.3s;
+        cursor: pointer;
+
+        &:hover {
+            color: $black;
+            background: #fff;
+
+            path {
+                fill: $black;
+            }
+        }
+
+        path {
+            transition: fill 0.3s;
+        }
+    }
 }
