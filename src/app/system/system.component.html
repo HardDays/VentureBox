@@ -1,6 +1,13 @@
 <!-- main--visible_sidebar добавляем при клике на кнопку "system-header__open-sidebar" делаем remove класса при клике на body-->
 <section class="main">
-    <navigation-cmp></navigation-cmp>
+    <div class="side-bar main__side-bar">
+        <div class="side-bar__logo">
+            <img src="assets/img/logo.svg" class="img-responsive" alt="">
+        </div>
+        <ul class="side-bar-menu">
+            <navigation-cmp></navigation-cmp>
+        </ul>   
+    </div>
     <div class="system main__system">
         <div class="system__content">
             <div class="system-header">
