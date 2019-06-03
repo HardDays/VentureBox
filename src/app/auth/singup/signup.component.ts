@@ -109,9 +109,38 @@ export class SignUpComponent implements OnInit {
     }
 
     NextStep() {
-      this.Step = 2;
-          this.auth.FormSizeBig.next(true);
-
+      if (!this.User.name){
+        this.ErrorsUserPage1.name = 'Name can\'t be blank.';
+        return;
+      } else {
+        this.ErrorsUserPage1.name = '';
+      }
+       if (!this.User.surname){
+        this.ErrorsUserPage1.surname = 'Surname can\'t be blank.';
+        return;
+      } else {
+        this.ErrorsUserPage1.surname = '';
+      }
+      if (!this.User.email){
+        this.ErrorsUserPage1.email = 'Email can\'t be blank.';
+        return;
+      } else {
+        this.ErrorsUserPage1.email = '';
+      }
+      if (!this.User.password){
+        this.ErrorsUserPage1.password = 'Password can\'t be blank.';
+        return;
+      } else {
+        this.ErrorsUserPage1.password = '';
+      }
+       if (this.User.password !== this.User.password_confirmation){
+        this.ErrorsUserPage1.password_confirmation = 'Password confirmation not matched.';
+        return;
+      } else {
+        this.ErrorsUserPage1.password_confirmation = '';
+      }
+        this.Step = 2;
+        this.auth.FormSizeBig.next(true);
     }
 
     NavigateToLogin() {

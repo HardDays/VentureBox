@@ -599,7 +599,7 @@ button, input {
   left: 0;
   width: 100%;
   overflow: auto;
-  z-index: 10;
+  z-index: 999;
 }
 
 .select__picked {

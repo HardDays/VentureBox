@@ -62,6 +62,7 @@ export class ProductsService {
 
     RefreshMyProducts()
     {
+        // console.log("refresh products");
         this.Products = [];
         this.Count = 0;
         if(this.auth.Me && this.auth.Me.id && this.auth.Me.company_id)
@@ -72,18 +73,38 @@ export class ProductsService {
                     this.Products = res.items;
                     this.Count = res.count;
                     this.onProductsChange.next(true);
-                    // console.log(this.Products);
                 }
             );
         }
     }
 
-    CreateProduct(product: ProductCreateModel, success?: (ok) => void, fail?:(err) => void)
+    GetProductInfo(Id, success?: (ok) => void, fail?: (err) => void)
+    {
+        this.http.CommonRequest(
+            () => this.http.GetData('/company_items/' + Id + '.json'),
+            success,
+            fail
+        );
+    }
+
+    CreateProduct(Product: ProductCreateModel, success?: (ok) => void, fail?:(err) => void)
     {
         if(this.auth.Me && this.auth.Me.id && this.auth.Me.company_id)
         {
             this.http.CommonRequest(
-                () => this.http.PostData("/users/" + this.auth.Me.id + "/companies/" + this.auth.Me.company_id + "/company_items.json", product),
+                () => this.http.PostData("/users/" + this.auth.Me.id + "/companies/" + this.auth.Me.company_id + "/company_items.json", Product),
+                success,
+                fail
+              )
+        }
+    }
+
+    UpdateProduct(ProductId:number, Product: ProductCreateModel, success?: (ok) => void, fail?:(err) => void)
+    {
+        if(this.auth.Me && this.auth.Me.id && this.auth.Me.company_id)
+        {
+            this.http.CommonRequest(
+                () => this.http.PatchData("/users/" + this.auth.Me.id + "/companies/" + this.auth.Me.company_id + "/company_items/" + ProductId + ".json", Product),
                 success,
                 fail
               )

@@ -25,7 +25,8 @@ export class SingleProductComponent implements OnInit {
     ngOnInit() 
     {
         this.UpdateTagsList();
-        this.Image = this.products.GetProductImageUrl(this.product.id, {width: 480, height: 280});
+        if(this.product.has_image)
+          this.Image = this.products.GetProductImageUrl(this.product.id, {width: 480, height: 280});
     }
 
     UpdateTagsList()
