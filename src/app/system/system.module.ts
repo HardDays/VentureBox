@@ -10,6 +10,7 @@ import { SystemAccessGuard } from './system.guard';
 import { SystemComponent } from './system.component';
 import { NavigationComponent } from './navigation/navigation.component';
 import { NewsComponent } from './news/news.component';
+import { ProductDetailComponent } from './product_detail/product_detail.component';
 
 
 @NgModule({
@@ -17,7 +18,8 @@ import { NewsComponent } from './news/news.component';
     SystemComponent,
     MainComponent,
     NavigationComponent,
-    NewsComponent
+    NewsComponent,
+    ProductDetailComponent
   ],
   imports: [
     CommonModule,

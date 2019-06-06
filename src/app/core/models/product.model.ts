@@ -6,13 +6,11 @@ export class ProductModel{
         public price?: number,
         public link_to_store?: string,
         public description?: string,
-        public startup_name?: string,
+        public company_name?: string,
         public created_at?: Date,
         public updated_at?: Date,
         public tags?: string[],
         public has_image?: boolean
     ){
-        if(!startup_name)
-            this.startup_name = "Some Startup";
     }
 }

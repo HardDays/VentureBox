@@ -5,6 +5,11 @@ body {
     font-weight: $regular;
     padding: 0;
     margin: 0;
+    position: relative;
+
+    &.modal-open {
+        overflow: hidden;
+    }
 }
 
 html {

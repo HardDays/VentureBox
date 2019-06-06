@@ -53,6 +53,17 @@
                 align-items: flex-start;
             }
         }
+
+        &--with-select {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+
+            @media (max-width: 767px) {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+        }
     }
 
     &__title-arrow {
@@ -111,5 +122,14 @@
     &__sm-wrapper {
         max-width: 450px;
         margin: 0 auto;
+    }
+
+    &__title-input-groupe {
+        width: 100%;
+        max-width: 190px;
+
+        @media (max-width: 767px) {
+            margin-top: 10px;
+        }
     }
 }

@@ -4,6 +4,7 @@ import { MainComponent } from './main/main.component';
 import { SystemComponent } from './system.component';
 import { SystemAccessGuard } from './system.guard';
 import { NewsComponent } from './news/news.component';
+import { ProductDetailComponent } from './product_detail/product_detail.component';
 
 const routes: Routes =
 [
@@ -16,6 +17,9 @@ const routes: Routes =
           },
           {
             path: "my_milestones", loadChildren: './milestones/milestones.module#MilestonesModule', canActivate:[SystemAccessGuard]
+          },
+          {
+            path: 'products/:id', component: ProductDetailComponent
           },
           { path: '**', component: MainComponent}
         ]

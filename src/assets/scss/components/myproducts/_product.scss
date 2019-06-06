@@ -95,6 +95,24 @@
     &__edit-button {
         margin-top: auto;
     }
+
+    &__product-link-wrapper {
+        display: flex;
+        margin-bottom: 10px;
+    }
+
+    &__product-link {
+        display: block;
+        font-size: 14px;
+        line-height: 19px;
+        color: $blue;
+        text-decoration: none;
+        border-bottom: 1px solid $blue;
+
+        &:hover {
+            border-color: transparent;
+        }
+    }
     
 
     &--without_actions {
@@ -102,6 +120,14 @@
 
         .product__description {
             margin-bottom: 13px;
+        }
+    }
+
+    &--big_theme {
+        .product__name {
+            margin-bottom: 9px;
+            font-size: 20px;
+            line-height: 27px;
         }
     }
 }

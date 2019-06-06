@@ -108,9 +108,8 @@ export class AuthService
           this.ClearSession();
         }
       )
-
-      return ;
     }
+    
     ForgotPassword(email: string,  success?: (data) => void, fail?: (err) => void)
     {
       return this.http.CommonRequest(
