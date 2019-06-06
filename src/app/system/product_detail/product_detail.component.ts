@@ -92,6 +92,11 @@ export class ProductDetailComponent implements OnInit {
         }
     };
 
+    NavigateTo()
+    {
+        
+    }
+
 
 
 }

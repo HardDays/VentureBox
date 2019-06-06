@@ -15,7 +15,7 @@ export class Validator
 
     public static ValidateUrl(str: string)
     {
-        const REGEXP = /^(?:http(s)?:\/\/)?[\w.-]+(?:\.[\w\.-]+)+[\w\-\._~:/?#[\]@!\$&'\(\)\*\+,;=.]+$/i;
+        const REGEXP = /^((http|https):\/\/)[\w.-]+(?:\.[\w\.-]+)+[\w\-\._~:\/\?#[\]@!\$&'\(\)\*\+,;=.]+$/i;
 
         if ( str !== '' && REGEXP.test(str))
         {

@@ -52,7 +52,9 @@
             <div class="input-groupe create-product__input-groupe">
                 <label class="input-groupe__label" for="product-link">Product link</label>
                 <!-- input-groupe__input--error класс ошибки для инпута -->
-                <input type="text" class="input-groupe__input"  
+                <input type="url" class="input-groupe__input"  
+                    placeholder="https://example.com"
+                    pattern="https://.*"
                     [ngClass]="{'input-groupe__input--error': ErrorMsgs['link_to_store']}" id="product-link" 
                     [ngModel]="Product.link_to_store" (ngModelChange)="Product.link_to_store = $event" 
                     name="product-link">

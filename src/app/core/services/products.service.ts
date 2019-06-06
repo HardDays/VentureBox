@@ -142,9 +142,9 @@ export class ProductsService {
             validate['price'] = 'nan';
         }
 
-        if(!product.link_to_store)
+        if(!product.name)
         {
-            validate['link_to_store'] = 'empty';
+            validate['name'] = 'empty';
         } 
         else if (product.name.length > 50)
         {
