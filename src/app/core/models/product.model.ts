@@ -10,7 +10,8 @@ export class ProductModel{
         public created_at?: Date,
         public updated_at?: Date,
         public tags?: string[],
-        public has_image?: boolean
+        public has_image?: boolean,
+        public image?:any
     ){
     }
 }

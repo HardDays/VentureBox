@@ -11,6 +11,7 @@ import { IDictionary } from 'src/app/core/interfaces/dictionary.interface';
 export class SingleProductComponent implements OnInit {
 
     @Input() product: ProductModel;
+    @Input() withActions = true;
     Image = "assets/img/logo-product.jpg";
     Tags: IDictionary = {} as IDictionary;
     constructor(private products: ProductsService, private auth: AuthService)
@@ -22,7 +23,7 @@ export class SingleProductComponent implements OnInit {
           });
     }
 
-    ngOnInit() 
+    ngOnInit()
     {
         this.UpdateTagsList();
         if(this.product.has_image)

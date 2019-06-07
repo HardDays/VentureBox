@@ -1,5 +1,5 @@
 
-    
+
 <ng-container *ngFor="let item of MenuItems">
     <li class="side-bar-menu__item"  *ngIf="item.visible">
         <a [routerLink]="item.url" [ngClass]="{'side-bar-menu__link--active': item.url === CurrentPage}"  class="side-bar-menu__link">

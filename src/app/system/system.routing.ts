@@ -19,6 +19,9 @@ const routes: Routes =
             path: "my_milestones", loadChildren: './milestones/milestones.module#MilestonesModule', canActivate:[SystemAccessGuard]
           },
           {
+            path: "startups", loadChildren: './startups/startups.module#StartupsModule', canActivate:[SystemAccessGuard]
+          },
+          {
             path: 'products/:id', component: ProductDetailComponent
           },
           { path: '**', component: MainComponent}

@@ -6,7 +6,7 @@
         </div>
         <ul class="side-bar-menu">
             <navigation-cmp></navigation-cmp>
-        </ul>   
+        </ul>
     </div>
     <div class="system main__system">
         <div class="system__content">
@@ -16,6 +16,7 @@
                     <span></span>
                     <span></span>
                 </button>
+                  <p [routerLink]="['/system','startups','my-profile']">My profile</p>
                 <div (click)="Logout()" class="system-header__user">
                     <div *ngIf="Me" class="header-user">
                         <div class="header-user__ava">{{Initials}}</div>

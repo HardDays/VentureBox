@@ -18,6 +18,7 @@ import { HttpService } from './core/services/http.service';
 import { TypeService } from './core/services/type.service';
 import { ProductsService } from './core/services/products.service';
 import { MilestonesService } from './core/services/milestones.service';
+import { StartupsService } from './core/services/startups.service';
 
 
 
@@ -43,7 +44,8 @@ import { MilestonesService } from './core/services/milestones.service';
     TypeService,
     NewsService,
     ProductsService,
-    MilestonesService
+    MilestonesService,
+    StartupsService
   ],
   bootstrap: [AppComponent]
 })

@@ -12,6 +12,8 @@ export class CompanyModel {
         public investment_amount?: number,
         public equality_amount?: number,
         public team_members?: TeamMember[],
-        public id?: number
+        public id?: number,
+        public has_image?: boolean,
+        public evaluation?: number
     ) {}
 }

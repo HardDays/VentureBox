@@ -1,3 +1,4 @@
+import { CompanyModel } from './../models/company.model';
 import { HttpService } from './http.service';
 import { Injectable } from "@angular/core";
 import { AuthService } from './auth.service';
@@ -28,83 +29,36 @@ export enum FiledsErrorText
 };
 
 @Injectable()
-export class ProductsService {
+export class StartupsService {
 
-    Page = 0;
-    Size = 6;
-
-    Products: ProductModel[] = [];
-    Count: number = 0;
-
-    Tags: IDictionary = {} as IDictionary;
-    TagsUpdated: Subject<boolean> = new Subject<boolean>();
-
-    onProductsChange: Subject<boolean> = new Subject<boolean>();
     constructor(private http: HttpService, private auth:AuthService, private type: TypeService)
     {
-        this.RefreshTags();
     }
 
-    GetProducts()
-    {
-        return this.Products;
-    }
-
-    GetProductModelById(Id:number)
-    {
-        for(let item of this.Products)
-        {
-            if(item.id == Id)
-                return item;
-        }
-        return new ProductModel();
-    }
-
-    RefreshMyProducts()
-    {
-        // console.log("refresh products");
-        this.Products = [];
-        this.Count = 0;
-        if(this.auth.Me && this.auth.Me.id && this.auth.Me.company_id)
-        {
-            this.http.CommonRequest(
-                () => this.http.GetData("/users/" + this.auth.Me.id + "/companies/" + this.auth.Me.company_id + "/company_items.json"),
-                (res) => {
-                    this.Products = res.items;
-                    this.Count = res.count;
-                    this.onProductsChange.next(true);
-                }
-            );
-        }
-    }
-
-    GetProductInfo(Id, success?: (ok) => void, fail?: (err) => void)
+    GetAllCompanies(success?: (ok) => void, fail?: (err) => void)
     {
         this.http.CommonRequest(
-            () => this.http.GetData('/company_items/' + Id + '.json'),
+            () => this.http.GetData('/companies'),
             success,
             fail
         );
     }
 
-    CreateProduct(Product: ProductCreateModel, success?: (ok) => void, fail?:(err) => void)
+    GetCompanyInfo(Id, success?: (ok) => void, fail?: (err) => void)
     {
-        if(this.auth.Me && this.auth.Me.id && this.auth.Me.company_id)
-        {
-            this.http.CommonRequest(
-                () => this.http.PostData("/users/" + this.auth.Me.id + "/companies/" + this.auth.Me.company_id + "/company_items.json", Product),
-                success,
-                fail
-              )
-        }
+        this.http.CommonRequest(
+            () => this.http.GetData('/companies/' + Id ),
+            success,
+            fail
+        );
     }
 
-    UpdateProduct(ProductId:number, Product: ProductCreateModel, success?: (ok) => void, fail?:(err) => void)
+    PatchCompany(CompanyId: number, Company: CompanyModel, success?: (ok) => void, fail?:(err) => void)
     {
         if(this.auth.Me && this.auth.Me.id && this.auth.Me.company_id)
         {
             this.http.CommonRequest(
-                () => this.http.PatchData("/users/" + this.auth.Me.id + "/companies/" + this.auth.Me.company_id + "/company_items/" + ProductId + ".json", Product),
+                () => this.http.PatchData("/users/" + this.auth.Me.id + "/companies/" + this.auth.Me.company_id , Company),
                 success,
                 fail
               )
@@ -173,28 +127,10 @@ export class ProductsService {
         return ProductCreateFields[field] + ' ' + FiledsErrorText[error];
     }
 
-    RefreshTags()
-    {
-        this.http.CommonRequest(
-            () => this.http.GetData('/enums/tags.json'),
-            (res) => {
-                this.Tags = res;
-                this.TagsUpdated.next(true);
-            }
-        );
-    }
 
-    GetProductImageUrl(product_id: number, params?: any )
+    GetCompanyImageUrl(startup_id: number, params?: any )
     {
-        return this.http.GetQueryStr('/company_items/'+product_id+'/image.json',this.type.ParamsToUrlSearchParams(params));
-    }
-
-    GetProductsListByCompanyId (CompanyId, success?: (ok) => void, fail?: (err) => void) {
-      this.http.CommonRequest(
-            () => this.http.GetData('/companies/' + CompanyId + '/company_items'),
-            success,
-            fail
-        );
+        return this.http.GetQueryStr('/companies/' + startup_id + '/image', this.type.ParamsToUrlSearchParams(params));
     }
 
 }

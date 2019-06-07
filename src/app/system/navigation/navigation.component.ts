@@ -44,13 +44,19 @@ export class NavigationComponent implements OnInit {
             url : "my_news",
             image : "assets/img/my-news.svg",
             label : "My news",
-            visible: this.IsLoggedIn
+            visible: this.IsLoggedIn && this.Me.role == 'startup'
         },
         {
             url : "my_milestones",
             image : "assets/img/my-milestones.svg",
             label : "My milestones",
             visible: this.IsLoggedIn && this.Me.role == 'startup' && this.MyCompany.id != null
+        },
+        {
+            url : "startups",
+            image : "assets/img/startups-upp.svg",
+            label : "Startups Application",
+            visible: this.IsLoggedIn && this.Me.role != 'startup'
         }
     ];
     constructor(private router: Router, private auth: AuthService)
@@ -128,13 +134,19 @@ export class NavigationComponent implements OnInit {
                 url : "my_news",
                 image : "assets/img/my-news.svg",
                 label : "My news",
-                visible: this.IsLoggedIn
+                visible: this.IsLoggedIn && (this.Me && this.Me.role == 'startup')
             },
             {
                 url : "my_milestones",
                 image : "assets/img/my-milestones.svg",
                 label : "My milestones",
                 visible: this.IsLoggedIn && (this.Me && this.Me.role == 'startup') && (this.MyCompany && this.MyCompany.id != null)
+            },
+            {
+                url : "startups",
+                image : "assets/img/startups-upp.svg",
+                label : "Startups Application",
+                visible: this.IsLoggedIn && (this.Me && this.Me.role != 'startup')
             }
         ];
     }

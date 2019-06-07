@@ -26,5 +26,10 @@ export class NewsService {
       return this.http.DeleteData('/users/' + user_id + '/companies/' + company_id + '/startup_news/' + id);
     }
 
+    GetStartupNewsByCompanyId(company_id: number) {
+      return this.http.GetData('/companies/' + company_id + '/company_news', '');
+    }
+
+
 
 }
