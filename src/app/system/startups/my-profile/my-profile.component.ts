@@ -1,5 +1,5 @@
 import { StartupsService } from './../../../core/services/startups.service';
-import { CompanyModel } from './../../../core/models/company.model';
+import { CompanyModel, InvestedModel } from './../../../core/models/company.model';
 import { Component, OnInit } from '@angular/core';
 import { Location } from '@angular/common';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
@@ -26,6 +26,16 @@ export class StartupsMyProfileComponent implements OnInit {
 
   Products: ProductModel[] = [];
   News: NewsModel[] = [];
+
+  isModalOpened = false;
+    InvestedCompanyID = 0;
+    InvestedInfo = new InvestedModel();
+    public mask = [/[1-9]/, /[0-9]/];
+
+    ErrorsInvest = {
+      investment: '',
+      evaluation: '',
+    };
 
   constructor(private _location: Location,
     private auth: AuthService,
@@ -94,6 +104,16 @@ export class StartupsMyProfileComponent implements OnInit {
     if (this.Startup.has_image) {
       this.Startup.image = this.startupsService.GetCompanyImageUrl(this.StartupId, {width: 480, height: 280});
     }
+  }
+
+
+  openModalInvest(idStartup:number) {
+  }
+
+  InvestToCompany () {
+  }
+
+  InterestingCompany (id: number) {
   }
 
 

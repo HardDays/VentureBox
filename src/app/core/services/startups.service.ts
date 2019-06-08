@@ -1,4 +1,4 @@
-import { CompanyModel } from './../models/company.model';
+import { CompanyModel, InvestedModel } from './../models/company.model';
 import { HttpService } from './http.service';
 import { Injectable } from "@angular/core";
 import { AuthService } from './auth.service';
@@ -65,72 +65,27 @@ export class StartupsService {
         }
     }
 
-    public ValidateProductCreateModel(product: ProductCreateModel)
-    {
-        const validate: IDictionary = {} as IDictionary;
-
-        if(!product.image)
-        {
-            validate['image'] = 'empty';
-        }
-
-        if(!product.name)
-        {
-            validate['name'] = 'empty';
-        }
-        else if (product.name.length > 50)
-        {
-            validate['name'] = 'long';
-        }
-
-        if(!product.price)
-        {
-            validate['price'] = 'empty';
-        }
-        else if(product.price < 0)
-        {
-            validate['price'] = 'negative';
-        }
-        else if(Number.isNaN(product.price))
-        {
-            validate['price'] = 'nan';
-        }
-
-        if(!product.name)
-        {
-            validate['name'] = 'empty';
-        }
-        else if (product.name.length > 50)
-        {
-            validate['name'] = 'long';
-        }
-
-        if(!Validator.ValidateUrl(product.link_to_store))
-        {
-            validate['link_to_store'] = 'invalid';
-        }
-
-        if(!product.description)
-        {
-            validate['description'] = 'empty';
-        }
-        else if(product.description.length > 10000)
-        {
-            validate['description'] = 'long';
-        }
-
-        return Object.keys(validate).length > 0 ? validate : 1;
-    }
-
-    public GetFieldError(field: string, error: string)
-    {
-        return ProductCreateFields[field] + ' ' + FiledsErrorText[error];
-    }
-
 
     GetCompanyImageUrl(startup_id: number, params?: any )
     {
         return this.http.GetQueryStr('/companies/' + startup_id + '/image', this.type.ParamsToUrlSearchParams(params));
     }
 
+    InterestingCompany(CompanyId: number, success?: (ok) => void, fail?:(err) => void)
+    {
+        this.http.CommonRequest(
+            () => this.http.PostData("/companies/"+CompanyId+"/interesting_companies" , {}),
+            success,
+            fail
+          );
+    }
+
+    InvestingCompany(CompanyId:number, invested: InvestedModel, success?: (ok) => void, fail?:(err) => void)
+    {
+        this.http.CommonRequest(
+            () => this.http.PostData("/companies/"+CompanyId+"/invested_companies" , invested),
+            success,
+            fail
+          );
+    }
 }

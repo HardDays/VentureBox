@@ -9,7 +9,7 @@ import { AuthService } from 'src/app/core/services/auth.service';
 import { ProductsService } from 'src/app/core/services/products.service';
 import { Router, ActivatedRoute } from '@angular/router';
 import { TypeService } from 'src/app/core/services/type.service';
-import { CompanyModel } from 'src/app/core/models/company.model';
+import { CompanyModel, InvestedModel } from 'src/app/core/models/company.model';
 import { StartupsService } from 'src/app/core/services/startups.service';
 import { NewsService } from 'src/app/core/services/news.service';
 
@@ -28,10 +28,24 @@ export class StartupsProfileComponent implements OnInit {
   Image: any;
   News: NewsModel[] = [];
 
+
+    isModalOpened = false;
+    InvestedCompanyID = 0;
+    InvestedInfo = new InvestedModel();
+    public mask = [/[1-9]/, /[0-9]/];
+
+    ErrorsInvest = {
+      investment: '',
+      evaluation: '',
+    };
+
+    StageOfFunding: {name: string, value: string}[] = [];
+    TeamLevels: {name: string, value: string}[] = [];
+
   constructor(private _location: Location, private auth: AuthService,
     private startupsService: StartupsService, private router: Router,
     private route: ActivatedRoute, private typeService: TypeService,
-    private productsService: ProductsService, private newsService: NewsService)
+    private productsService: ProductsService, private newsService: NewsService, private type: TypeService)
   {
 
     this.route.params.subscribe(params => {
@@ -44,7 +58,33 @@ export class StartupsProfileComponent implements OnInit {
   }
 
   ngOnInit() {
+    this.InitTypes();
   }
+
+
+  InitTypes() {
+      this.type.GetEnumStageOfFunding()
+        .subscribe(
+          (res) => {
+            this.StageOfFunding =  [];
+            const arr = res.json();
+            for (let key in arr) {
+              this.StageOfFunding.push({name: arr[key], value: key});
+            }
+          }
+        );
+
+      this.type.GetEnumClevels()
+        .subscribe(
+          (res) => {
+            this.TeamLevels =  [];
+            const arr = res.json();
+            for (let key in arr) {
+              this.TeamLevels.push({name: arr[key], value: key});
+            }
+          }
+        );
+    }
 
   GoBack()
   {
@@ -90,6 +130,33 @@ export class StartupsProfileComponent implements OnInit {
         }
       );
   }
+
+
+
+    openModalInvest(idStartup:number) {
+      this.isModalOpened = true;
+      this.InvestedCompanyID = idStartup;
+    }
+
+    InvestToCompany () {
+      this.startupsService.InvestingCompany(
+        this.InvestedCompanyID,
+        this.InvestedInfo,
+        (res) => {
+          this.isModalOpened = false;
+        }, (err) => {
+           this.ErrorsInvest = this.typeService.GetErrorsDictByResponse(err.json(), this.ErrorsInvest);
+        });
+    }
+
+    InterestingCompany (id: number) {
+      this.startupsService.InterestingCompany(
+        id,
+        (res) => {
+          console.log(`OK`);
+        });
+    }
+
 
 
 }

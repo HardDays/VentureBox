@@ -17,3 +17,12 @@ export class CompanyModel {
         public evaluation?: number
     ) {}
 }
+
+
+export class InvestedModel {
+  constructor(
+        public investment?: string,
+        public evaluation?: string,
+        public contact_email?: string
+    ) {}
+}

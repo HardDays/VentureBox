@@ -1,3 +1,4 @@
+import { Router } from '@angular/router';
 import { StartupsService } from 'src/app/core/services/startups.service';
 import { TypeService } from './../../../core/services/type.service';
 import { Component, OnInit } from '@angular/core';
@@ -42,7 +43,7 @@ export class StartupsEditComponent implements OnInit {
     };
 
 
-    constructor(private products: ProductsService, private auth: AuthService, private type: TypeService, private startupsService: StartupsService)
+    constructor(private products: ProductsService, private auth: AuthService, private type: TypeService, private startupsService: StartupsService, private router: Router)
     {
     }
 
@@ -70,7 +71,8 @@ export class StartupsEditComponent implements OnInit {
       (res) => {
         this.CompanyOld = res;
 
-        this.StageOfFunding.find(x => x.value === this.CompanyOld.stage_of_funding).isSelected = true;
+        if(this.StageOfFunding.length)
+          this.StageOfFunding.find(x => x.value === this.CompanyOld.stage_of_funding).isSelected = true;
 
         for(let member of this.CompanyOld.team_members) {
           member.c_level_name = this.TeamLevels.find(x=>x.value === member.c_level).name;
@@ -98,6 +100,9 @@ export class StartupsEditComponent implements OnInit {
             for (let key in arr) {
               this.StageOfFunding.push({name: arr[key], value: key, isSelected: false});
             }
+
+            if(this.CompanyOld.id)
+              this.StageOfFunding.find(x => x.value === this.CompanyOld.stage_of_funding).isSelected = true;
           }
         );
 
@@ -160,6 +165,10 @@ export class StartupsEditComponent implements OnInit {
         this.Errors.stage_of_funding = '';
       }
 
+      if (this.Company.has_image && !this.Company.image) {
+        delete this.Company.image;
+      }
+
       this.PatchCompany();
     }
 
@@ -169,6 +178,7 @@ export class StartupsEditComponent implements OnInit {
           (res) => {
             console.log(`OK!`);
             this.CompanyOld = res;
+            this.router.navigate(['/system','startups','my-profile'])
           },
           (err) => {
             this.Errors = this.type.GetErrorsDictByResponse(err.json(), this.Errors);

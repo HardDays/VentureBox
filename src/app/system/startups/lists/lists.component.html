@@ -11,11 +11,61 @@
             <a [routerLink]="['/system','startups','profile',item.id]" class="sturtup-card__name sturtup-card__name--action">{{item.company_name}}</a>
             <p class="sturtup-card__invest-count">~ ${{item.evaluation}}</p>
             <div class="button-wrapper">
-                <button class="button-wrapper__button button-wrapper__button--border_theme button-wrapper__button--full_width button-wrapper__button--sm_height">invest</button>
+                <button (click)="openModalInvest(item.id)" class="button-wrapper__button button-wrapper__button--border_theme button-wrapper__button--full_width button-wrapper__button--sm_height">invest</button>
             </div>
             <div class="button-wrapper button-wrapper--less_dispance">
-                <button class="button-wrapper__button button-wrapper__button--full_width button-wrapper__button--sm_height">Intrested in</button>
+                <button (click)="InterestingCompany(item.id)" class="button-wrapper__button button-wrapper__button--full_width button-wrapper__button--sm_height">Intrested in</button>
             </div>
         </div>
     </div>
 </div>
+
+
+
+ <!--модалка инвест-->
+    <!--при откытии модалки, добавляем body класс modal-open чтобы запретить скролл страницы-->
+    <div *ngIf="isModalOpened" class="modal">
+        <div class="invest-modal modal__body">
+            <!--клик по кнопке - закрывает модалку -->
+            <button (click)="isModalOpened = false" class="invest-modal__cancel">
+                <svg width="14" height="14" viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M9.08231 7L13.7951 2.28732C14.0677 2.01477 14.0677 1.57246 13.7951 1.29946L12.7001 0.204419C12.4275 -0.0681396 11.9852 -0.0681396 11.7122 0.204419L6.99978 4.91753L2.28696 0.204856C2.01439 -0.067702 1.57207 -0.067702 1.29907 0.204856L0.204425 1.29946C-0.0681417 1.57202 -0.0681417 2.01433 0.204425 2.28732L4.91725 7L0.204425 11.7127C-0.0681417 11.9852 -0.0681417 12.4275 0.204425 12.7005L1.2995 13.7956C1.57207 14.0681 2.01439 14.0681 2.2874 13.7956L6.99978 9.08247L11.7126 13.7951C11.9852 14.0677 12.4275 14.0677 12.7005 13.7951L13.7956 12.7001C14.0681 12.4275 14.0681 11.9852 13.7956 11.7122L9.08231 7Z" fill="#C4C4C4"/>
+                </svg>
+            </button>
+            <p class="invest-modal__title">Invest</p>
+            <form class="invest-modal-form">
+                <div class="input-groupe invest-modal-form__input-groupe">
+                    <label class="input-groupe__label" for="email-modal">E-mail to contact</label>
+                    <!-- input-groupe__input--error класс ошибки для инпута-->
+                    <input [(ngModel)]="InvestedInfo.contact_email" type="text" class="input-groupe__input" id="email-modal" name="email-modal">
+                    <p class="input-groupe__error"><!--сюда текст ошибки если есть--></p>
+                </div>
+                <div class="invest-modal-form__flex">
+                    <div class="invest-modal-form__side">
+                        <div class="input-groupe invest-modal-form__input-groupe">
+                            <label class="input-groupe__label" for="investments">Investments</label>
+                            <!-- input-groupe__input--error класс ошибки для инпута-->
+                            <input [(ngModel)]="InvestedInfo.investment" type="text" [ngClass]="{'input-groupe__input--error':Errors.investment}" class="input-groupe__input" id="investments" name="investments">
+                            <p class="input-groupe__error">{{Errors.investment}}</p>
+                        </div>
+                    </div>
+                    <div class="invest-modal-form__side">
+                        <div class="input-groupe invest-modal-form__input-groupe">
+                            <label class="input-groupe__label" for="evaluation">Evaluation</label>
+                            <!-- input-groupe__input--error класс ошибки для инпута-->
+                            <input [textMask]="{mask: mask, guide: false}" [(ngModel)]="InvestedInfo.evaluation" [ngClass]="{'input-groupe__input--error':Errors.evaluation}" type="text" class="input-groupe__input" id="evaluation" name="evaluation">
+                            <p class="input-groupe__error">{{Errors.evaluation}}</p>
+                        </div>
+                    </div>
+                </div>
+                <!--текст после отправки формы-->
+                <!-- <p class="invest-modal-form__msg">Request has been sended</p> -->
+                <div class="button-wrapper">
+                    <button (click)="InvestToCompany()" class="button-wrapper__button">SEND</button>
+                </div>
+            </form>
+        </div>
+    </div>
+    <!--отображаем вместе с модалкой-->
+    <div *ngIf="isModalOpened" class="modal__backdrop"></div>
+    <!--/ модалка инвест-->

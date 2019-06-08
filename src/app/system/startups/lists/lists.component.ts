@@ -1,5 +1,6 @@
+import { TypeService } from 'src/app/core/services/type.service';
 import { StartupsService } from './../../../core/services/startups.service';
-import { CompanyModel } from './../../../core/models/company.model';
+import { CompanyModel, InvestedModel } from './../../../core/models/company.model';
 import { Component, OnInit } from '@angular/core';
 import { ProductsService } from '../../../core/services/products.service';
 import { ProductModel } from '../../../core/models/product.model';
@@ -14,11 +15,20 @@ import { IDictionary } from 'src/app/core/interfaces/dictionary.interface';
 export class StartupsListsComponent implements OnInit {
 
     Startups: CompanyModel[] = [];
+    isModalOpened = false;
+    InvestedCompanyID = 0;
+    InvestedInfo = new InvestedModel();
+    public mask = [/[1-9]/, /[0-9]/];
 
-    constructor(private startupsService: StartupsService, private auth: AuthService)
+    constructor(private startupsService: StartupsService, private auth: AuthService, private type: TypeService)
     {
 
     }
+
+    Errors = {
+      investment: '',
+      evaluation: '',
+    };
 
     ngOnInit() {
       this.GetList();
@@ -39,6 +49,30 @@ export class StartupsListsComponent implements OnInit {
           item.image = this.startupsService.GetCompanyImageUrl(item.id, {width: 480, height: 280});
         }
       }
+    }
+
+    openModalInvest(idStartup:number) {
+      this.isModalOpened = true;
+      this.InvestedCompanyID = idStartup;
+    }
+
+    InvestToCompany () {
+      this.startupsService.InvestingCompany(
+        this.InvestedCompanyID,
+        this.InvestedInfo,
+        (res) => {
+          this.isModalOpened = false;
+        }, (err) => {
+           this.Errors = this.type.GetErrorsDictByResponse(err.json(), this.Errors);
+        });
+    }
+
+    InterestingCompany (id: number) {
+      this.startupsService.InterestingCompany(
+        id,
+        (res) => {
+          console.log(`OK`);
+        });
     }
 
 
