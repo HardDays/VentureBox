@@ -9,18 +9,18 @@
                 <div class="input-groupe auth-form__input-groupe">
                     <label class="input-groupe__label" for="name">Company name</label>
                     <!-- input-groupe__input--error класс ошибки для инпута-->
-                    <input [(ngModel)]="Company.company_name" type="text" class="input-groupe__input" id="name" name="name">
+                    <input [(ngModel)]="Company.company_name" [ngClass]="{'input-groupe__input--error':Errors.company_name}" type="text" class="input-groupe__input" id="name" name="name">
                     <p class="input-groupe__error">{{Errors.company_name}}</p>
                 </div>
                 <div class="input-groupe auth-form__input-groupe">
                     <label class="input-groupe__label" for="website">Company website</label>
-                    <input [(ngModel)]="Company.website"  type="text" class="input-groupe__input" id="website" name="website">
-                    <p class="input-groupe__error"></p>
+                    <input [(ngModel)]="Company.website" [ngClass]="{'input-groupe__input--error':Errors.website}" type="text" class="input-groupe__input" id="website" name="website">
+                    <p class="input-groupe__error">{{Errors.website}}</p>
                 </div>
                 <div class="input-groupe auth-form__input-groupe">
                     <label class="input-groupe__label" for="mail">Contact e-mail</label>
-                    <input [(ngModel)]="Company.contact_email" type="text" class="input-groupe__input" id="mail" name="mail">
-                    <p class="input-groupe__error"></p>
+                    <input [(ngModel)]="Company.contact_email" [ngClass]="{'input-groupe__input--error':Errors.contact_email}" type="text" class="input-groupe__input" id="mail" name="mail">
+                    <p class="input-groupe__error">{{Errors.contact_email}}</p>
                 </div>
                 <div class="input-groupe auth-form__input-groupe">
                     <label class="input-groupe__label" for="upload">Upload logo company</label>
@@ -92,9 +92,9 @@
                         <button *ngIf="!first" (click)="deleteTeamItem(i)" class="row-generate__delete"></button>
                         <div class="row-generate__coll">
                             <div class="input-groupe auth-form__input-groupe">
-                                <label class="input-groupe__label" for="team-1">Team member name</label>
+                                <label class="input-groupe__label" for="team-{{i}}">Team member name</label>
                                 <!-- input-groupe__input--error класс ошибки для инпута-->
-                                <input [(ngModel)]="item.team_member_name" type="text" class="input-groupe__input" id="team-1" name="team-1">
+                                <input [(ngModel)]="item.team_member_name" type="text" class="input-groupe__input" id="team-{{i}}" name="team-{{i}}">
                                 <p class="input-groupe__error">{{!item.team_member_name?Errors.team_member_name:''}}</p>
                             </div>
                         </div>

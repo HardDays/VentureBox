@@ -47,8 +47,8 @@ export class TeamMember {
         public isOpened?: boolean
     ) {
       if (! team_member_name) this.team_member_name = '';
-      if (! c_level)this.c_level = '';
-      if (! c_level_name)this.c_level_name = '';
+      if (! c_level)this.c_level = 'ceo';
+      if (! c_level_name)this.c_level_name = 'CEO';
       if (! isOpened) this.isOpened = false;
     }
 }

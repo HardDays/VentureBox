@@ -42,7 +42,6 @@ export class StartupsEditComponent implements OnInit {
       contact_email: ''
     };
 
-
     constructor(private products: ProductsService, private auth: AuthService, private type: TypeService, private startupsService: StartupsService, private router: Router)
     {
     }
@@ -74,8 +73,10 @@ export class StartupsEditComponent implements OnInit {
         if(this.StageOfFunding.length)
           this.StageOfFunding.find(x => x.value === this.CompanyOld.stage_of_funding).isSelected = true;
 
-        for(let member of this.CompanyOld.team_members) {
-          member.c_level_name = this.TeamLevels.find(x=>x.value === member.c_level).name;
+        if(this.TeamLevels.length){
+          for(let member of this.CompanyOld.team_members) {
+            member.c_level_name = this.TeamLevels.find(x=>x.value === member.c_level).name;
+          }
         }
 
         this.Company = this.getCompanyFromModel(this.CompanyOld);
@@ -88,6 +89,9 @@ export class StartupsEditComponent implements OnInit {
     for (let i in company) {
       cmodel[i] = company[i];
     }
+    cmodel.team_members = [];
+    for(let item of company.team_members)
+      cmodel.team_members.push(item);
     return cmodel;
   }
 
@@ -114,6 +118,11 @@ export class StartupsEditComponent implements OnInit {
             for (let key in arr) {
               this.TeamLevels.push({name: arr[key], value: key, isSelected: false});
             }
+            if (this.CompanyOld.id){
+              for(let member of this.CompanyOld.team_members) {
+                member.c_level_name = this.TeamLevels.find(x=>x.value === member.c_level).name;
+              }
+            }
           }
         );
     }
@@ -134,7 +143,7 @@ export class StartupsEditComponent implements OnInit {
 
     addTeamMember() {
       console.log(this.Company);
-      this.Company.team_members.push((new TeamMember()));
+      this.Company.team_members.push({team_member_name:'', c_level:'ceo', c_level_name:'CEO'});
       console.log(this.Company);
     }
 
