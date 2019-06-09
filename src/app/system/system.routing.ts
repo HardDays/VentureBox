@@ -5,6 +5,7 @@ import { SystemComponent } from './system.component';
 import { SystemAccessGuard } from './system.guard';
 import { NewsComponent } from './news/news.component';
 import { ProductDetailComponent } from './product_detail/product_detail.component';
+import { SettingsComponent } from './settings/settings.component';
 
 const routes: Routes =
 [
@@ -23,6 +24,9 @@ const routes: Routes =
           },
           {
             path: 'products/:id', component: ProductDetailComponent
+          },
+          {
+            path: 'settings', component: SettingsComponent, canActivate: [SystemAccessGuard]
           },
           { path: '**', component: MainComponent}
         ]

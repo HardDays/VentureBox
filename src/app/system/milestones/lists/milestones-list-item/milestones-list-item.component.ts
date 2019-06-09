@@ -33,7 +33,6 @@ export class MilestonesListItemComponent implements OnInit {
           this.Item.is_done = true;
         },
         (err) => {
-          console.log(err.json());
         }
       );
     }

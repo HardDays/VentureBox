@@ -62,7 +62,6 @@ export class ProductsService {
 
     RefreshMyProducts()
     {
-        // console.log("refresh products");
         this.Products = [];
         this.Count = 0;
         if(this.auth.Me && this.auth.Me.id && this.auth.Me.company_id)

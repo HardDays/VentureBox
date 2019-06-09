@@ -46,7 +46,6 @@ export class ProductsEditComponent implements OnInit {
 
   ngOnInit() 
   {
-    // console.log('on init', this.ProductId);
     this.UpdateTagsList();
     
     this.InitProductModel();

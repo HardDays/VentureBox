@@ -16,15 +16,26 @@
                     <span></span>
                     <span></span>
                 </button>
-                <p style="margin-right: 28px;" [routerLink]="['/system','startups','my-profile']">My profile</p>
-                <div (click)="Logout()" class="system-header__user">
-                    <div *ngIf="Me" class="header-user">
+                <a *ngIf="!IsLoggedIn" [routerLink]="['/auth']">Sign In</a>
+                <div class="system-header__user" *ngIf="IsLoggedIn && Me && Me.id">
+                    <div class="header-user">
                         <div class="header-user__ava">{{Initials}}</div>
                         <div class="header-user__info">
                             <p class="header-user__name">{{Me.name}} {{Me.surname}}</p>
                             <p class="header-user__role">{{Me.role | titlecase}}</p>
                         </div>
                     </div>
+                    <ul class="system-header__dropdown">
+                        <li class="system-header__dropdown-item">
+                            <a routerLink='settings' class="system-header__dropdown-link">Settings</a>
+                        </li>
+                        <li class="system-header__dropdown-item" *ngIf="Me.role == 'startup'">
+                            <a [routerLink]="['/system','startups','my-profile']" class="system-header__dropdown-link">My profile</a>
+                        </li>
+                        <li class="system-header__dropdown-item">
+                            <button (click)="Logout()" class="system-header__dropdown-link">Log out</button>
+                        </li>
+                    </ul>
                 </div>
             </div>
             <div class="system__wrapper">

@@ -19,6 +19,7 @@ export class UserModel {
         public investment_amount?: number,
         public equality_amount?: number,
         public team_members?: TeamMember[],
+        public is_email_notifications_available?: boolean,
 
         public company_id?: number,
         public token?: string
@@ -36,6 +37,8 @@ export class UserModel {
       }
       if(!surname)
         this.surname = "";
+
+        return this;
     }
 }
 

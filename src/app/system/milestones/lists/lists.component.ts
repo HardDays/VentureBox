@@ -26,7 +26,6 @@ export class MilestonesListsComponent implements OnInit {
         .subscribe(
           (res) => {
             this.Milestones = res.json()['items'];
-            console.log(this.Milestones);
           }
         );
     }

@@ -11,6 +11,7 @@ import { SystemComponent } from './system.component';
 import { NavigationComponent } from './navigation/navigation.component';
 import { NewsComponent } from './news/news.component';
 import { ProductDetailComponent } from './product_detail/product_detail.component';
+import { SettingsComponent } from './settings/settings.component';
 
 
 @NgModule({
@@ -19,7 +20,8 @@ import { ProductDetailComponent } from './product_detail/product_detail.componen
     MainComponent,
     NavigationComponent,
     NewsComponent,
-    ProductDetailComponent
+    ProductDetailComponent,
+    SettingsComponent
   ],
   imports: [
     CommonModule,
@@ -27,7 +29,8 @@ import { ProductDetailComponent } from './product_detail/product_detail.componen
     HttpModule,
     CommonModule,
     RouterModule,
-    SystemRoutingModule
+    SystemRoutingModule,
+    ReactiveFormsModule
   ],
   providers: [ SystemAccessGuard]
 })

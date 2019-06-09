@@ -173,7 +173,6 @@ export class SignUpComponent implements OnInit {
       this.auth.CreateUser(this.User)
         .subscribe(
           (res) => {
-            // console.log(res.json()); // token here
             this.auth.SetCurrentToken(res.json()['token']);
             this.auth.TryToLoginWithToken();
             this.router.navigate(['/system']);

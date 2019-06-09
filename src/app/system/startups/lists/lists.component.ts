@@ -71,7 +71,6 @@ export class StartupsListsComponent implements OnInit {
       this.startupsService.InterestingCompany(
         id,
         (res) => {
-          console.log(`OK`);
         });
     }
 

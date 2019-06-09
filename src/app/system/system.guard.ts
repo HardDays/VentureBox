@@ -9,7 +9,6 @@ export class SystemAccessGuard implements CanActivate{
     {}
     canActivate(router:ActivatedRouteSnapshot, state: RouterStateSnapshot): Observable<boolean>|boolean
     {
-        // console.log(router.routeConfig.path);
         switch (router.routeConfig.path) {
             case 'my_products' : {
                 return this.MyProductsNavigate();
@@ -17,6 +16,10 @@ export class SystemAccessGuard implements CanActivate{
             }
             case 'my_news' : {
                 return this.NewsNavigate();
+                break;
+            }
+            case 'settings':{
+                return this.SettingsNavigate();
                 break;
             }
             default: {
@@ -28,6 +31,16 @@ export class SystemAccessGuard implements CanActivate{
     NewsNavigate()
     {
         if(!this.auth.IsLoggedIn)
+        {
+            this.router.navigate(["/auth"]);
+            return false;
+        }
+        return true;
+    }
+
+    SettingsNavigate()
+    {
+        if(!this.auth.IsLoggedIn && (!this.auth.Me || !this.auth.Me.id))
         {
             this.router.navigate(["/auth"]);
             return false;
@@ -57,5 +70,7 @@ export class SystemAccessGuard implements CanActivate{
         return false;
     }
 
-    LoginNavigate() {}
+    LoginNavigate() {
+
+    }
 }

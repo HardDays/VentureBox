@@ -142,9 +142,7 @@ export class StartupsEditComponent implements OnInit {
     }
 
     addTeamMember() {
-      console.log(this.Company);
       this.Company.team_members.push({team_member_name:'', c_level:'ceo', c_level_name:'CEO'});
-      console.log(this.Company);
     }
 
     deleteTeamItem(index: number) {
@@ -182,10 +180,8 @@ export class StartupsEditComponent implements OnInit {
     }
 
     PatchCompany () {
-      console.log(this.Company);
       this.startupsService.PatchCompany(this.StartupId, this.Company,
           (res) => {
-            console.log(`OK!`);
             this.CompanyOld = res;
             this.router.navigate(['/system','startups','my-profile'])
           },

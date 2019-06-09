@@ -196,4 +196,61 @@ export class AuthService
       return this.http.PostData('/users/' + company.user_id + '/companies', company);
     }
 
+    UpdateMyGeneralInfo(Params: any, success?: (ok) => void, fail?: (error) => void)
+    {
+      return this.http.CommonRequest(
+        () => this.http.PatchData('/users/' + this.Me.id + '/change_general.json', Params),
+        (res:UserModel) => {
+          this.Me = res;
+          this.onMeChange$.next(this.Me);
+          if(success && typeof success == "function"){
+            success(res);
+          }
+        },
+        (err) => {
+          if(fail && typeof fail == "function"){
+            fail(err);
+          }
+        }
+      );
+    }
+
+    UpdateMyEmailInfo(Params: any, success?: (ok) => void, fail?: (error) => void)
+    {
+      return this.http.CommonRequest(
+        () => this.http.PatchData('/users/' + this.Me.id + '/change_email.json', Params),
+        (res:UserModel) => {
+          this.Me = res;
+          this.onMeChange$.next(this.Me);
+          if(success && typeof success == "function"){
+            success(res);
+          }
+        },
+        (err) => {
+          if(fail && typeof fail == "function"){
+            fail(err);
+          }
+        }
+      );
+    }
+
+    UpdateMyPassword(Params: any, success?: (ok) => void, fail?: (error) => void)
+    {
+      return this.http.CommonRequest(
+        () => this.http.PatchData('/users/' + this.Me.id + '/change_password.json', Params),
+        (res) => {
+          this.Me = res;
+          this.onMeChange$.next(this.Me);
+          if(success && typeof success == "function"){
+            success(res);
+          }
+        },
+        (err) => {
+          if(fail && typeof fail == "function"){
+            fail(err);
+          }
+        }
+      );
+    }
+
 }

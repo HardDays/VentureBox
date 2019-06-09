@@ -41,7 +41,6 @@ export class ProductDetailComponent implements OnInit {
 
     ngOnInit() 
     {
-        // console.log('on init', this.ProductId);
         this.UpdateTagsList();
         this.InitProductModel();
     }

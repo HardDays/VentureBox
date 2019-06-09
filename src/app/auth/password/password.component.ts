@@ -53,7 +53,6 @@ export class PasswordComponent implements OnInit {
                     this.ErrorMsg = this.type.GetErrorText(err.json().error);
                 }
                 this.IsError = true;
-                // console.log(err);
             }
         );
     }

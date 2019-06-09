@@ -1,0 +1,181 @@
+<h1 class="system__title ">
+    Settings
+</h1>
+<div class="settings">
+    <div class="settings__collumn">
+        <form class="settings-item settings__item" [formGroup]="GeneralForm">
+            <div class="settings-item__top">
+                <p class="settings-item__title">General</p>
+                <div class="input-groupe settings-item__input-groupe">
+                    <label class="input-groupe__label" for="name">Name</label>
+                    <input type="text" 
+                        [ngClass]="{'input-groupe__input--error': name.invalid && (name.dirty || name.touched)}" 
+                        class="input-groupe__input" 
+                        id="name" 
+                        name="name" 
+                        autocomplete="off" required
+                        formControlName="name">
+                    <p class="input-groupe__error" *ngIf="name.invalid && (name.dirty || name.touched)">
+                        <span *ngIf="name.errors.required">Name is required.</span>
+                        <span *ngIf="name.errors.minlength">Name must be at least 3 characters long.</span>
+                        <span *ngIf="name.errors.maxlength">Name must be less then 50 characters long.</span>
+                    </p>
+                </div>
+                <div class="input-groupe settings-item__input-groupe">
+                    <label class="input-groupe__label" for="surname">Surname</label>
+                    <input type="text"
+                        [ngClass]="{'input-groupe__input--error': surname.invalid && (surname.dirty || surname.touched)}"  
+                        class="input-groupe__input" 
+                        id="surname" 
+                        name="surname" 
+                        autocomplete="off" required
+                        formControlName="surname">
+                    <p class="input-groupe__error" *ngIf="surname.invalid && (surname.dirty || surname.touched)">
+                        <span *ngIf="surname.errors.required">Surame is required.</span>
+                        <span *ngIf="surname.errors.minlength">Surame must be at least 3 characters long.</span>
+                        <span *ngIf="surname.errors.maxlength">Surame must be less then 50 characters long.</span>
+                    </p>
+                </div>
+                <div class="one-checkbox settings-item__check-box">
+                    <div class="one-checkbox__check-style">
+                        <input type="checkbox" class="one-checkbox__checkbox" name="notification" id="notification" formControlName="turn_email_notifications">
+                        <label for="notification"></label>
+                    </div>
+                    <p class="one-checkbox__label">To turn check box email notification</p>
+                </div>
+            </div>
+            <div class="settings-item__bott">
+                <p class="settings-item__success-text" *ngIf="GeneralSuccess">Your general info was successfuly updated!</p>
+                <div class="button-wrapper">
+                    <button type="submit" (click)="UpdateGeneral()" class="button-wrapper__button">Update</button>
+                </div>
+            </div>
+        </form>
+    </div>
+
+    <div class="settings__collumn">
+        <form class="settings-item settings__item" [formGroup]="EmailForm">
+            <div class="settings-item__top">
+                <p class="settings-item__title">Email</p>
+                <div class="input-groupe settings-item__input-groupe">
+                    <label class="input-groupe__label" for="current-mail">Current E-mail</label>
+                    <input type="text" 
+                        [ngClass]="{'input-groupe__input--error': current_email.invalid && (current_email.dirty || current_email.touched)}" 
+                        class="input-groupe__input" 
+                        id="current-mail" 
+                        name="current-mail" 
+                        autocomplete="off" required
+                        formControlName="current_email">
+                    <p class="input-groupe__error" *ngIf="current_email.invalid && (current_email.dirty || current_email.touched)">
+                        <span *ngIf="current_email.errors.required">Current email is required.</span>
+                        <span *ngIf="current_email.errors.email">Input correct email.</span>
+                        <span *ngIf="current_email.errors.incorrect_current_email">Input correct current email.</span>
+                    </p>
+                </div>
+                <div class="input-groupe settings-item__input-groupe">
+                    <label class="input-groupe__label" for="new-email">New email</label>
+                    <input type="text" 
+                        [ngClass]="{'input-groupe__input--error': email.invalid && (email.dirty || email.touched)}" 
+                        class="input-groupe__input" 
+                        id="new-email" 
+                        name="new-email" 
+                        autocomplete="off" required
+                        formControlName="email">
+                    <p class="input-groupe__error" *ngIf="email.invalid && (email.dirty || email.touched)">
+                        <span *ngIf="email.errors.required">New email is required.</span>
+                        <span *ngIf="email.errors.email">Input correct email.</span>
+                        <span *ngIf="email.errors.incorrect_new_email">New email can not be equal to old email.</span>
+                    </p>
+                </div>
+                <div class="input-groupe settings-item__input-groupe">
+                    <label class="input-groupe__label" for="current-password">Current password</label>
+                    <input type="password"
+                        [ngClass]="{'input-groupe__input--error': current_password.invalid && (current_password.dirty || current_password.touched)}"  
+                        class="input-groupe__input" 
+                        id="current-password" 
+                        name="current-password" 
+                        autocomplete="off" required
+                        formControlName="current_password">
+                    <p class="input-groupe__error" *ngIf="current_password.invalid && (current_password.dirty || current_password.touched)">
+                        <span *ngIf="current_password.errors.required">Password is required.</span>
+                        <span *ngIf="current_password.errors.minlength">Password must be at least 3 characters long.</span>
+                        <span *ngIf="current_password.errors.maxlength">Password must be less then 50 characters long.</span>
+                        <span *ngIf="current_password.errors.not_match">Incorrect current password.</span>
+                    </p>
+                </div>
+                
+            </div>
+            <div class="settings-item__bott">
+                <p class="settings-item__success-text" *ngIf="EmailSuccess">Your email info was successfuly updated!</p>
+                <div class="button-wrapper">
+                    <button class="button-wrapper__button" type="submit" (click)="UpdateEmail()">Update</button>
+                </div>
+            </div>
+        </form>
+    </div>
+
+    <div class="settings__collumn">
+        <form class="settings-item settings__item" [formGroup]="PasswordForm">
+            <div class="settings-item__top">
+                <p class="settings-item__title">Password</p>
+                <div class="input-groupe settings-item__input-groupe">
+                    <label class="input-groupe__label" for="change-pass-1">Current password</label>
+                    <input type="password"
+                        [ngClass]="{'input-groupe__input--error': old_password.invalid && (old_password.dirty || old_password.touched)}"  
+                        class="input-groupe__input" 
+                        id="change-pass-1" 
+                        name="change-pass-1" 
+                        autocomplete="off" required
+                        formControlName="old_password">
+                    <p class="input-groupe__error" *ngIf="old_password.invalid && (old_password.dirty || old_password.touched)">
+                        <span *ngIf="old_password.errors.required">Password is required.</span>
+                        <span *ngIf="old_password.errors.minlength">Password must be at least 3 characters long.</span>
+                        <span *ngIf="old_password.errors.maxlength">Password must be less then 50 characters long.</span>
+                        <span *ngIf="old_password.errors.not_match">Incorrect current password.</span>
+                    </p>
+                </div>
+                <div class="input-groupe settings-item__input-groupe">
+                    <label class="input-groupe__label" for="change-pass-2">New password</label>
+
+                    <input type="password"
+                        [ngClass]="{'input-groupe__input--error': password.invalid && (password.dirty || password.touched)}"  
+                        class="input-groupe__input" 
+                        id="change-pass-2" 
+                        name="change-pass-2" 
+                        autocomplete="off" required
+                        formControlName="password">
+                    <p class="input-groupe__error" *ngIf="password.invalid && (password.dirty || password.touched)">
+                        <span *ngIf="password.errors.required">Password is required.</span>
+                        <span *ngIf="password.errors.minlength">Password must be at least 3 characters long.</span>
+                        <span *ngIf="password.errors.maxlength">Password must be less then 50 characters long.</span>
+                        <!-- <span *ngIf="password.errors.not_match">Passwords do not match.</span> -->
+                    </p>
+                </div>
+                <div class="input-groupe settings-item__input-groupe">
+                    <label class="input-groupe__label" for="change-pass-3">Confirm pasword</label>
+
+                    <input type="password"
+                        [ngClass]="{'input-groupe__input--error': password_confirmation.invalid && (password_confirmation.dirty || password_confirmation.touched)}"  
+                        class="input-groupe__input" 
+                        id="change-pass-3" 
+                        name="change-pass-3" 
+                        autocomplete="off" required
+                        formControlName="password_confirmation">
+                    <p class="input-groupe__error" *ngIf="password_confirmation.invalid && (password_confirmation.dirty || password_confirmation.touched)">
+                        <span *ngIf="password_confirmation.errors.required">Password is required.</span>
+                        <span *ngIf="password_confirmation.errors.minlength">Password must be at least 3 characters long.</span>
+                        <span *ngIf="password_confirmation.errors.maxlength">Password must be less then 50 characters long.</span>
+                        <span *ngIf="password_confirmation.errors.not_match">Passwords do not match.</span>
+                    </p>
+                </div>
+                
+            </div>
+            <div class="settings-item__bott">
+                <p class="settings-item__success-text" *ngIf="PasswordSuccess">Your password was successfuly updated!</p>
+                <div class="button-wrapper">
+                    <button class="button-wrapper__button" type="submit" (click)="UpdatePassword()">Update</button>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>

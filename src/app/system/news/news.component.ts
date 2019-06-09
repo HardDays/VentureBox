@@ -40,7 +40,6 @@ export class NewsComponent implements OnInit {
       .subscribe (
         (res) => {
           this.NewsList = res.json()['items'];
-          console.log(res.json()['count'], res.json()['items']);
         }
       );
   }
