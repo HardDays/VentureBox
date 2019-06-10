@@ -38,7 +38,7 @@
                 </div>
                 <div class="one-checkbox settings-item__check-box">
                     <div class="one-checkbox__check-style">
-                        <input type="checkbox" class="one-checkbox__checkbox" name="notification" id="notification" formControlName="turn_email_notifications">
+                        <input type="checkbox" class="one-checkbox__checkbox" name="notification" id="notification" formControlName="is_email_notifications_available">
                         <label for="notification"></label>
                     </div>
                     <p class="one-checkbox__label">To turn check box email notification</p>
@@ -98,7 +98,7 @@
                         formControlName="current_password">
                     <p class="input-groupe__error" *ngIf="current_password.invalid && (current_password.dirty || current_password.touched)">
                         <span *ngIf="current_password.errors.required">Password is required.</span>
-                        <span *ngIf="current_password.errors.minlength">Password must be at least 3 characters long.</span>
+                        <span *ngIf="current_password.errors.minlength">Password must be at least 4 characters long.</span>
                         <span *ngIf="current_password.errors.maxlength">Password must be less then 50 characters long.</span>
                         <span *ngIf="current_password.errors.not_match">Incorrect current password.</span>
                     </p>
@@ -129,7 +129,7 @@
                         formControlName="old_password">
                     <p class="input-groupe__error" *ngIf="old_password.invalid && (old_password.dirty || old_password.touched)">
                         <span *ngIf="old_password.errors.required">Password is required.</span>
-                        <span *ngIf="old_password.errors.minlength">Password must be at least 3 characters long.</span>
+                        <span *ngIf="old_password.errors.minlength">Password must be at least 4 characters long.</span>
                         <span *ngIf="old_password.errors.maxlength">Password must be less then 50 characters long.</span>
                         <span *ngIf="old_password.errors.not_match">Incorrect current password.</span>
                     </p>
@@ -146,7 +146,7 @@
                         formControlName="password">
                     <p class="input-groupe__error" *ngIf="password.invalid && (password.dirty || password.touched)">
                         <span *ngIf="password.errors.required">Password is required.</span>
-                        <span *ngIf="password.errors.minlength">Password must be at least 3 characters long.</span>
+                        <span *ngIf="password.errors.minlength">Password must be at least 6 characters long.</span>
                         <span *ngIf="password.errors.maxlength">Password must be less then 50 characters long.</span>
                         <!-- <span *ngIf="password.errors.not_match">Passwords do not match.</span> -->
                     </p>
@@ -163,7 +163,7 @@
                         formControlName="password_confirmation">
                     <p class="input-groupe__error" *ngIf="password_confirmation.invalid && (password_confirmation.dirty || password_confirmation.touched)">
                         <span *ngIf="password_confirmation.errors.required">Password is required.</span>
-                        <span *ngIf="password_confirmation.errors.minlength">Password must be at least 3 characters long.</span>
+                        <span *ngIf="password_confirmation.errors.minlength">Password must be at least 6 characters long.</span>
                         <span *ngIf="password_confirmation.errors.maxlength">Password must be less then 50 characters long.</span>
                         <span *ngIf="password_confirmation.errors.not_match">Passwords do not match.</span>
                     </p>

@@ -25,14 +25,14 @@ export class SettingsComponent implements OnInit {
         "name": new FormControl(this.Me.name, [
             Validators.required,
             Validators.maxLength(50),
-            Validators.minLength(6)
+            Validators.minLength(3)
         ]),
         "surname": new FormControl(this.Me.surname, [
             Validators.required,
             Validators.maxLength(50),
-            Validators.minLength(6)
+            Validators.minLength(3)
         ]),
-        "turn_email_notifications": new FormControl(this.Me.is_email_notifications_available)
+        "is_email_notifications_available": new FormControl(this.Me.is_email_notifications_available)
     });
 
     EmailForm: FormGroup = new FormGroup({
@@ -61,13 +61,13 @@ export class SettingsComponent implements OnInit {
         ]),
         "password": new FormControl("",[
             Validators.required,
-            Validators.minLength(4),
+            Validators.minLength(6),
             Validators.maxLength(50),
             // this.MatchPasswords()
         ]),
         "password_confirmation": new FormControl("",[
             Validators.required,
-            Validators.minLength(4),
+            Validators.minLength(6),
             Validators.maxLength(50),
             this.MatchPasswords()
         ])
@@ -109,7 +109,7 @@ export class SettingsComponent implements OnInit {
                 }
             }
         
-            this.GeneralForm.controls.turn_email_notifications.setValue(this.Me.is_email_notifications_available);
+            // this.GeneralForm.controls.turn_email_notifications.setValue(this.Me.is_email_notifications_available);
             
         }
         
