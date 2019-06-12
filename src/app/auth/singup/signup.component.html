@@ -86,12 +86,12 @@
                         <label class="input-groupe__label" for="upload">Upload logo company</label>
                         <div class="upload-file">
                             <p class="upload-file__name-file">{{ImagePath}}</p>
-                            <input (change)="uploadImage($event)" class="upload-file__input-file" accept=".jpg, .jpeg, .png" type="file" id="upload">
+                            <input (change)="uploadImage($event)" [ngClass]="{'input-groupe__input--error':ErrorsUserPage2.image}" class="upload-file__input-file" accept=".jpg, .jpeg, .png" type="file" id="upload">
                             <label class="upload-file__button-label" for="upload">
                                 <img src="./../../../assets/img/file.svg" class="upload-file__img img-responsive" alt="">
                             </label>
                         </div>
-                        <p class="input-groupe__error"></p>
+                        <p class="input-groupe__error">{{ErrorsUserPage2.image}}</p>
                     </div>
 
                     <div class="input-groupe auth-form__input-groupe">

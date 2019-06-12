@@ -1,0 +1,19 @@
+<h1 class="system__title">
+    My investors
+</h1>
+
+<div class="my-investors">
+    <div *ngFor="let item of Items" class="my-investors__item">
+        <div class="my-investor my-investors__bg">
+            <div class="my-investor__left">
+                <div *ngIf="item.investor_name" class="my-investor__ava">{{getInitials(item.investor_name)}}</div>
+            </div>
+            <div class="my-investor__right">
+                <p class="my-investor__name">{{item.investor_name}}</p>
+                <p class="my-investor__mail">{{item.investor_email}}</p>
+                <p class="my-investor__info">Investments: <span>${{item.investment}}</span></p>
+                <p class="my-investor__info">Equity: <span>{{item.evaluation}}%</span></p>
+            </div>
+        </div>
+    </div>
+</div>

@@ -22,7 +22,10 @@ const routes: Routes =
             path: "my_milestones", loadChildren: './milestones/milestones.module#MilestonesModule', canActivate:[SystemAccessGuard], data: {role: 'startup', auth: true}
           },
           {
-            path: "startups", loadChildren: './startups/startups.module#StartupsModule', canActivate:[SystemAccessGuard], data: {role: 'investor', auth: true}
+            path: "my_investors", loadChildren: './my_investors/my_investors.module#MyInvestorsModule', canActivate:[SystemAccessGuard], data: {role: 'startup', auth: true}
+          },
+          {
+            path: "startups", loadChildren: './startups/startups.module#StartupsModule', canActivate:[SystemAccessGuard]
           },
           {
             path: 'products/:id', component: ProductDetailComponent
