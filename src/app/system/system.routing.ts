@@ -20,6 +20,9 @@ const routes: Routes =
             path: "my_milestones", loadChildren: './milestones/milestones.module#MilestonesModule', canActivate:[SystemAccessGuard]
           },
           {
+            path: "my_investors", loadChildren: './my_investors/my_investors.module#MyInvestorsModule', canActivate:[SystemAccessGuard]
+          },
+          {
             path: "startups", loadChildren: './startups/startups.module#StartupsModule', canActivate:[SystemAccessGuard]
           },
           {

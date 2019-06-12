@@ -34,7 +34,8 @@ export class SignUpComponent implements OnInit {
       contact_email: '',
       stage_of_funding: '',
       c_level: '',
-      team_member_name: ''
+      team_member_name: '',
+      image: ''
     };
 
     Company: CompanyModel = new CompanyModel();
@@ -139,7 +140,7 @@ export class SignUpComponent implements OnInit {
       } else {
         this.ErrorsUserPage1.password = '';
       }
-       if (this.User.password !== this.User.password_confirmation){
+      if (this.User.password !== this.User.password_confirmation){
         this.ErrorsUserPage1.password_confirmation = 'Password confirmation not matched.';
         return;
       } else {
@@ -164,6 +165,12 @@ export class SignUpComponent implements OnInit {
           return;
         } else {
           this.ErrorsUserPage2.stage_of_funding = '';
+        }
+        if (!this.User.image){
+          this.ErrorsUserPage2.image = 'Image can\'t be blank.';
+          return;
+        } else {
+          this.ErrorsUserPage2.image = '';
         }
       }
       this.RegisterUser();

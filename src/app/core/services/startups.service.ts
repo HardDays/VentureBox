@@ -88,4 +88,13 @@ export class StartupsService {
             fail
           );
     }
+
+    GetInvestedCompany(UserId:number, CompanyId:number, success?: (ok) => void, fail?:(err) => void)
+    {
+        this.http.CommonRequest(
+            () => this.http.GetData("/users/"+UserId+"/companies/"+CompanyId+"/investors" , ''),
+            success,
+            fail
+          );
+    }
 }

@@ -23,6 +23,8 @@ export class InvestedModel {
   constructor(
         public investment?: string,
         public evaluation?: string,
-        public contact_email?: string
+        public contact_email?: string,
+        public investor_name?: string,
+        public investor_email?: string
     ) {}
 }
