@@ -1,0 +1,109 @@
+<h1 class="system__title system__title--with-select">
+    Dashboard
+    <div class="input-groupe system__title-input-groupe">
+        <!-- select--opened если открытый селект -->
+        <app-select-input-cmp [Data]="CompaniesGraphics" [Mode]="'single'" (ChangeData)="OnCompaniesGraphicSelectChange($event)"></app-select-input-cmp>
+    </div>
+</h1>
+
+<div class="dashboard-investor">
+    <div class="dashboard-investor-row">
+        <div class="dashboard-investor-row__left-side">
+            <div class="graph-block">
+                <p class="graph-block__title">Total current value</p>
+                <div class="graph-block__flex-block">
+                    <p class="graph-block__count">{{totalChartValue | moneypipe}}</p>
+                    <ul class="graph-actions graph-actions--in_left_pos">
+                        <li class="graph-actions__item">
+                            <span [ngClass]="{'graph-actions__action--active': TotalValueSelector == 'month'}" 
+                            class="graph-actions__action"
+                            (click)="OnTotalValueSelectorUpdate('month')">Month</span>
+                        </li>
+                        <li class="graph-actions__item">
+                            <span class="graph-actions__action"  [ngClass]="{'graph-actions__action--active': TotalValueSelector == 'year'}" 
+                            (click)="OnTotalValueSelectorUpdate('year')">Year</span>
+                        </li>
+                        <li class="graph-actions__item">
+                            <span class="graph-actions__action"  [ngClass]="{'graph-actions__action--active': TotalValueSelector == 'all'}" 
+                            (click)="OnTotalValueSelectorUpdate('all')">All time</span>
+                        </li>
+                    </ul>
+                </div>
+                <div class="graph-block__graph">
+                    <canvas baseChart #totalChart  height="65"
+                        [datasets]='totalChartData'
+                        [labels]='totalChartLabels'
+                        [options]='totalChartOptions'
+                        [colors]='ChartColors'
+                        [chartType]="'line'"></canvas>
+                </div>
+            </div>
+        </div>
+        <div class="dashboard-investor-row__right-side">
+            <div class="dashboard-investor-row__right-side-item">
+                <div class="dashboard-inform-block dashboard-investor-row__md-height">
+                    <p class="dashboard-inform-block__key">Amount of companies</p>
+                    <!-- <p class="dashboard-inform-block__value">{{CompaniesAmount | moneypipe}}</p> -->
+                    <p class="dashboard-inform-block__value">{{CompaniesGraphics.length - 1}}</p>
+                </div>
+            </div>
+            <div class="dashboard-investor-row__right-side-item">
+                <div class="dashboard-inform-block dashboard-investor-row__md-height">
+                    <p class="dashboard-inform-block__key">Amount invested</p>
+                    <p class="dashboard-inform-block__value">{{InvestmentAmount | moneypipe}}</p>
+                </div>
+            </div>
+            
+        </div>
+    </div>
+    <div class="graph-block">
+        <div class="graph-block__flex-block">
+            <p class="graph-block__title graph-block__title--once">Rate of return - <span>{{rateChartValue}}%</span></p>
+            <ul class="graph-actions graph-actions--in_left_pos">
+                <li class="graph-actions__item">
+                    <span [ngClass]="{'graph-actions__action--active': RateValueSelector == 'month'}" 
+                    class="graph-actions__action"
+                    (click)="OnRateValueSelectorUpdate('month')">Month</span>
+                </li>
+                <li class="graph-actions__item">
+                    <span class="graph-actions__action"  [ngClass]="{'graph-actions__action--active': RateValueSelector == 'year'}" 
+                    (click)="OnRateValueSelectorUpdate('year')">Year</span>
+                </li>
+                <li class="graph-actions__item">
+                    <span class="graph-actions__action"  [ngClass]="{'graph-actions__action--active': RateValueSelector == 'all'}" 
+                    (click)="OnRateValueSelectorUpdate('all')">All time</span>
+                </li>
+            </ul>
+        </div>
+        <div class="graph-block__graph">
+                <canvas baseChart #rateChart  height="65"
+                [datasets]='rateChartData'
+                [labels]='rateChartLabels'
+                [options]='rateChartOptions'
+                [colors]='ChartColors'
+                [chartType]="'line'"></canvas>
+        </div>
+    </div>
+    <div class="news-block">
+        <div class="news-block__wrapper">
+            <div class="news-block__flex-title">
+                <p class="news-block__title">News from portfolio companies</p>
+                <div class="input-groupe system__title-input-groupe">
+                    <!-- select--opened если открытый селект -->
+                    <app-select-input-cmp [Data]="CompaniesNews" [Mode]="'single'" (ChangeData)="OnCompaniesNewsSelectChange($event)"></app-select-input-cmp>
+                </div>
+            </div>
+            <div class="news-block__news">
+                    <ng-container *ngFor='let item of News'>
+                            <app-dashboard-news-cmp [Model]="item"></app-dashboard-news-cmp>
+                    </ng-container>
+            </div>
+        </div>
+        <button class="news-block__show-more" *ngIf='News.length < NewsTotal' (click)='LoadMoreNews()'>
+            <svg width="12" height="7" viewBox="0 0 12 7" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path fill-rule="evenodd" clip-rule="evenodd" d="M6.00098 4.59955L10.6678 0.0834212C10.783 -0.0300222 10.9732 -0.0273212 11.0911 0.0888233L11.9109 0.896432C12.0287 1.01258 12.0314 1.20165 11.9162 1.31509L6.21798 6.8306C6.15904 6.89003 6.07867 6.91704 6.00098 6.91163C5.92061 6.91433 5.84292 6.88732 5.78398 6.8306L0.0857262 1.31509C-0.0294712 1.20165 -0.0267922 1.01258 0.0910842 0.896432L0.910861 0.0888233C1.02874 -0.0273212 1.21895 -0.0300222 1.33414 0.0834212L6.00098 4.59955Z" fill="#001B36"/>
+            </svg>     
+            <span>See more</span>
+        </button>
+    </div>
+</div>

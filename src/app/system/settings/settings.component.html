@@ -15,10 +15,12 @@
                         name="name" 
                         autocomplete="off" required
                         formControlName="name">
-                    <p class="input-groupe__error" *ngIf="name.invalid && (name.dirty || name.touched)">
-                        <span *ngIf="name.errors.required">Name is required.</span>
-                        <span *ngIf="name.errors.minlength">Name must be at least 3 characters long.</span>
-                        <span *ngIf="name.errors.maxlength">Name must be less then 50 characters long.</span>
+                    <p class="input-groupe__error">
+                        <ng-container *ngIf="name.invalid && (name.dirty || name.touched)">
+                            <span *ngIf="name.errors.required">Name is required.</span>
+                            <span *ngIf="name.errors.minlength">Name must be at least 3 characters long.</span>
+                            <span *ngIf="name.errors.maxlength">Name must be less then 50 characters long.</span>
+                        </ng-container>
                     </p>
                 </div>
                 <div class="input-groupe settings-item__input-groupe">
@@ -30,10 +32,12 @@
                         name="surname" 
                         autocomplete="off" required
                         formControlName="surname">
-                    <p class="input-groupe__error" *ngIf="surname.invalid && (surname.dirty || surname.touched)">
-                        <span *ngIf="surname.errors.required">Surame is required.</span>
-                        <span *ngIf="surname.errors.minlength">Surame must be at least 3 characters long.</span>
-                        <span *ngIf="surname.errors.maxlength">Surame must be less then 50 characters long.</span>
+                    <p class="input-groupe__error">
+                        <ng-container *ngIf="surname.invalid && (surname.dirty || surname.touched)">
+                            <span *ngIf="surname.errors.required">Surame is required.</span>
+                            <span *ngIf="surname.errors.minlength">Surame must be at least 3 characters long.</span>
+                            <span *ngIf="surname.errors.maxlength">Surame must be less then 50 characters long.</span>
+                        </ng-container>
                     </p>
                 </div>
                 <div class="one-checkbox settings-item__check-box">
@@ -66,10 +70,13 @@
                         name="current-mail" 
                         autocomplete="off" required
                         formControlName="current_email">
-                    <p class="input-groupe__error" *ngIf="current_email.invalid && (current_email.dirty || current_email.touched)">
-                        <span *ngIf="current_email.errors.required">Current email is required.</span>
-                        <span *ngIf="current_email.errors.email">Input correct email.</span>
-                        <span *ngIf="current_email.errors.incorrect_current_email">Input correct current email.</span>
+                    <p class="input-groupe__error">
+                        <ng-container *ngIf="current_email.invalid && (current_email.dirty || current_email.touched)">
+                            <span *ngIf="current_email.errors.required">Current email is required.</span>
+                            <span *ngIf="current_email.errors.email">Input correct email.</span>
+                            <span *ngIf="current_email.errors.incorrect_current_email">Input correct current email.</span>
+                        </ng-container>
+                        
                     </p>
                 </div>
                 <div class="input-groupe settings-item__input-groupe">
@@ -81,10 +88,13 @@
                         name="new-email" 
                         autocomplete="off" required
                         formControlName="email">
-                    <p class="input-groupe__error" *ngIf="email.invalid && (email.dirty || email.touched)">
-                        <span *ngIf="email.errors.required">New email is required.</span>
-                        <span *ngIf="email.errors.email">Input correct email.</span>
-                        <span *ngIf="email.errors.incorrect_new_email">New email can not be equal to old email.</span>
+                    <p class="input-groupe__error">
+                        <ng-container *ngIf="email.invalid && (email.dirty || email.touched)">
+                            <span *ngIf="email.errors.required">New email is required.</span>
+                            <span *ngIf="email.errors.email">Input correct email.</span>
+                            <span *ngIf="email.errors.email_taken">Inputed email already taken.</span>
+                            <span *ngIf="email.errors.incorrect_new_email">New email can not be equal to old email.</span>
+                        </ng-container>
                     </p>
                 </div>
                 <div class="input-groupe settings-item__input-groupe">
@@ -96,14 +106,15 @@
                         name="current-password" 
                         autocomplete="off" required
                         formControlName="current_password">
-                    <p class="input-groupe__error" *ngIf="current_password.invalid && (current_password.dirty || current_password.touched)">
-                        <span *ngIf="current_password.errors.required">Password is required.</span>
-                        <span *ngIf="current_password.errors.minlength">Password must be at least 4 characters long.</span>
-                        <span *ngIf="current_password.errors.maxlength">Password must be less then 50 characters long.</span>
-                        <span *ngIf="current_password.errors.not_match">Incorrect current password.</span>
+                    <p class="input-groupe__error">
+                        <ng-container *ngIf="current_password.invalid && (current_password.dirty || current_password.touched)">
+                            <span *ngIf="current_password.errors.required">Password is required.</span>
+                            <span *ngIf="current_password.errors.minlength">Password must be at least 4 characters long.</span>
+                            <span *ngIf="current_password.errors.maxlength">Password must be less then 50 characters long.</span>
+                            <span *ngIf="current_password.errors.not_match">Incorrect current password.</span>
+                        </ng-container>
                     </p>
                 </div>
-                
             </div>
             <div class="settings-item__bott">
                 <p class="settings-item__success-text" *ngIf="EmailSuccess">Your email info was successfuly updated!</p>
@@ -127,11 +138,13 @@
                         name="change-pass-1" 
                         autocomplete="off" required
                         formControlName="old_password">
-                    <p class="input-groupe__error" *ngIf="old_password.invalid && (old_password.dirty || old_password.touched)">
-                        <span *ngIf="old_password.errors.required">Password is required.</span>
-                        <span *ngIf="old_password.errors.minlength">Password must be at least 4 characters long.</span>
-                        <span *ngIf="old_password.errors.maxlength">Password must be less then 50 characters long.</span>
-                        <span *ngIf="old_password.errors.not_match">Incorrect current password.</span>
+                    <p class="input-groupe__error">
+                        <ng-container *ngIf="old_password.invalid && (old_password.dirty || old_password.touched)">
+                            <span *ngIf="old_password.errors.required">Password is required.</span>
+                            <span *ngIf="old_password.errors.minlength">Password must be at least 4 characters long.</span>
+                            <span *ngIf="old_password.errors.maxlength">Password must be less then 50 characters long.</span>
+                            <span *ngIf="old_password.errors.not_match">Incorrect current password.</span>
+                        </ng-container>
                     </p>
                 </div>
                 <div class="input-groupe settings-item__input-groupe">
@@ -144,10 +157,13 @@
                         name="change-pass-2" 
                         autocomplete="off" required
                         formControlName="password">
-                    <p class="input-groupe__error" *ngIf="password.invalid && (password.dirty || password.touched)">
-                        <span *ngIf="password.errors.required">Password is required.</span>
-                        <span *ngIf="password.errors.minlength">Password must be at least 6 characters long.</span>
-                        <span *ngIf="password.errors.maxlength">Password must be less then 50 characters long.</span>
+                    <p class="input-groupe__error">
+                        <ng-container *ngIf="password.invalid && (password.dirty || password.touched)">
+                            <span *ngIf="password.errors.required">Password is required.</span>
+                            <span *ngIf="password.errors.minlength">Password must be at least 6 characters long.</span>
+                            <span *ngIf="password.errors.maxlength">Password must be less then 50 characters long.</span>
+                        </ng-container>
+                        
                         <!-- <span *ngIf="password.errors.not_match">Passwords do not match.</span> -->
                     </p>
                 </div>
@@ -161,11 +177,13 @@
                         name="change-pass-3" 
                         autocomplete="off" required
                         formControlName="password_confirmation">
-                    <p class="input-groupe__error" *ngIf="password_confirmation.invalid && (password_confirmation.dirty || password_confirmation.touched)">
-                        <span *ngIf="password_confirmation.errors.required">Password is required.</span>
-                        <span *ngIf="password_confirmation.errors.minlength">Password must be at least 6 characters long.</span>
-                        <span *ngIf="password_confirmation.errors.maxlength">Password must be less then 50 characters long.</span>
-                        <span *ngIf="password_confirmation.errors.not_match">Passwords do not match.</span>
+                    <p class="input-groupe__error">
+                        <ng-container *ngIf="password_confirmation.invalid && (password_confirmation.dirty || password_confirmation.touched)">
+                            <span *ngIf="password_confirmation.errors.required">Password is required.</span>
+                            <span *ngIf="password_confirmation.errors.minlength">Password must be at least 6 characters long.</span>
+                            <span *ngIf="password_confirmation.errors.maxlength">Password must be less then 50 characters long.</span>
+                            <span *ngIf="password_confirmation.errors.not_match">Passwords do not match.</span>
+                        </ng-container>
                     </p>
                 </div>
                 

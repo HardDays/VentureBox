@@ -9,68 +9,32 @@ export class SystemAccessGuard implements CanActivate{
     {}
     canActivate(router:ActivatedRouteSnapshot, state: RouterStateSnapshot): Observable<boolean>|boolean
     {
-        switch (router.routeConfig.path) {
-            case 'my_products' : {
-                return this.MyProductsNavigate();
-                break;
-            }
-            case 'my_news' : {
-                return this.NewsNavigate();
-                break;
-            }
-            case 'settings':{
-                return this.SettingsNavigate();
-                break;
-            }
-            default: {
-                return true;
-            }
-        }
-    }
-
-    NewsNavigate()
-    {
-        if(!this.auth.IsLoggedIn)
+        if(router.data)
         {
-            this.router.navigate(["/auth"]);
-            return false;
-        }
-        return true;
-    }
-
-    SettingsNavigate()
-    {
-        if(!this.auth.IsLoggedIn && (!this.auth.Me || !this.auth.Me.id))
-        {
-            this.router.navigate(["/auth"]);
-            return false;
-        }
-        return true;
-    }
-
-    MyProductsNavigate()
-    {
-        if(!this.auth.IsLoggedIn)
-        {
-            this.router.navigate(["/auth"]);
-            return false;
-        }
-        else
-        {
-            if(this.auth.Me)
+            if(router.data.auth)
             {
-                if(this.auth.Me.role == 'startup' && this.auth.MyCompany && this.auth.MyCompany.id)
+                if(router.data.auth != this.auth.IsLoggedIn)
                 {
-                    return true;
+                    this.router.navigate(["/auth"]);
+                    return false;
                 }
             }
-            
         }
-        this.router.navigate(["/system", "crm"]);
-        return false;
-    }
 
-    LoginNavigate() {
+        if(router.data.role)
+        {
+            if(!this.auth.Me)
+            {
+                this.router.navigate(["/auth"]);
+                return false;
+            }
+            else if(router.data.role != this.auth.Me.role)
+            {
+                this.router.navigate(["/auth"]);
+                return false;
+            }
+        }
 
+        return true;
     }
 }

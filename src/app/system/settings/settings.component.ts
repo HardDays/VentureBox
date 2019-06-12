@@ -179,6 +179,10 @@ export class SettingsComponent implements OnInit {
                         {
                             this.EmailForm.controls.current_password.setErrors({'not_match': true});
                         }
+                        if(err.body.email)
+                        {
+                            this.EmailForm.controls.email.setErrors({'email_taken':true});
+                        }
                     }
                 }
             })

@@ -1,5 +1,5 @@
-import { NgModule } from '@angular/core';
-import { Routes, RouterModule } from '@angular/router';
+import { NgModule, Component } from '@angular/core';
+import { Routes, RouterModule, CanActivate } from '@angular/router';
 import { MainComponent } from './main/main.component';
 import { SystemComponent } from './system.component';
 import { SystemAccessGuard } from './system.guard';
@@ -11,22 +11,30 @@ const routes: Routes =
 [
     { path: '', component: SystemComponent, children:
         [
-          { path: "", pathMatch:"full", redirectTo: "my_products"},
-          {path: 'my_products', loadChildren: './products/products.module#ProductsModule',canActivate:[SystemAccessGuard]},
+          { path: "", pathMatch:"full", redirectTo: "crm"},
           {
-            path: "my_news", component: NewsComponent, canActivate:[SystemAccessGuard]
+            path: 'my_products', loadChildren: './products/products.module#ProductsModule',canActivate:[SystemAccessGuard], data: {role: 'startup', auth: true}
           },
           {
-            path: "my_milestones", loadChildren: './milestones/milestones.module#MilestonesModule', canActivate:[SystemAccessGuard]
+            path: "my_news", component: NewsComponent, canActivate:[SystemAccessGuard], data: {role: 'startup', auth: true}
           },
           {
-            path: "startups", loadChildren: './startups/startups.module#StartupsModule', canActivate:[SystemAccessGuard]
+            path: "my_milestones", loadChildren: './milestones/milestones.module#MilestonesModule', canActivate:[SystemAccessGuard], data: {role: 'startup', auth: true}
+          },
+          {
+            path: "startups", loadChildren: './startups/startups.module#StartupsModule', canActivate:[SystemAccessGuard], data: {role: 'investor', auth: true}
           },
           {
             path: 'products/:id', component: ProductDetailComponent
           },
           {
-            path: 'settings', component: SettingsComponent, canActivate: [SystemAccessGuard]
+            path: 'dashboard', loadChildren: './dashboard/dashboard.module#DashboardModule', canActivate: [SystemAccessGuard], data: {auth: true}
+          },
+          {
+            path: 'settings', component: SettingsComponent, canActivate: [SystemAccessGuard], data: {role: null, auth: true}
+          },
+          {
+            path: 'crm', component: MainComponent
           },
           { path: '**', component: MainComponent}
         ]

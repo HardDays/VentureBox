@@ -16,7 +16,7 @@
                 <h1 class="product__name">{{Product.name}}</h1>
             </div>
             <div class="product__product-link-wrapper">
-                <a href="#" class="product__product-link">{{Product.company_name}}</a>
+                <a [routerLink]="['/system','startups','profile', Product.company_id]" class="product__product-link">{{Product.company_name}}</a>
             </div>
             <div class="product__product-link-wrapper">
                 <a [href]="Product.link_to_store" class="product__product-link" target="_blank">Product link</a>

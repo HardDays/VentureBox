@@ -1,0 +1,16 @@
+<div class="my-new news-block__item">
+    <div class="my-new__logo-side">
+        <div class="my-new__logo-wr">
+            <img [src]="'https://venture-box-back.herokuapp.com:443/companies/' + Model.company_id +'/image.json?width=190&height=110'" class="my-new__logo my-new__logo--contain img-responsive" alt="">
+        </div>
+    </div>
+    <div class="my-new__side">
+        <div class="my-new__head">
+            <p class="my-new__name">{{Model.company_name}}</p>
+            <div class="my-new__info">
+                <p class="my-new__publish-day">{{Model.updated_at | date: 'dd MMMM yyyy'}}</p>
+            </div>
+        </div>
+        <p class="my-new__text" [innerHTML]="Model.text"></p>
+    </div>
+</div>

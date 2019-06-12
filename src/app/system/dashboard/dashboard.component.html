@@ -1,0 +1,6 @@
+<ng-container *ngIf="Me && Me.role == 'investor'">
+    <app-investor-dashboard-cmp [Me]="Me"></app-investor-dashboard-cmp>
+</ng-container>
+<ng-container *ngIf="Me && Me.role == 'startup'">
+    <app-startup-dashboard-cmp [Me]="Me"></app-startup-dashboard-cmp>
+</ng-container>

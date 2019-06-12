@@ -1,0 +1,27 @@
+<div class="select" [ngClass]="{'select--opened': IsTagsOpened}" (click)="IsTagsOpened = !IsTagsOpened">
+    <!-- добавляем select__input-hidden для связки самописного селекта с формой(для взаимодействия с template driven или reactive forms). -->
+    <!-- Этот класс скрывает элемент. в данном случае нужно юзать список из чекбоксов т.к. можно выбрать все элементы -->
+    <select class="select__input-hidden">
+        <option>sdf</option>
+    </select>
+    <div class="select__lable">
+        <p class="select__picked" *ngIf="Mode == 'single'">{{Selected.name}}</p>
+        <ng-container  *ngIf="Mode != 'single'">
+            <ng-container  *ngFor="let item of Data">
+                <div class="select__tag" *ngIf="item.isSelected">
+                    <p class="select__tag-text">{{item.name}}</p>
+                    <button class="select__tag-delete" (click)="item.isSelected = !item.isSelected"></button>
+                </div>
+            </ng-container>
+        </ng-container>
+    </div>
+    <div class="select-dropdown select__dropdown">
+        <ul class="select-dropdown__list">
+            <li class="select-dropdown__item select-dropdown__item--active" 
+                *ngFor="let item of Data" 
+                (click)="UpdateSelected(item)" 
+                class="select-dropdown__item" 
+                [ngClass]="{'select-dropdown__item--active': item.isSelected}">{{item.name}}</li>
+        </ul>
+    </div>
+</div>

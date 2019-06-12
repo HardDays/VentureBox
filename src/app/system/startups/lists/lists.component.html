@@ -5,8 +5,8 @@
 <div class="sturtups-list">
     <div *ngFor="let item of Startups" class="sturtups-list__item">
         <div class="sturtup-card sturtup-card--sm_theme">
-            <div *ngIf="item.has_image" class="sturtup-card__logo">
-                <img [src]="item.image" class="img-responsive" alt="">
+            <div class="sturtup-card__logo">
+                <img *ngIf="item.image" [src]="item.image" class="img-responsive" alt="">
             </div>
             <a [routerLink]="['/system','startups','profile',item.id]" class="sturtup-card__name sturtup-card__name--action">{{item.company_name}}</a>
             <p class="sturtup-card__invest-count">~ ${{item.evaluation}}</p>
