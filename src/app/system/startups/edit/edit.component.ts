@@ -92,6 +92,11 @@ export class StartupsEditComponent implements OnInit {
     cmodel.team_members = [];
     for(let item of company.team_members)
       cmodel.team_members.push(item);
+
+    if (this.StageOfFunding.length) {
+      this.StageOfFunding.forEach(x => x.isSelected = false);
+      this.StageOfFunding.find(x => x.value === cmodel.stage_of_funding).isSelected = true;
+    }
     return cmodel;
   }
 
