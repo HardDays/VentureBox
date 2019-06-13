@@ -2,7 +2,12 @@
     Startups list
 </h1>
 
-<div class="sturtups-list">
+<div class="sturtups-list"
+      infiniteScroll
+      [infiniteScrollDistance]="10"
+      [infiniteScrollThrottle]="200"
+      (scrolled)="onScroll()"
+>
     <div *ngFor="let item of Startups" class="sturtups-list__item">
         <div class="sturtup-card sturtup-card--sm_theme">
             <div class="sturtup-card__logo">

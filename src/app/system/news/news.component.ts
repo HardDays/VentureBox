@@ -1,3 +1,4 @@
+import { StartupsService } from './../../core/services/startups.service';
 import { AuthService } from './../../core/services/auth.service';
 import { NewsModel } from './../../core/models/news.model';
 import { NewsService } from './../../core/services/news.service';
@@ -13,7 +14,10 @@ export class NewsComponent implements OnInit {
   NewsList: NewsModel[] = [];
   News: NewsModel = new NewsModel();
 
-  constructor(private auth: AuthService, private news: NewsService) {
+  Image = '';
+  ErrorText = '';
+
+  constructor(private auth: AuthService, private news: NewsService, private startupsService: StartupsService) {
   }
 
   ngOnInit() {
@@ -21,6 +25,18 @@ export class NewsComponent implements OnInit {
     this.News.company_id = this.auth.Me.company_id;
 
     this.GetListNews();
+
+    this.GetImage();
+    this.auth.onMeChange$.subscribe(
+      (res) => {
+        this.GetImage();
+      }
+    );
+  }
+
+  GetImage () {
+    if (this.auth.Me.company_id)
+      this.Image = this.startupsService.GetCompanyImageUrl(this.auth.Me.company_id, {width: 480, height: 280});
   }
 
   AddNews() {
@@ -28,10 +44,13 @@ export class NewsComponent implements OnInit {
       this.news.PostStartupNews(this.News)
         .subscribe (
           (res) => {
+            this.ErrorText = '';
             this.News.text = '';
             this.GetListNews();
           }
         );
+    } else {
+      this.ErrorText = 'News text can\'t be blank!';
     }
   }
 

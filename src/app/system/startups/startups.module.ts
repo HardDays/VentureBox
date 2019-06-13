@@ -12,6 +12,7 @@ import { StartupsProfileComponent } from './profile/profile.component';
 import { StartupsMyProfileComponent } from './my-profile/my-profile.component';
 import { StartupsEditComponent } from './edit/edit.component';
 import { TextMaskModule } from 'angular2-text-mask';
+import { InfiniteScrollModule } from 'ngx-infinite-scroll';
 
 @NgModule({
   declarations: [
@@ -29,7 +30,8 @@ import { TextMaskModule } from 'angular2-text-mask';
     RouterModule,
     StartupsRoutingModule,
     ReactiveFormsModule,
-    TextMaskModule
+    TextMaskModule,
+    InfiniteScrollModule
   ],
   providers: [
        StartupsAccessGuard

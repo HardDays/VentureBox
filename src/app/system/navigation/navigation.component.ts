@@ -16,7 +16,7 @@ export class NavigationComponent implements OnInit {
     IsLoggedIn: boolean = false;
     CurrentPage = "";
     MenuItems: IMenuItem[] = [
-        
+
     ];
     constructor(private router: Router, private auth: AuthService)
     {
@@ -75,13 +75,13 @@ export class NavigationComponent implements OnInit {
                 url : "my_products",
                 image : "assets/img/my-products.svg",
                 label : "My products",
-                visible: this.IsLoggedIn && this.Me && this.Me.role == 'startup' && this.MyCompany.id != null
+                visible: this.IsLoggedIn && this.Me && this.Me.role == 'startup' && this.MyCompany && this.MyCompany.id != null
             },
             {
                 url : "my_investors",
                 image : "assets/img/my-investors.svg",
                 label : "My investors",
-                visible: this.IsLoggedIn && this.Me && this.Me.role == 'startup' && this.MyCompany.id != null
+                visible: this.IsLoggedIn && this.Me && this.Me.role == 'startup' && this.MyCompany && this.MyCompany.id != null
             },
             {
                 url : "crm",
@@ -105,7 +105,7 @@ export class NavigationComponent implements OnInit {
                 url : "my_milestones",
                 image : "assets/img/my-milestones.svg",
                 label : "My milestones",
-                visible: this.IsLoggedIn && this.Me && this.Me.role == 'startup' && this.MyCompany.id != null
+                visible: this.IsLoggedIn && this.Me && this.Me.role == 'startup' && this.MyCompany && this.MyCompany.id != null
             },
             {
                 url : "startups",

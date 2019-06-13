@@ -7,7 +7,7 @@
         <div class="input-groupe my-news__input-groupe">
             <label class="input-groupe__label" for="article">New article</label>
             <textarea [(ngModel)]="News.text" class="input-groupe__input input-groupe__input--textarea-sm" id="article" name="article"></textarea>
-            <p class="input-groupe__error"></p>
+            <p class="input-groupe__error">{{ErrorText}}</p>
         </div>
         <div class="button-wrapper">
             <button (click)="AddNews()" class="button-wrapper__button">Publish</button>
@@ -17,7 +17,7 @@
         <div *ngFor="let item of NewsList" class="my-new my-news__item">
             <div class="my-new__logo-side">
                 <div class="my-new__logo-wr">
-                    <img src="assets/img/logo-product.jpg" class="my-new__logo img-responsive" alt="">
+                    <img [src]="Image" src="assets/img/logo-product.jpg" class="my-new__logo img-responsive" alt="">
                 </div>
             </div>
             <div class="my-new__side">

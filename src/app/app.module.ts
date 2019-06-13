@@ -21,6 +21,8 @@ import { MilestonesService } from './core/services/milestones.service';
 import { StartupsService } from './core/services/startups.service';
 
 
+import { platformBrowserDynamic } from '@angular/platform-browser-dynamic';
+
 
 @NgModule({
   declarations: [
@@ -34,7 +36,8 @@ import { StartupsService } from './core/services/startups.service';
     RouterModule,
     AppRoutingModule,
     HttpClientModule,
-    TextMaskModule
+    TextMaskModule,
+
   ],
   providers: [
     AppAccessGuard,
@@ -50,3 +53,5 @@ import { StartupsService } from './core/services/startups.service';
   bootstrap: [AppComponent]
 })
 export class AppModule { }
+
+platformBrowserDynamic().bootstrapModule(AppModule);

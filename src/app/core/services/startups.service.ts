@@ -35,10 +35,10 @@ export class StartupsService {
     {
     }
 
-    GetAllCompanies(success?: (ok) => void, fail?: (err) => void)
+    GetAllCompanies(offset: number, limit: number, success?: (ok) => void, fail?: (err) => void)
     {
         this.http.CommonRequest(
-            () => this.http.GetData('/companies'),
+            () => this.http.GetData('/companies', this.type.ParamsToUrlSearchParams({offset, limit: limit ? limit : 10 })),
             success,
             fail
         );
