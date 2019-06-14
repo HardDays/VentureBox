@@ -73,8 +73,8 @@ export class StartupsEditComponent implements OnInit {
         if(this.StageOfFunding.length)
           this.StageOfFunding.find(x => x.value === this.CompanyOld.stage_of_funding).isSelected = true;
 
-        if(this.TeamLevels.length){
-          for(let member of this.CompanyOld.team_members) {
+        if (this.TeamLevels.length){
+          for (let member of this.CompanyOld.team_members) {
             member.c_level_name = this.TeamLevels.find(x=>x.value === member.c_level).name;
           }
         }
