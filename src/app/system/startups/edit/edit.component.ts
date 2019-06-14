@@ -8,6 +8,7 @@ import { AuthService } from '../../../core/services/auth.service';
 import { IDictionary } from 'src/app/core/interfaces/dictionary.interface';
 import { UserModel, TeamMember } from 'src/app/core/models/user.model';
 import { CompanyModel } from 'src/app/core/models/company.model';
+import {Location} from '@angular/common';
 
 @Component({
   selector: 'startups-edit-cmp',
@@ -42,7 +43,14 @@ export class StartupsEditComponent implements OnInit {
       contact_email: ''
     };
 
-    constructor(private products: ProductsService, private auth: AuthService, private type: TypeService, private startupsService: StartupsService, private router: Router)
+    constructor(
+      private _location: Location,
+      private products: ProductsService,
+      private auth: AuthService,
+      private type: TypeService,
+      private startupsService: StartupsService,
+      private router: Router
+     )
     {
     }
 
@@ -69,6 +77,10 @@ export class StartupsEditComponent implements OnInit {
       this.auth.Me.company_id,
       (res) => {
         this.CompanyOld = res;
+
+        if (this.CompanyOld.has_image) {
+          this.ImagePath = 'Company image.png';
+        }
 
         if(this.StageOfFunding.length)
           this.StageOfFunding.find(x => x.value === this.CompanyOld.stage_of_funding).isSelected = true;
@@ -196,8 +208,13 @@ export class StartupsEditComponent implements OnInit {
         );
     }
 
+    GoBack() {
+        this._location.back();
+    }
+
     Cancel() {
-      this.Company = this.getCompanyFromModel(this.CompanyOld);
+      // this.Company = this.getCompanyFromModel(this.CompanyOld);
+      this.GoBack();
     }
 
     public mask = [/[1-9]/, /[0-9]/];
