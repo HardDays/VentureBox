@@ -97,4 +97,24 @@ export class StartupsService {
             fail
           );
     }
+
+    GetPortfolioInvested(params, success?: (ok) => void, fail?:(err) => void)
+    {
+        this.http.CommonRequest(
+            () => this.http.GetData("/invested_companies" , this.type.ParamsToUrlSearchParams(params)),
+            success,
+            fail
+          );
+    }
+
+    GetPortfolioIntresting(params, success?: (ok) => void, fail?:(err) => void)
+    {
+        this.http.CommonRequest(
+            () => this.http.GetData("/interesting_companies" , this.type.ParamsToUrlSearchParams(params)),
+            success,
+            fail
+          );
+    }
+
+    // invested_companies
 }

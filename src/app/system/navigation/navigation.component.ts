@@ -90,7 +90,7 @@ export class NavigationComponent implements OnInit {
                 visible : this.IsLoggedIn && this.Me && this.Me.role == 'startup'
             },
             {
-                url : "protfolio",
+                url : "portfolio",
                 image : "assets/img/portfolio.svg",
                 label : "Portfolio Management",
                 visible : this.IsLoggedIn && this.Me && this.Me.role != 'startup'
