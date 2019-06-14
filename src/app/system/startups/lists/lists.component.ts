@@ -1,3 +1,4 @@
+import { Validator } from './../../../core/base/field.validator';
 import { TypeService } from 'src/app/core/services/type.service';
 import { StartupsService } from './../../../core/services/startups.service';
 import { CompanyModel, InvestedModel } from './../../../core/models/company.model';
@@ -31,6 +32,7 @@ export class StartupsListsComponent implements OnInit {
     Errors = {
       investment: '',
       evaluation: '',
+      email: ''
     };
 
     ngOnInit() {
@@ -41,7 +43,7 @@ export class StartupsListsComponent implements OnInit {
       if (this.ItemsCount >= this.Startups.length) {
         this.startupsService.GetAllCompanies(
           this.Startups.length,
-          10,
+          12,
           (res) => {
             this.ItemsCount = res.count;
             if (res.items.length) {
@@ -68,12 +70,24 @@ export class StartupsListsComponent implements OnInit {
     }
 
     InvestToCompany () {
+
+      if (!this.InvestedInfo.contact_email || !Validator.ValidateEmail(this.InvestedInfo.contact_email)) {
+        this.Errors.email = 'Email is incorrect';
+        return;
+      }
+      this.Errors.email = '';
+
       this.startupsService.InvestingCompany(
         this.InvestedCompanyID,
         this.InvestedInfo,
         (res) => {
           this.isModalOpened = false;
           this.InvestedInfo = new InvestedModel();
+          this.Errors = {
+            investment: '',
+            evaluation: '',
+            email: ''
+          };
         }, (err) => {
            this.Errors = this.type.GetErrorsDictByResponse(err.json(), this.Errors);
         });
