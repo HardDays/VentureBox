@@ -80,6 +80,15 @@ export class StartupsService {
           );
     }
 
+    UnInterestingCompany(CompanyId: number, success?: (ok) => void, fail?:(err) => void)
+    {
+        this.http.CommonRequest(
+            () => this.http.DeleteData("/companies/"+CompanyId+"/interesting_companies"),
+            success,
+            fail
+          );
+    }
+
     InvestingCompany(CompanyId:number, invested: InvestedModel, success?: (ok) => void, fail?:(err) => void)
     {
         this.http.CommonRequest(
