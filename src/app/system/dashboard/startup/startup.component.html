@@ -1,1 +1,318 @@
-coming soon
+<h1 class="system__title">
+    Dashboard
+</h1>
+
+<div class="dashboard-startup">
+    <div class="dashboard-startup-row dashboard-startup__row">
+        <div class="dashboard-startup-row__left-side">
+            <div class="dashboard-main-info-row">
+                <div class="dashboard-main-info-row__item">
+                    <div class="dashboard-main-info-block">
+                        <p class="dashboard-main-info-block__key">Total earn</p>
+                        <p class="dashboard-main-info-block__value">{{TotalEarn | moneypipe}}</p>
+                    </div>
+                </div>
+                <div class="dashboard-main-info-row__item">
+                    <div class="dashboard-main-info-block">
+                        <p class="dashboard-main-info-block__key">Total investment</p>
+                        <p class="dashboard-main-info-block__value">{{TotalInvestmen | moneypipe}}</p>
+                    </div>
+                </div>
+                <div class="dashboard-main-info-row__item">
+                    <div class="dashboard-main-info-block">
+                        <p class="dashboard-main-info-block__key">Score</p>
+                        <p class="dashboard-main-info-block__value">{{Score}}%</p>
+                    </div>
+                </div>
+            </div>
+            <div class="graph-block">
+                <p class="graph-block__title">Total current value</p>
+                <div class="graph-block__flex-block">
+                    <p class="graph-block__count">{{evalChartValue | moneypipe }}</p>
+                    <ul class="graph-actions graph-actions--in_left_pos">
+
+                        <li class="graph-actions__item">
+                            <span [ngClass]="{'graph-actions__action--active': StartupEvaluationSelect == 'month'}" 
+                            class="graph-actions__action"
+                            (click)="OnStartupEvaluationSelectUpdate('month')">Month</span>
+                        </li>
+                        <li class="graph-actions__item">
+                            <span class="graph-actions__action"  [ngClass]="{'graph-actions__action--active': StartupEvaluationSelect == 'year'}" 
+                            (click)="OnStartupEvaluationSelectUpdate('year')">Year</span>
+                        </li>
+                        <li class="graph-actions__item">
+                            <span class="graph-actions__action"  [ngClass]="{'graph-actions__action--active': StartupEvaluationSelect == 'all'}" 
+                            (click)="OnStartupEvaluationSelectUpdate('all')">All time</span>
+                        </li>
+                    </ul>
+                </div>
+                <div class="graph-block__graph">
+                    <canvas baseChart  #evalChart   height="65"
+                    [datasets]='evalChartData'
+                    [labels]='evalChartLabels'
+                    [options]='evalChartOptions'
+                    [colors]='evalColors'
+                    [chartType]="'bar'"></canvas>
+                </div>
+            </div>
+        </div>
+        <div class="dashboard-startup-row__right-side">
+            <div class="dashboard-startup-row__md-item-wr">
+                <div class="circle-graph dashboard-startup-row__for-height">
+                    
+                    <p class="circle-graph__title">Sales</p>
+                    <div class="circle-graph__flex">
+                        <div class="circle-graph__left-side">
+                            <canvas baseChart width="500"
+                                [data]="salesChartData"
+                                [colors]="salesChartColors"
+                                [labels]="displayLabels"
+                                [options]="salesChartOptions"
+                                [chartType]="'doughnut'">
+                            </canvas>
+                        </div>
+                        <div class="grapf-description circle-graph__right-side">
+                            <ng-container *ngFor="let item of salesChartLabels; let i = index">
+                                <div class="grapf-description__item grapf-description__item--product_{{i+1}}">
+                                    <div class="grapf-description__circle"></div>
+                                    <p class="grapf-description__product" [innerHTML]="item"></p>
+                                </div>
+                            </ng-container>
+                            <!-- <div class="grapf-description__item grapf-description__item--product_1">
+                                <div class="grapf-description__circle"></div>
+                                <p class="grapf-description__product">Product name - <span>15%</span></p>
+                            </div>
+                            <div class="grapf-description__item grapf-description__item--product_2">
+                                <div class="grapf-description__circle"></div>
+                                <p class="grapf-description__product">Product name - <span>15%</span></p>
+                            </div>
+                            <div class="grapf-description__item grapf-description__item--product_3">
+                                <div class="grapf-description__circle"></div>
+                                <p class="grapf-description__product">Product name - <span>15%</span></p>
+                            </div>
+                            <div class="grapf-description__item grapf-description__item--product_4">
+                                <div class="grapf-description__circle"></div>
+                                <p class="grapf-description__product">Product name - <span>15%</span></p>
+                            </div> -->
+                           
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+            <div class="dashboard-startup-row__md-item-wr">
+                <div class="dashboard-events dashboard-startup-row__for-height">
+                    <p class="dashboard-events__title">My events</p>
+                    <div class="dashboard-events__list">
+                        <div class="dashboard-event dashboard-events__item">
+                            <img src="assets/img/blue-cal.svg" class="dashboard-event__img img-responsive" alt="">    
+                            <div class="dashboard-event__text-wr">
+                                <p class="dashboard-event__date">Tomorrow - 12:00</p>
+                                <p class="dashboard-event__name">Event name</p>
+                            </div>
+                        </div>
+                        <div class="dashboard-event dashboard-events__item">
+                            <img src="assets/img/blue-cal.svg" class="dashboard-event__img img-responsive" alt="">    
+                            <div class="dashboard-event__text-wr">
+                                <p class="dashboard-event__date">12.12.2019 - 12:00</p>
+                                <p class="dashboard-event__name">Event name</p>
+                            </div>
+                        </div>
+                        <div class="dashboard-event dashboard-events__item">
+                            <img src="assets/img/blue-cal.svg" class="dashboard-event__img img-responsive" alt="">    
+                            <div class="dashboard-event__text-wr">
+                                <p class="dashboard-event__date">Tomorrow - 12:00</p>
+                                <p class="dashboard-event__name">Event name</p>
+                            </div>
+                        </div>
+                        <div class="dashboard-event dashboard-events__item">
+                            <img src="assets/img/blue-cal.svg" class="dashboard-event__img img-responsive" alt="">    
+                            <div class="dashboard-event__text-wr">
+                                <p class="dashboard-event__date">Tomorrow - 12:00</p>
+                                <p class="dashboard-event__name">Event name</p>
+                            </div>
+                        </div>
+                        <div class="dashboard-event dashboard-events__item">
+                            <img src="assets/img/blue-cal.svg" class="dashboard-event__img img-responsive" alt="">    
+                            <div class="dashboard-event__text-wr">
+                                <p class="dashboard-event__date">Tomorrow - 12:00</p>
+                                <p class="dashboard-event__name">Event name</p>
+                            </div>
+                        </div>
+                        <div class="dashboard-event dashboard-events__item">
+                            <img src="assets/img/blue-cal.svg" class="dashboard-event__img img-responsive" alt="">    
+                            <div class="dashboard-event__text-wr">
+                                <p class="dashboard-event__date">Tomorrow - 12:00</p>
+                                <p class="dashboard-event__name">Event name</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+        </div>
+    </div>
+    <div class="my-milestones">
+        <div class="my-milestones__item">
+            <div class="my-milestone">
+                <div class="my-milestone__title-wrapper">
+                    <p class="my-milestone__title">Title</p>
+                    <div class="edit-button my-milestone__edit-button">
+                        <a href="#" class="edit-button__edit">
+                            <svg width="14" height="14" viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M0.0147991 10.5L0 13.3797C0 13.5422 0.0591967 13.7046 0.17759 13.8228C0.295983 13.9409 0.443975 14 0.606765 14L3.4778 13.9852C3.64059 13.9852 3.78858 13.9262 3.90698 13.808L13.8224 3.9135C14.0592 3.67722 14.0592 3.29325 13.8224 3.04219L10.981 0.177215C10.7442 -0.0590717 10.3594 -0.0590717 10.1078 0.177215L8.12474 2.17089L0.192389 10.0717C0.088795 10.1899 0.0147991 10.3376 0.0147991 10.5ZM10.5518 1.47679L12.5497 3.47046L11.4249 4.59283L9.42706 2.59916L10.5518 1.47679ZM1.24313 10.7658L8.55391 3.47046L10.5518 5.46414L3.24101 12.7447L1.22833 12.7595L1.24313 10.7658Z" fill="black"/>
+                            </svg>      
+                            Edit
+                        </a>
+                    </div>
+                </div>
+                <!-- my-milestone__description--show для показа скрытого текста-->
+                <p class="my-milestone__description my-milestone__description--show">
+                    Lorem Ipsum has been the industry's standard dummy text
+                    ever since the 1500s, when an unknown printer took
+                    a galley of type and
+                    <span class="my-milestone__hidden-text">
+                        scrambled it to make a type specimen book. It has survived not only five
+                        centuries, but also the leap into electronic typesetting,
+                        remaining essentially unchanged.
+                    </span>
+                    <span class="my-milestone__show-hide">Less</span>
+                </p>
+                <p class="my-milestone__date">12.12.2019</p>
+                <p class="my-milestone__label">Complete</p>
+                <form class="my-milestone__flex-select">
+                    <div class="input-groupe my-milestone__input-groupe">
+                        <!--select--opened если открытый селект-->
+                        <div class="select">
+                            <!--добавляем select__input-hidden для связки самописного селекта с формой(для взаимодействия с template driven или reactive forms).
+                                    Этот класс скрывает элемент. в данном случае нужно юзать список из чекбоксов т.к. можно выбрать все элементы-->
+                            <select class="select__input-hidden">
+                                <option>sdf</option>
+                            </select>
+                            <div class="select__lable">
+                                <p class="select__picked">0%</p>
+                            </div>
+                            <div class="select-dropdown select__dropdown">
+                                <ul class="select-dropdown__list">
+                                    <!-- select-dropdown__item--active для активного элемента -->
+                                    <li class="select-dropdown__item">10%</li>
+                                    <li class="select-dropdown__item">20%</li>
+                                    <li class="select-dropdown__item">30%</li>
+                                    <li class="select-dropdown__item">40%</li>
+                                    <li class="select-dropdown__item">50%</li>
+                                    <li class="select-dropdown__item">60%</li>
+                                    <li class="select-dropdown__item">70%</li>
+                                    <li class="select-dropdown__item">80%</li>
+                                    <li class="select-dropdown__item">90%</li>
+                                    <li class="select-dropdown__item">100%</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="button-wrapper button-wrapper--select_theme my-milestone__button-wrapper">
+                        <button class="button-wrapper__button" disabled>Mark as done</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+        <div class="my-milestones__item">
+            <div class="my-milestone">
+                <div class="my-milestone__title-wrapper">
+                    <p class="my-milestone__title">Title</p>
+                    <div class="edit-button my-milestone__edit-button">
+                        <a href="#" class="edit-button__edit">
+                            <svg width="14" height="14" viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M0.0147991 10.5L0 13.3797C0 13.5422 0.0591967 13.7046 0.17759 13.8228C0.295983 13.9409 0.443975 14 0.606765 14L3.4778 13.9852C3.64059 13.9852 3.78858 13.9262 3.90698 13.808L13.8224 3.9135C14.0592 3.67722 14.0592 3.29325 13.8224 3.04219L10.981 0.177215C10.7442 -0.0590717 10.3594 -0.0590717 10.1078 0.177215L8.12474 2.17089L0.192389 10.0717C0.088795 10.1899 0.0147991 10.3376 0.0147991 10.5ZM10.5518 1.47679L12.5497 3.47046L11.4249 4.59283L9.42706 2.59916L10.5518 1.47679ZM1.24313 10.7658L8.55391 3.47046L10.5518 5.46414L3.24101 12.7447L1.22833 12.7595L1.24313 10.7658Z" fill="black"/>
+                            </svg>      
+                            Edit
+                        </a>
+                    </div>
+                </div>
+                <!-- my-milestone__description--show для показа скрытого текста-->
+                <p class="my-milestone__description">
+                    Lorem Ipsum has been the industry's standard dummy text
+                    ever since the 1500s, when an unknown printer took
+                    a galley of type and
+                    <span class="my-milestone__hidden-text">
+                        scrambled it to make a type specimen book. It has survived not only five
+                        centuries, but also the leap into electronic typesetting,
+                        remaining essentially unchanged.
+                    </span>
+                    <span class="my-milestone__show-hide">More</span>
+                </p>
+                <p class="my-milestone__date">12.12.2019</p>
+                <p class="my-milestone__label">Complete</p>
+                <form class="my-milestone__flex-select">
+                    <div class="input-groupe my-milestone__input-groupe">
+                        <!--select--opened если открытый селект-->
+                        <div class="select">
+                            <!--добавляем select__input-hidden для связки самописного селекта с формой(для взаимодействия с template driven или reactive forms).
+                                    Этот класс скрывает элемент. в данном случае нужно юзать список из чекбоксов т.к. можно выбрать все элементы-->
+                            <select class="select__input-hidden">
+                                <option>sdf</option>
+                            </select>
+                            <div class="select__lable">
+                                <p class="select__picked">10%</p>
+                            </div>
+                            <div class="select-dropdown select__dropdown">
+                                <ul class="select-dropdown__list">
+                                    <!-- select-dropdown__item--active для активного элемента -->
+                                    <li class="select-dropdown__item select-dropdown__item--active">10%</li>
+                                    <li class="select-dropdown__item">20%</li>
+                                    <li class="select-dropdown__item">30%</li>
+                                    <li class="select-dropdown__item">40%</li>
+                                    <li class="select-dropdown__item">50%</li>
+                                    <li class="select-dropdown__item">60%</li>
+                                    <li class="select-dropdown__item">70%</li>
+                                    <li class="select-dropdown__item">80%</li>
+                                    <li class="select-dropdown__item">90%</li>
+                                    <li class="select-dropdown__item">100%</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="button-wrapper button-wrapper--select_theme my-milestone__button-wrapper">
+                        <button class="button-wrapper__button">Mark as done</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+        <div class="my-milestones__item">
+            <div class="my-milestone">
+                <div class="my-milestone__title-wrapper">
+                    <p class="my-milestone__title">Title</p>
+                    <div class="edit-button my-milestone__edit-button">
+                        <a href="#" class="edit-button__edit">
+                            <svg width="14" height="14" viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M0.0147991 10.5L0 13.3797C0 13.5422 0.0591967 13.7046 0.17759 13.8228C0.295983 13.9409 0.443975 14 0.606765 14L3.4778 13.9852C3.64059 13.9852 3.78858 13.9262 3.90698 13.808L13.8224 3.9135C14.0592 3.67722 14.0592 3.29325 13.8224 3.04219L10.981 0.177215C10.7442 -0.0590717 10.3594 -0.0590717 10.1078 0.177215L8.12474 2.17089L0.192389 10.0717C0.088795 10.1899 0.0147991 10.3376 0.0147991 10.5ZM10.5518 1.47679L12.5497 3.47046L11.4249 4.59283L9.42706 2.59916L10.5518 1.47679ZM1.24313 10.7658L8.55391 3.47046L10.5518 5.46414L3.24101 12.7447L1.22833 12.7595L1.24313 10.7658Z" fill="black"/>
+                            </svg>      
+                            Edit
+                        </a>
+                    </div>
+                </div>
+                <!-- my-milestone__description--show для показа скрытого текста-->
+                <p class="my-milestone__description">
+                    Lorem Ipsum has been the industry's standard dummy text
+                    ever since the 1500s, when an unknown printer took
+                    a galley of type and
+                    <span class="my-milestone__hidden-text">
+                        scrambled it to make a type specimen book. It has survived not only five
+                        centuries, but also the leap into electronic typesetting,
+                        remaining essentially unchanged.
+                    </span>
+                    <span class="my-milestone__show-hide">More</span>
+                </p>
+                <p class="my-milestone__date">12.12.2019</p>
+                <div class="my-milestone__complete-mark">
+                    <div class="my-milestone__complete">
+                        <svg class="my-milestone__complete-icon" width="20" height="15" viewBox="0 0 20 15" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M20 2.2714L17.6755 0L6.97368 10.4572L2.32463 5.9143L0 8.1857L6.97368 15L20 2.2714Z" fill="#45BA1C"/>
+                        </svg>      
+                        <p class="my-milestone__complete-text">10% complete</p>
+                    </div>
+                </div>
+                
+            </div>
+        </div>
+    </div>
+</div>

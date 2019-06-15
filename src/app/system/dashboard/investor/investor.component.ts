@@ -35,7 +35,7 @@ export class InvestorDashboardComponent implements OnInit {
       }
     ];
 
-    TotalValueSelector = 'month'
+    TotalValueSelector = 'month';
     @ViewChild(BaseChartDirective, { read: true }) totalChart: BaseChartDirective;
     public totalChartData: ChartDataSets[] = [{ data: [], label: '' }];
     public totalChartLabels: Label[] = [];
@@ -47,6 +47,9 @@ export class InvestorDashboardComponent implements OnInit {
       elements:{
         point:{
           radius:0
+        },
+        line: {
+          tension: 0.25
         }
       },
       tooltips: {
@@ -57,7 +60,33 @@ export class InvestorDashboardComponent implements OnInit {
         titleSpacing: 6,
         bodySpacing: 6,
         xPadding: 15,
-        yPadding: 15
+        yPadding: 15,
+        callbacks: {
+          label: function(item, data)
+          {
+            let string = item.value.toString();
+            let reverse = string.split('').reverse()
+            let str = '';
+            let res_arr = [];
+
+            for(const i in reverse)
+            {
+                str = reverse[i] + str;
+                if(str.length == 3)
+                {
+                    res_arr.push(str);
+                    str = '';
+                }
+            }
+
+            if(str.length > 0)
+            {
+                res_arr.push(str);
+            }
+
+            return '$' + res_arr.reverse().join(' ');
+          }
+        }
       },
       scales:{
         yAxes:[
@@ -93,20 +122,24 @@ export class InvestorDashboardComponent implements OnInit {
       }
     };
 
-    RateValueSelector = 'month'
+    RateValueSelector = 'month';
     @ViewChild(BaseChartDirective, { read: true }) rateChart: BaseChartDirective;
     public rateChartData: ChartDataSets[] = [{ data: [], label: '' }];
     public rateChartLabels: Label[] = [];
     public rateChartValue = 0;
     public CompaniesNewsId = '';
-    public rateChartOptions: any = {
+    public rateChartOptions: any  = {
       responsive: true,
       legend: null,
       elements:{
         point:{
-          radius:0
+          radius:1
+        },
+        line: {
+          tension: 0.25
         }
       },
+      
       tooltips: {
         titleFontSize: 16,
         bodyFontSize: 14,
@@ -115,7 +148,13 @@ export class InvestorDashboardComponent implements OnInit {
         titleSpacing: 6,
         bodySpacing: 6,
         xPadding: 15,
-        yPadding: 15
+        yPadding: 15,
+        callbacks: {
+          label: function(item, data)
+          {
+            return item.value + '%';
+          }
+        }
       },
       scales:{
         yAxes:[
@@ -127,7 +166,10 @@ export class InvestorDashboardComponent implements OnInit {
               {
                 return value + '%';
               },
-              beginAtZero:true
+              beginAtZero: true,
+              maxTicksLimit: 5,
+              padding: 20
+              
             }
           }
         ]

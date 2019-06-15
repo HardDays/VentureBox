@@ -175,4 +175,71 @@ export class DashboardService
             }
         );
     }
+
+    GetTotalEarn(callbackOk?: (res) => void, callbackFail?: (err) => void)
+    {
+        if(this.Me && this.Me.id && this.Me.company_id)
+        {
+            return this.http.CommonRequest(
+                () => this.http.GetData('/users/' + this.Me.id + '/companies/' + this.Me.company_id + '/startup_graphics/total_earn.json'),
+                callbackOk,
+                callbackFail
+            );
+        }
+        return null;
+    }
+
+    GetTotalInvestment(callbackOk?: (res) => void, callbackFail?: (err) => void)
+    {
+        if(this.Me && this.Me.id && this.Me.company_id)
+        {
+            return this.http.CommonRequest(
+                () => this.http.GetData('/users/' + this.Me.id + '/companies/' + this.Me.company_id + '/startup_graphics/total_investment.json'),
+                callbackOk,
+                callbackFail
+            );
+        }
+        return null;
+    }
+
+    GetScore(callbackOk?: (res) => void, callbackFail?: (err) => void)
+    {
+        if(this.Me && this.Me.id && this.Me.company_id)
+        {
+            return this.http.CommonRequest(
+                () => this.http.GetData('/users/' + this.Me.id + '/companies/' + this.Me.company_id + '/startup_graphics/score.json'),
+                callbackOk,
+                callbackFail
+            );
+        }
+        return null;
+    }
+
+    GetSales(callbackOk?: (res) => void, callbackFail?: (err) => void)
+    {
+        if(this.Me && this.Me.id && this.Me.company_id)
+        {
+            return this.http.CommonRequest(
+                () => this.http.GetData('/users/' + this.Me.id + '/companies/' + this.Me.company_id + '/startup_graphics/sales.json'),
+                callbackOk,
+                callbackFail
+            );
+        }
+        return null;
+    }
+
+    GetEvaluation(Period:string, callbackOk?: (res) => void, callbackFail?: (err) => void)
+    {
+        if(this.Me && this.Me.id && this.Me.company_id)
+        {
+            return this.http.CommonRequest(
+                () => this.http.GetData('/users/' + this.Me.id + '/companies/' + this.Me.company_id + '/startup_graphics/evaluation.json',
+                    this.type.ParamsToUrlSearchParams({period: Period})    
+                ),
+                callbackOk,
+                callbackFail
+            );
+        }
+        return null;
+    }
 }

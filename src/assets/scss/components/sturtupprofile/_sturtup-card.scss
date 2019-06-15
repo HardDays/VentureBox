@@ -74,6 +74,14 @@
         span {
             color: #6D6D6D;
         }
+
+        &--blue_theme {
+            color: $grey800;
+
+            span {
+                color: $blue;
+            }
+        }
     }
 
     &__invest-count {
@@ -93,5 +101,9 @@
             line-height: 22px;
             margin-bottom: 7px;
         }
+    }
+
+    &--less-padding {
+        padding: 0 16px;
     }
 }
