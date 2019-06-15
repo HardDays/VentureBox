@@ -1,3 +1,4 @@
+import { TextMaskModule } from 'angular2-text-mask';
 import { PortfolioComponent } from './portfolio/portfolio.component';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
@@ -32,7 +33,8 @@ import { SettingsComponent } from './settings/settings.component';
     CommonModule,
     RouterModule,
     SystemRoutingModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    TextMaskModule
   ],
   providers: [ SystemAccessGuard]
 })

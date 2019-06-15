@@ -11,6 +11,7 @@ import {Location} from '@angular/common';
 import { UserModel } from '../../core/models/user.model';
 import { FormGroup, FormControl, Validators, AbstractControl } from '@angular/forms';
 import { Validator } from '../../core/base/field.validator';
+import { InvestedModel } from 'src/app/core/models/company.model';
 
 @Component({
   selector: 'app-portfolio-cmp',
@@ -28,6 +29,18 @@ export class PortfolioComponent implements OnInit {
 
     InvestedCount = 0;
     IntrestingCount = 0;
+
+    isModalOpened = false;
+    InvestedCompanyID = 0;
+    InvestedInfo = new InvestedModel();
+
+    public mask = [/[1-9]/, /[0-9]/];
+
+    Errors = {
+      investment: '',
+      evaluation: '',
+      email: ''
+    };
 
     constructor(
         private auth: AuthService,
@@ -86,6 +99,47 @@ export class PortfolioComponent implements OnInit {
       item.image = this.startupsService.GetCompanyImageUrl(item.company_id);
     }
   }
+
+
+  openModalInvest(idStartup:number) {
+      this.isModalOpened = true;
+      this.InvestedCompanyID = idStartup;
+    }
+
+    InvestToCompany () {
+
+      if (!this.InvestedInfo.contact_email || !Validator.ValidateEmail(this.InvestedInfo.contact_email)) {
+        this.Errors.email = 'Email is incorrect';
+        return;
+      }
+      this.Errors.email = '';
+
+      this.startupsService.InvestingCompany(
+        this.InvestedCompanyID,
+        this.InvestedInfo,
+        (res) => {
+          this.Intresting.splice(this.Intresting.findIndex(x => x.id === this.InvestedCompanyID), 1);
+          this.GetInvested();
+          this.isModalOpened = false;
+          this.InvestedInfo = new InvestedModel();
+          this.Errors = {
+            investment: '',
+            evaluation: '',
+            email: ''
+          };
+        }, (err) => {
+          console.log(err);
+           this.Errors = this.typeService.GetErrorsDictByResponse(err.json(), this.Errors);
+        });
+    }
+
+    UnInterestingCompany (id: number) {
+      this.startupsService.UnInterestingCompany(
+        id,
+        (res) => {
+          this.Intresting.splice(this.Intresting.findIndex(x => x.id === id), 1);
+        });
+    }
 
 
 
