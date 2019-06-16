@@ -195,7 +195,6 @@ export class StartupDashboardComponent implements OnInit {
           arr.push(other_percent);
 
           this.salesChartData = [arr];
-          // console.log(res);
         }
       );
     }

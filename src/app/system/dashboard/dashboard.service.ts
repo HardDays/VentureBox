@@ -72,7 +72,6 @@ export class DashboardService
         this.http.CommonRequest(
             () => this.http.GetData('/companies/my.json'),
             (result) =>{
-                // console.log(result);
                 callback(result);
             },
             (err) => {
@@ -94,17 +93,17 @@ export class DashboardService
         );
     }
 
-    GetCompaniesAmount(CompanyId?, callbackOk?: (res) => void, callbackFail?: (err) => void)
-    {
-        return this.http.CommonRequest(
-            () => this.http.GetData(
-                '/users/' + this.Me.id + '/investor_graphics/amount_of_companies.json', 
-                this.type.ParamsToUrlSearchParams(CompanyId ? {'company_id' : CompanyId} : null)
-            ),
-            callbackOk,
-            callbackFail
-        );
-    }
+    // GetCompaniesAmount(CompanyId?, callbackOk?: (res) => void, callbackFail?: (err) => void)
+    // {
+    //     return this.http.CommonRequest(
+    //         () => this.http.GetData(
+    //             '/users/' + this.Me.id + '/investor_graphics/amount_of_companies.json', 
+    //             this.type.ParamsToUrlSearchParams(CompanyId ? {'company_id' : CompanyId} : null)
+    //         ),
+    //         callbackOk,
+    //         callbackFail
+    //     );
+    // }
 
     GetTotalChartData(Period, CompanyId?, callbackOk?: (res) => void, callbackFail?: (err) => void)
     {

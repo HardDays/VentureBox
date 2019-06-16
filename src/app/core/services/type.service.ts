@@ -134,7 +134,6 @@ export class TypeService {
       return new Promise((resolve, reject) => {
         var reader = new FileReader();
         reader.addEventListener("load", function(){
-          // console.log(reader);
           resolve(reader.result);
         }, false);
 

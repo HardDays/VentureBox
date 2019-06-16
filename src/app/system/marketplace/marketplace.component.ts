@@ -52,10 +52,8 @@ export class MarketplaceComponent implements OnInit {
     {
         this.marketplaceService.RefreshProductList(Params, 
             (res) => {
-                // console.log('ok',res);
             },
             (err) => {
-                // console.log('err',err);
             }
         )
     }
@@ -91,7 +89,6 @@ export class MarketplaceComponent implements OnInit {
         this.SearchParams.tags = [];
         for(const item of this.Categories)
         {
-            console.log(item, item.checked);
             if(item.checked)
             {
                 this.SearchParams.tags.push(item.value);    
@@ -100,7 +97,6 @@ export class MarketplaceComponent implements OnInit {
 
         let params = JSON.parse(JSON.stringify(this.SearchParams));
         params.new = true;
-        console.log(params);
 
         this.RefreshProductsList(params);
            

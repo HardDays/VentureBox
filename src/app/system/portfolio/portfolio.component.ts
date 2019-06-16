@@ -74,7 +74,6 @@ export class PortfolioComponent implements OnInit {
           this.IntrestingCount = res.count;
           this.Intresting = res.items;
           this.getImages(this.Intresting);
-          console.log(this.IntrestingCount, this.Intresting.length);
         }
       );
     }
@@ -89,7 +88,6 @@ export class PortfolioComponent implements OnInit {
           this.InvestedCount = res.count;
           this.Invested = res.items;
           this.getImages(this.Invested);
-          console.log(this.InvestedCount, this.Invested.length);
         }
       );
     }
@@ -128,7 +126,6 @@ export class PortfolioComponent implements OnInit {
             email: ''
           };
         }, (err) => {
-          console.log(err);
            this.Errors = this.typeService.GetErrorsDictByResponse(err.json(), this.Errors);
         });
     }

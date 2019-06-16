@@ -43,7 +43,6 @@ export class MilestonesEditComponent implements OnInit {
     ngOnInit() {
       this.GetCurrenMilestone();
 
-      console.log({year: this.Today.getFullYear(), month: this.Today.getMonth() + 1, day: this.Today.getDay() + 1});
     }
 
     GetCurrenMilestone() {

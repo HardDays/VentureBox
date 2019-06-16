@@ -21,7 +21,6 @@ export class InvestorDashboardComponent implements OnInit {
 
     _this = this;
 
-    CompaniesAmount = 0;
     InvestmentAmount = 0;
 
     public ChartColors: Color[] = [
@@ -197,7 +196,6 @@ export class InvestorDashboardComponent implements OnInit {
 
     ngOnInit() 
     {
-        // console.log(this.Me);
         this.UpdateCompaniesDics();
     }
 
@@ -210,7 +208,6 @@ export class InvestorDashboardComponent implements OnInit {
     OnCompaniesGraphicSelectChange(obj)
     {
       this.CompaniesGraphicId = obj.value;
-      this.GetCompaniesAmount();
       this.GetInvestedAmount();
       this.GetTotalChartData();
       this.GetRateChartData();
@@ -224,14 +221,6 @@ export class InvestorDashboardComponent implements OnInit {
 
         this.GetTotalChartData();
       }
-    }
-
-    GetCompaniesAmount()
-    {
-      this._dashboardService.GetCompaniesAmount(this.CompaniesGraphicId,
-        (res) => {
-          this.CompaniesAmount = res && res.amount_of_companies ? res.amount_of_companies : 0;
-        });
     }
 
     GetInvestedAmount()

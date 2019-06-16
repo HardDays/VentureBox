@@ -35,8 +35,6 @@ export class MilestonesCreateComponent implements OnInit {
       this.Milestone.user_id = this.auth.Me.id;
       this.Milestone.company_id = this.auth.Me.company_id;
 
-      console.log(this.Today);
-      console.log({year: this.Today.getFullYear(), month: this.Today.getMonth() + 1, day: this.Today.getDate() - 1});
     }
 
     cancel() {
