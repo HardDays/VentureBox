@@ -96,5 +96,11 @@
         path {
             transition: fill 0.3s;
         }
+
+        &--sentered_inside {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
     }
 }

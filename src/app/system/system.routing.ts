@@ -12,7 +12,7 @@ const routes: Routes =
 [
     { path: '', component: SystemComponent, children:
         [
-          { path: "", pathMatch:"full", redirectTo: "crm"},
+          { path: "", pathMatch:"full", redirectTo: "marketplace"},
           {
             path: 'my_products', loadChildren: './products/products.module#ProductsModule',canActivate:[SystemAccessGuard], data: {role: 'startup', auth: true}
           },
@@ -33,6 +33,9 @@ const routes: Routes =
           },
           {
             path: 'dashboard', loadChildren: './dashboard/dashboard.module#DashboardModule', canActivate: [SystemAccessGuard], data: {auth: true}
+          },
+          {
+            path: 'marketplace', loadChildren: './marketplace/marketplace.module#MarketplaceModule', canActivate: [SystemAccessGuard]
           },
           {
             path: 'settings', component: SettingsComponent, canActivate: [SystemAccessGuard], data: {role: null, auth: true}

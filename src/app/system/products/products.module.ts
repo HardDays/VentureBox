@@ -11,6 +11,7 @@ import { ProductsListsComponent } from './lists/lists.component';
 import { ProductsEditComponent } from './edit/edit.component';
 import { ProductsCreateComponent } from './create/create.component';
 import { SingleProductComponent } from './single-product/single-product.component';
+import { PipesModule } from '../../core/pipes/pipes.module';
 
 
 @NgModule({
@@ -29,9 +30,13 @@ import { SingleProductComponent } from './single-product/single-product.componen
     RouterModule,
     ProductsRoutingModule,
     ReactiveFormsModule,
+    PipesModule
   ],
   providers: [
       ProductsAccessGuard
-   ]
+  ],
+  exports:[
+    SingleProductComponent
+  ]
 })
 export class ProductsModule {}

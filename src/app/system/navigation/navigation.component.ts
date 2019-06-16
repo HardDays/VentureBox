@@ -16,7 +16,60 @@ export class NavigationComponent implements OnInit {
     IsLoggedIn: boolean = false;
     CurrentPage = "";
     MenuItems: IMenuItem[] = [
-
+        {
+            url : "dashboard",
+            image : "assets/img/dashboard.svg",
+            label : "Dashboard",
+            visible: this.IsLoggedIn
+        },
+        {
+            url : "my_products",
+            image : "assets/img/my-products.svg",
+            label : "My products",
+            visible: this.IsLoggedIn && this.Me && this.Me.role == 'startup' && this.MyCompany && this.MyCompany.id != null
+        },
+        {
+            url : "my_investors",
+            image : "assets/img/my-investors.svg",
+            label : "My investors",
+            visible: this.IsLoggedIn && this.Me && this.Me.role == 'startup' && this.MyCompany && this.MyCompany.id != null
+        },
+        {
+            url : "crm",
+            image : "assets/img/crm.svg",
+            label : "CRM",
+            visible : this.IsLoggedIn && this.Me && this.Me.role == 'startup'
+        },
+        {
+            url : "portfolio",
+            image : "assets/img/portfolio.svg",
+            label : "Portfolio Management",
+            visible : this.IsLoggedIn && this.Me && this.Me.role != 'startup'
+        },
+        {
+            url : "my_news",
+            image : "assets/img/my-news.svg",
+            label : "My news",
+            visible: this.IsLoggedIn && this.Me && this.Me.role == 'startup'
+        },
+        {
+            url : "my_milestones",
+            image : "assets/img/my-milestones.svg",
+            label : "My milestones",
+            visible: this.IsLoggedIn && this.Me && this.Me.role == 'startup' && this.MyCompany && this.MyCompany.id != null
+        },
+        {
+            url : "startups",
+            image : "assets/img/startups-upp.svg",
+            label : "Startups Application",
+            visible: this.IsLoggedIn && this.Me && this.Me.role != 'startup'
+        },
+        {
+            url: "marketplace",
+            image : "assets/img/marketplace.svg",
+            label : "Marketplace",
+            visible: true
+        }
     ];
     constructor(private router: Router, private auth: AuthService)
     {
@@ -112,6 +165,12 @@ export class NavigationComponent implements OnInit {
                 image : "assets/img/startups-upp.svg",
                 label : "Startups Application",
                 visible: this.IsLoggedIn && this.Me && this.Me.role != 'startup'
+            },
+            {
+                url: "marketplace",
+                image : "assets/img/marketplace.svg",
+                label : "Marketplace",
+                visible: true
             }
         ];
     }

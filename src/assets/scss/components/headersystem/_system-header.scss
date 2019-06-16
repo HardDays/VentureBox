@@ -91,4 +91,28 @@
             justify-content: space-between;
         }
     }
+
+    &__no-auth {
+        display: flex;
+    }
+
+    &__auth-link {
+        display: block;
+        text-align: center;
+        padding: 10px 26px;
+        color: #FFFFFF;
+        font-size: 15px;
+        line-height: 20px;
+        text-transform: uppercase;
+        border: 1px solid $black;
+        background: $black;
+        transition: border-color 0.3s, color 0.3s, background-color 0.3s;
+        text-decoration: none;
+        cursor: pointer;
+
+        &:hover {
+            color: $black;
+            background: #fff;
+        }
+    }
 }

@@ -16,7 +16,9 @@
                     <span></span>
                     <span></span>
                 </button>
-                <a *ngIf="!IsLoggedIn" [routerLink]="['/auth']">Sign In</a>
+                <div class="system-header__no-auth" *ngIf="!IsLoggedIn">
+                    <a [routerLink]="['/auth']" class="system-header__auth-link">Log in</a>
+                </div>
                 <div class="system-header__user" *ngIf="IsLoggedIn && Me && Me.id">
                     <div class="header-user">
                         <div class="header-user__ava">{{Initials}}</div>
