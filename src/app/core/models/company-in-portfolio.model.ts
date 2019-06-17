@@ -6,7 +6,8 @@ export class CompanyInPortfolioModel {
         public evaluation?: number,
         public image?: string,
         public investment?: string,
-        public investor_id?: number
+        public investor_id?: number,
+        public company_has_image?: boolean
     ) {
     }
 }

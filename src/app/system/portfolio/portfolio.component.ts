@@ -95,7 +95,8 @@ export class PortfolioComponent implements OnInit {
 
   getImages(array:CompanyInPortfolioModel[]) {
     for (let item of array) {
-      item.image = this.startupsService.GetCompanyImageUrl(item.company_id, {width: 480, height: 280});
+      if(item.company_has_image)
+        item.image = this.startupsService.GetCompanyImageUrl(item.company_id, {width: 480, height: 280});
     }
   }
 

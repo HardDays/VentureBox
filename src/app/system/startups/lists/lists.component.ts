@@ -59,7 +59,7 @@ export class StartupsListsComponent implements OnInit {
 
     GetImages (offset = 0) {
       for (let i = offset; i < this.Startups.length; i++) {
-        if (this.Startups[i].has_image) {
+        if (this.Startups[i].has_image ) {
           this.Startups[i].image = this.startupsService.GetCompanyImageUrl(this.Startups[i].id, {width: 200, height: 100});
         }
       }
