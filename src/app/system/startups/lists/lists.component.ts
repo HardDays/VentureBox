@@ -32,7 +32,8 @@ export class StartupsListsComponent implements OnInit {
     Errors = {
       investment: '',
       evaluation: '',
-      email: ''
+      email: '',
+      contact_email: ''
     };
 
     ngOnInit() {
@@ -86,7 +87,8 @@ export class StartupsListsComponent implements OnInit {
           this.Errors = {
             investment: '',
             evaluation: '',
-            email: ''
+            email: '',
+            contact_email: ''
           };
         }, (err) => {
            this.Errors = this.type.GetErrorsDictByResponse(err.json(), this.Errors);
@@ -97,12 +99,27 @@ export class StartupsListsComponent implements OnInit {
       this.startupsService.InterestingCompany(
         id,
         (res) => {
+          this.Startups.find(x => x.id === id).is_interested = true;
+        });
+    }
+
+    NotInterestedCompany(id: number) {
+      this.startupsService.UnInterestingCompany(
+        id,
+        (res) => {
+          this.Startups.find(x => x.id === id).is_interested = false;
         });
     }
 
   onScroll() {
     this.GetList();
   }
+
+  closeInvestedModal () {
+    this.isModalOpened = false;
+    this.InvestedInfo = new InvestedModel();
+  }
+
 
 
 }

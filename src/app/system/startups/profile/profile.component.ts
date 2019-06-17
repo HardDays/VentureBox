@@ -37,6 +37,8 @@ export class StartupsProfileComponent implements OnInit {
     ErrorsInvest = {
       investment: '',
       evaluation: '',
+      email: '',
+      contact_email: ''
     };
 
     StageOfFunding: {name: string, value: string}[] = [];
@@ -153,6 +155,15 @@ export class StartupsProfileComponent implements OnInit {
       this.startupsService.InterestingCompany(
         id,
         (res) => {
+          this.Startup.is_interested = true;
+        });
+    }
+
+    NotInterestedCompany(id: number) {
+      this.startupsService.UnInterestingCompany(
+        id,
+        (res) => {
+          this.Startup.is_interested = false;
         });
     }
 

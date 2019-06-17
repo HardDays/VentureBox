@@ -14,7 +14,8 @@ export class CompanyModel {
         public team_members?: TeamMember[],
         public id?: number,
         public has_image?: boolean,
-        public evaluation?: number
+        public evaluation?: number,
+        public is_interested?: boolean
     ) {}
 }
 

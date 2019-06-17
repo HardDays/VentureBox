@@ -39,7 +39,8 @@ export class PortfolioComponent implements OnInit {
     Errors = {
       investment: '',
       evaluation: '',
-      email: ''
+      email: '',
+      contact_email: ''
     };
 
     constructor(
@@ -94,7 +95,7 @@ export class PortfolioComponent implements OnInit {
 
   getImages(array:CompanyInPortfolioModel[]) {
     for (let item of array) {
-      item.image = this.startupsService.GetCompanyImageUrl(item.company_id);
+      item.image = this.startupsService.GetCompanyImageUrl(item.company_id, {width: 480, height: 280});
     }
   }
 
@@ -123,7 +124,8 @@ export class PortfolioComponent implements OnInit {
           this.Errors = {
             investment: '',
             evaluation: '',
-            email: ''
+            email: '',
+            contact_email: ''
           };
         }, (err) => {
            this.Errors = this.typeService.GetErrorsDictByResponse(err.json(), this.Errors);

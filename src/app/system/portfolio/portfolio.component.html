@@ -12,7 +12,7 @@
                                         <div class="sturtup-card__logo">
                                             <img [src]="item.image" class="img-responsive" alt="">
                                         </div>
-                                        <a href="#" class="sturtup-card__name sturtup-card__name--action">{{item.company_name}}</a>
+                                        <a [routerLink]="['/system','startups','profile',item.company_id]" class="sturtup-card__name sturtup-card__name--action">{{item.company_name}}</a>
                                         <p class="sturtup-card__invest-count">~ ${{item.evaluation}}</p>
                                         <div class="button-wrapper">
                                             <button (click)="openModalInvest(item.company_id)" class="button-wrapper__button button-wrapper__button--border_theme button-wrapper__button--full_width button-wrapper__button--sm_height">invest</button>
@@ -23,11 +23,11 @@
                                     </div>
                                 </div>
                             </div>
-                            <button *ngIf="!isShowAllInteresting" (click)="isShowAllInteresting = true" class="porfolio-page__show-more">
+                            <button (click)="isShowAllInteresting = !isShowAllInteresting" class="porfolio-page__show-more" [ngClass]="{'porfolio-page__show-more--rotated_arrow':isShowAllInteresting}">
                                 <svg width="12" height="7" viewBox="0 0 12 7" fill="none" xmlns="http://www.w3.org/2000/svg">
                                     <path fill-rule="evenodd" clip-rule="evenodd" d="M6.00098 4.59955L10.6678 0.0834212C10.783 -0.0300222 10.9732 -0.0273212 11.0911 0.0888233L11.9109 0.896432C12.0287 1.01258 12.0314 1.20165 11.9162 1.31509L6.21798 6.8306C6.15904 6.89003 6.07867 6.91704 6.00098 6.91163C5.92061 6.91433 5.84292 6.88732 5.78398 6.8306L0.0857262 1.31509C-0.0294712 1.20165 -0.0267922 1.01258 0.0910842 0.896432L0.910861 0.0888233C1.02874 -0.0273212 1.21895 -0.0300222 1.33414 0.0834212L6.00098 4.59955Z" fill="#001B36"/>
                                 </svg>
-                                <span>See more</span>
+                                <span>See {{isShowAllInteresting?'less':'more'}}</span>
                             </button>
                         </div>
                         <div class="porfolio-page__white-block">
@@ -39,17 +39,17 @@
                                         <div class="sturtup-card__logo">
                                             <img [src]="item.image" class="img-responsive" alt="">
                                         </div>
-                                        <a href="#" class="sturtup-card__name sturtup-card__name--action">{{item.company_name}}</a>
+                                        <a [routerLink]="['/system','startups','profile',item.company_id]" class="sturtup-card__name sturtup-card__name--action">{{item.company_name}}</a>
                                         <p class="sturtup-card__info sturtup-card__info--blue_theme">Investments: <span>${{item.investment}}</span></p>
                                         <p class="sturtup-card__info sturtup-card__info--blue_theme">Equity: <span>{{item.evaluation}}%</span></p>
                                     </div>
                                 </div>
                             </div>
-                            <button *ngIf="!isShowAllInvested" (click)="isShowAllInvested = true" class="porfolio-page__show-more">
+                            <button (click)="isShowAllInvested = !isShowAllInvested" class="porfolio-page__show-more" [ngClass]="{'porfolio-page__show-more--rotated_arrow':isShowAllInvested}">
                                 <svg width="12" height="7" viewBox="0 0 12 7" fill="none" xmlns="http://www.w3.org/2000/svg">
                                     <path fill-rule="evenodd" clip-rule="evenodd" d="M6.00098 4.59955L10.6678 0.0834212C10.783 -0.0300222 10.9732 -0.0273212 11.0911 0.0888233L11.9109 0.896432C12.0287 1.01258 12.0314 1.20165 11.9162 1.31509L6.21798 6.8306C6.15904 6.89003 6.07867 6.91704 6.00098 6.91163C5.92061 6.91433 5.84292 6.88732 5.78398 6.8306L0.0857262 1.31509C-0.0294712 1.20165 -0.0267922 1.01258 0.0910842 0.896432L0.910861 0.0888233C1.02874 -0.0273212 1.21895 -0.0300222 1.33414 0.0834212L6.00098 4.59955Z" fill="#001B36"/>
                                 </svg>
-                                <span>See more</span>
+                                <span>See {{isShowAllInvested?'less':'more'}}</span>
                             </button>
                         </div>
                     </div>
@@ -70,8 +70,8 @@
                 <div class="input-groupe invest-modal-form__input-groupe">
                     <label class="input-groupe__label" for="email-modal">E-mail to contact</label>
                     <!-- input-groupe__input--error класс ошибки для инпута-->
-                    <input [(ngModel)]="InvestedInfo.contact_email" [ngClass]="{'input-groupe__input--error': Errors.email}"  type="text" class="input-groupe__input" id="email-modal" name="email-modal">
-                    <p class="input-groupe__error">{{Errors.email}}</p>
+                    <input [(ngModel)]="InvestedInfo.contact_email" [ngClass]="{'input-groupe__input--error': Errors.email || Errors.contact_email}"  type="text" class="input-groupe__input" id="email-modal" name="email-modal">
+                    <p class="input-groupe__error">{{Errors.email}} {{Errors.contact_email}}</p>
                 </div>
                 <div class="invest-modal-form__flex">
                     <div class="invest-modal-form__side">

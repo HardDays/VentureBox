@@ -35,6 +35,8 @@ export class StartupsMyProfileComponent implements OnInit {
     ErrorsInvest = {
       investment: '',
       evaluation: '',
+      email: '',
+      contact_email: ''
     };
 
   constructor(private _location: Location,
@@ -114,6 +116,9 @@ export class StartupsMyProfileComponent implements OnInit {
   }
 
   InterestingCompany (id: number) {
+  }
+
+  NotInterestedCompany (id: number) {
   }
 
 
