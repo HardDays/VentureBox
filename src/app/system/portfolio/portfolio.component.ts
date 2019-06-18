@@ -137,8 +137,21 @@ export class PortfolioComponent implements OnInit {
       this.startupsService.UnInterestingCompany(
         id,
         (res) => {
-          this.Intresting.splice(this.Intresting.findIndex(x => x.id === id), 1);
+          const index = this.Intresting.findIndex(x => x.company_id === id);
+          this.Intresting.splice(index, 1);
+          this.IntrestingCount--;
         });
+    }
+
+    closeInvestedModal () {
+      this.isModalOpened = false;
+      this.InvestedInfo = new InvestedModel();
+      this.Errors = {
+              investment: '',
+              evaluation: '',
+              email: '',
+              contact_email: ''
+            };
     }
 
 

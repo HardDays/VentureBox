@@ -118,6 +118,12 @@ export class StartupsListsComponent implements OnInit {
   closeInvestedModal () {
     this.isModalOpened = false;
     this.InvestedInfo = new InvestedModel();
+    this.Errors = {
+            investment: '',
+            evaluation: '',
+            email: '',
+            contact_email: ''
+          };
   }
 
 
