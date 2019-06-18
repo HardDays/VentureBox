@@ -44,7 +44,7 @@ const routes: Routes =
             path: 'portfolio', component: PortfolioComponent, canActivate: [SystemAccessGuard]
           },
           {
-            path: 'crm', component: MainComponent
+            path: 'crm', loadChildren: './crm/crm.module#CrmModule', canActivate: [SystemAccessGuard], data: {role: 'startup', auth: true}
           },
           { path: '**', component: MainComponent}
         ]

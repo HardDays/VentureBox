@@ -15,6 +15,9 @@ export class DashboardService
     Me:UserModel = new UserModel();
     MeChanged: Subject<UserModel>;
 
+    InvestedCompaniesDics = [];
+    InvestedCompaniesDicsUpdated: Subject<boolean> = new Subject<boolean>();
+
     News: NewsModel[] = [];
     NewsUpdated: Subject<boolean> = new Subject<boolean>();
     NewsTotal: number = 0;
@@ -39,7 +42,7 @@ export class DashboardService
         {
             if(this.Me.role == 'investor')
             {
-                this.UpdateCompanyDics();
+                this.UpdateInvestedCompaniesDics();
             }
             else
             {
@@ -48,29 +51,29 @@ export class DashboardService
         }
     }
 
-    UpdateCompanyDics()
+    UpdateInvestedCompaniesDics()
     {
-        this.CompanyDics = [
+        this.InvestedCompaniesDics = [
             {name: 'All companies', value: '', isSelected: true}
         ];
-        this.RefreshCompanies(
+        this.RefreshCompanies("invested",
             (result) => {
                 if(result)
                 {
                     result.forEach(element => {
-                        this.CompanyDics[element.company_id] = {name: element.company_name, value: element.company_id, isSelected:false};
+                        this.InvestedCompaniesDics[element.company_id] = {name: element.company_name, value: element.company_id, isSelected:false};
                     });
                 }
-                this.CompanyDics = this.CompanyDics.filter(Val => Val != null);
-                this.CompanyDicsUpdated.next(true);
+                this.InvestedCompaniesDics = this.InvestedCompaniesDics.filter(Val => Val != null);
+                this.InvestedCompaniesDicsUpdated.next(true);
             }
         );
     }
 
-    RefreshCompanies(callback?: (res) => void)
+    RefreshCompanies(Type?, callback?: (res) => void)
     {
         this.http.CommonRequest(
-            () => this.http.GetData('/companies/my.json'),
+            () => this.http.GetData('/companies/my.json', Type ? this.type.ParamsToUrlSearchParams({type: Type}): null),
             (result) =>{
                 callback(result);
             },
@@ -153,12 +156,10 @@ export class DashboardService
 
                     if(result.items)
                     {
-                        result.items.forEach((obj) => {
-                            arr[obj.id] = obj;
-                        });
+                        arr.push(...result.items);
                     }
                 }
-                arr = arr.filter(obj => obj != null);
+                // arr = arr.filter(obj => obj != null);
                 this.News = arr;
                 this.NewsUpdated.next(true);
                 if(callbackOk && typeof callbackOk == 'function')

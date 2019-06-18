@@ -1,0 +1,5 @@
+.crm-block{
+    display: flex;
+    width: 100%;
+    min-height: 83vh;
+}
