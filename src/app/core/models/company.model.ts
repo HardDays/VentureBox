@@ -15,7 +15,8 @@ export class CompanyModel {
         public id?: number,
         public has_image?: boolean,
         public evaluation?: number,
-        public is_interested?: boolean
+        public is_interested?: boolean,
+        public is_invested?: boolean
     ) {}
 }
 

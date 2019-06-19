@@ -99,6 +99,18 @@
             </form>
         </div>
     </div>
+
+    <div *ngIf="isModalSuccess" class="modal">
+        <div class="invest-modal modal__body">
+            <!--клик по кнопке - закрывает модалку -->
+            <div class="invest-modal-form">
+                <p class="invest-modal-form__msg invest-modal-form__msg--big">Notification has been sent successfully</p>
+                <div class="button-wrapper">
+                    <button (click)="isModalSuccess = false" class="button-wrapper__button">Ok</button>
+                </div>
+            </div>
+        </div>
+    </div>
     <!--отображаем вместе с модалкой-->
-    <div *ngIf="isModalOpened" class="modal__backdrop"></div>
+    <div *ngIf="isModalOpened || isModalSuccess" class="modal__backdrop"></div>
     <!--/ модалка инвест-->

@@ -31,6 +31,7 @@ export class PortfolioComponent implements OnInit {
     IntrestingCount = 0;
 
     isModalOpened = false;
+    isModalSuccess = false;
     InvestedCompanyID = 0;
     InvestedInfo = new InvestedModel();
 
@@ -114,6 +115,10 @@ export class PortfolioComponent implements OnInit {
       }
       this.Errors.email = '';
 
+      if (this.InvestedInfo.investment) {
+        this.InvestedInfo.investment = this.InvestedInfo.investment.split(' ').join('');
+      }
+
       this.startupsService.InvestingCompany(
         this.InvestedCompanyID,
         this.InvestedInfo,
@@ -121,6 +126,7 @@ export class PortfolioComponent implements OnInit {
           this.Intresting.splice(this.Intresting.findIndex(x => x.id === this.InvestedCompanyID), 1);
           this.GetInvested();
           this.isModalOpened = false;
+          this.isModalSuccess = true;
           this.InvestedInfo = new InvestedModel();
           this.Errors = {
             investment: '',

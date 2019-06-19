@@ -22,6 +22,8 @@ export class StartupsListsComponent implements OnInit {
 
     ItemsCount = 0;
 
+    isModalSuccess = false;
+
     public mask = [/[1-9]/, /[0-9]/];
 
     constructor(private startupsService: StartupsService, private auth: AuthService, private type: TypeService)
@@ -78,11 +80,16 @@ export class StartupsListsComponent implements OnInit {
       }
       this.Errors.email = '';
 
+      if (this.InvestedInfo.investment) {
+        this.InvestedInfo.investment = this.InvestedInfo.investment.split(' ').join('');
+      }
+
       this.startupsService.InvestingCompany(
         this.InvestedCompanyID,
         this.InvestedInfo,
         (res) => {
           this.isModalOpened = false;
+          this.isModalSuccess = true;
           this.InvestedInfo = new InvestedModel();
           this.Errors = {
             investment: '',
@@ -90,6 +97,7 @@ export class StartupsListsComponent implements OnInit {
             email: '',
             contact_email: ''
           };
+          this.Startups.find(x => x.id === this.InvestedCompanyID).is_invested = true;
         }, (err) => {
            this.Errors = this.type.GetErrorsDictByResponse(err.json(), this.Errors);
         });

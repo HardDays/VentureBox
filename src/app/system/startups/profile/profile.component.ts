@@ -28,21 +28,21 @@ export class StartupsProfileComponent implements OnInit {
   Image: any;
   News: NewsModel[] = [];
 
+  isModalOpened = false;
+  isModalSuccess = false;
+  InvestedCompanyID = 0;
+  InvestedInfo = new InvestedModel();
+  public mask = [/[1-9]/, /[0-9]/];
 
-    isModalOpened = false;
-    InvestedCompanyID = 0;
-    InvestedInfo = new InvestedModel();
-    public mask = [/[1-9]/, /[0-9]/];
+  ErrorsInvest = {
+    investment: '',
+    evaluation: '',
+    email: '',
+    contact_email: ''
+  };
 
-    ErrorsInvest = {
-      investment: '',
-      evaluation: '',
-      email: '',
-      contact_email: ''
-    };
-
-    StageOfFunding: {name: string, value: string}[] = [];
-    TeamLevels: {name: string, value: string}[] = [];
+  StageOfFunding: {name: string, value: string}[] = [];
+  TeamLevels: {name: string, value: string}[] = [];
 
   constructor(private _location: Location, private auth: AuthService,
     private startupsService: StartupsService, private router: Router,
@@ -141,11 +141,15 @@ export class StartupsProfileComponent implements OnInit {
     }
 
     InvestToCompany () {
+      if (this.InvestedInfo.investment) {
+        this.InvestedInfo.investment = this.InvestedInfo.investment.split(' ').join('');
+      }
       this.startupsService.InvestingCompany(
         this.InvestedCompanyID,
         this.InvestedInfo,
         (res) => {
           this.isModalOpened = false;
+          this.isModalSuccess = true;
         }, (err) => {
            this.ErrorsInvest = this.typeService.GetErrorsDictByResponse(err.json(), this.ErrorsInvest);
         });

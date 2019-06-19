@@ -28,6 +28,7 @@ export class StartupsMyProfileComponent implements OnInit {
   News: NewsModel[] = [];
 
   isModalOpened = false;
+  isModalSuccess = false;
     InvestedCompanyID = 0;
     InvestedInfo = new InvestedModel();
     public mask = [/[1-9]/, /[0-9]/];

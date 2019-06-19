@@ -18,12 +18,14 @@
             <div class="button-wrapper">
                 <button (click)="openModalInvest(item.id)" class="button-wrapper__button button-wrapper__button--border_theme button-wrapper__button--full_width button-wrapper__button--sm_height">invest</button>
             </div>
-            <div *ngIf="!item.is_interested" class="button-wrapper button-wrapper--less_dispance">
-                <button (click)="InterestingCompany(item.id)" class="button-wrapper__button button-wrapper__button--full_width button-wrapper__button--sm_height">Intrested in</button>
-            </div>
-            <div *ngIf="item.is_interested" class="button-wrapper button-wrapper--less_dispance">
-                <button (click)="NotInterestedCompany(item.id)" class="button-wrapper__button button-wrapper__button--full_width button-wrapper__button--sm_height">Not interesting</button>
-            </div>
+            <ng-container *ngIf="!item.is_invested">
+              <div *ngIf="!item.is_interested" class="button-wrapper button-wrapper--less_dispance">
+                  <button (click)="InterestingCompany(item.id)" class="button-wrapper__button button-wrapper__button--full_width button-wrapper__button--sm_height">Intrested in</button>
+              </div>
+              <div *ngIf="item.is_interested" class="button-wrapper button-wrapper--less_dispance">
+                  <button (click)="NotInterestedCompany(item.id)" class="button-wrapper__button button-wrapper__button--full_width button-wrapper__button--sm_height">Not interesting</button>
+              </div>
+            </ng-container>
         </div>
     </div>
 </div>
@@ -74,6 +76,21 @@
             </form>
         </div>
     </div>
+
+    <div *ngIf="isModalSuccess" class="modal">
+        <div class="invest-modal modal__body">
+            <!--клик по кнопке - закрывает модалку -->
+            <div class="invest-modal-form">
+                <p class="invest-modal-form__msg invest-modal-form__msg--big">Notification has been sent successfully</p>
+                <div class="button-wrapper">
+                    <button (click)="isModalSuccess = false" class="button-wrapper__button">Ok</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
     <!--отображаем вместе с модалкой-->
-    <div *ngIf="isModalOpened" class="modal__backdrop"></div>
+    <div *ngIf="isModalOpened || isModalSuccess" class="modal__backdrop"></div>
     <!--/ модалка инвест-->
