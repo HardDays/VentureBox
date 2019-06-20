@@ -36,7 +36,13 @@ export class GoogleService {
         this.googleAuthService.getAuth().subscribe((auth) => {
           auth.grantOfflineAccess().then(
           (res) => {
-              success({refresh_token: res.code, access_token: auth.currentUser.get().getAuthResponse().access_token});
+              var access_token = auth.currentUser.get().getAuthResponse().access_token;
+              auth.currentUser.listen(
+                () => {
+                  access_token = auth.currentUser.get().getAuthResponse().access_token;
+                  success({refresh_token: res.code, access_token: auth.currentUser.get().getAuthResponse().access_token});
+                }
+              );
             }
           );
         });

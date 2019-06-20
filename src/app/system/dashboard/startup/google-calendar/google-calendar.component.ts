@@ -52,7 +52,6 @@ export class GoogleCalendarComponent implements OnInit {
   }
 
   setGoogleCalendar() {
-    console.log(this.CalendarSelected.id);
     this.googleService.SetGoogleCalendar(
       this.CalendarSelected.id,
         (res) => {
@@ -68,6 +67,10 @@ export class GoogleCalendarComponent implements OnInit {
     this.googleService.GetGoogleEvents(
       (res) => {
         this.EventsList = res.events;
+      },
+      (err) => {
+        this.CalendarSignInStep = 1;
+        this.HasGoogleCalendar = false;
       }
     );
   }
