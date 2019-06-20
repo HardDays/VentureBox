@@ -23,7 +23,7 @@
             <p *ngIf="Startup.stage_of_funding" class="sturtup-card__info"><span>Stage of funding:</span> {{Startup.stage_of_funding.replace('_',' ')|titlecase}}</p>
             <p class="sturtup-card__info"><span>Investment amount: </span> ${{Startup.investment_amount}}</p>
             <p class="sturtup-card__info"><span>Equity amount: </span> {{Startup.equality_amount?Startup.equality_amount:0}}%</p>
-            <ng-container *ngIf="Mode === 'Profile' && Me">
+            <ng-container *ngIf="Mode === 'Profile' && Me && Me.role == 'investor'">
               <div class="button-wrapper">
                   <button (click)="openModalInvest(Startup.id)" class="button-wrapper__button button-wrapper__button--border_theme button-wrapper__button--full_width button-wrapper__button--sm_height">invest</button>
               </div>
@@ -36,7 +36,7 @@
                 </div>
               </ng-container>
             </ng-container>
-            <ng-container *ngIf="Mode === 'MyProfile' && Me">
+            <ng-container *ngIf="Mode === 'MyProfile' && Me && Me.role == 'investor'">
               <div class="button-wrapper">
                   <button [routerLink]="['/system','startups','edit']" class="button-wrapper__button button-wrapper__button--border_theme button-wrapper__button--full_width button-wrapper__button--sm_height">Edit profile</button>
               </div>

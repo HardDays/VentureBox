@@ -37,4 +37,15 @@ export class MilestonesListItemComponent implements OnInit {
       );
     }
 
+  saveMilestoneProcent(value) {
+    this.Item.completeness = value;
+    this.milsestonesService.PatchMileston(this.Item)
+      .subscribe(
+        (res) => {
+        },
+        (err) => {
+        }
+      );
+    }
+
 }

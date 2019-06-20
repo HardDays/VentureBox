@@ -52,8 +52,11 @@ export class StartupsProfileComponent implements OnInit {
   {
 
     this.route.params.subscribe(params => {
-      if(params && params['id']) {
+      if (params && params['id']) {
         this.StartupId = params['id'];
+        if (this.Me && this.StartupId == this.Me.company_id) {
+          this.router.navigate(['/system', 'startups', 'my-profile']);
+        }
         this.GetStartupById(this.StartupId);
       }
     });
