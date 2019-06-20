@@ -15,6 +15,7 @@ import { ChartsModule } from 'ng2-charts';
 import { PipesModule } from '../../core/pipes/pipes.module';
 import { DashboardNewsComponent } from './news/dashboard_news.component';
 import { GoogleCalendarComponent } from './startup/google-calendar/google-calendar.component';
+import { MilestonesListItemComponent } from './startup/milestones-list-item/milestones-list-item.component';
 
 @NgModule({
   declarations: [
@@ -22,7 +23,8 @@ import { GoogleCalendarComponent } from './startup/google-calendar/google-calend
       InvestorDashboardComponent,
       StartupDashboardComponent,
       DashboardNewsComponent,
-      GoogleCalendarComponent
+      GoogleCalendarComponent,
+      MilestonesListItemComponent
   ],
   imports: [
     CommonModule,

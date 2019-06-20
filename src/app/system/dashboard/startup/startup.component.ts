@@ -4,6 +4,9 @@ import { DashboardService } from '../dashboard.service';
 import { MoneyPipe } from '../../../core/pipes/money.pipe';
 import { Label, MultiDataSet, Color, BaseChartDirective } from 'ng2-charts';
 import { ChartOptions, Tooltip, ChartDataSets } from 'chart.js';
+import { MilestonesModel } from 'src/app/core/models/milestones.model';
+import { MilestonesService } from 'src/app/core/services/milestones.service';
+import { AuthService } from 'src/app/core/services/auth.service';
 
 @Component({
   selector: 'app-startup-dashboard-cmp',
@@ -16,6 +19,8 @@ export class StartupDashboardComponent implements OnInit {
     TotalEarn = 0;
     TotalInvestmen = 0;
     Score = 0;
+
+    Milestones: MilestonesModel[] = [];
 
     public salesChartLabels: string[] = [];
     public displayLabels: Label[] = [];
@@ -131,7 +136,7 @@ export class StartupDashboardComponent implements OnInit {
       }
     ];
 
-    constructor(private _dashboardService: DashboardService)
+    constructor(private _dashboardService: DashboardService,  private milestonesService: MilestonesService, private auth: AuthService)
     {
 
     }
@@ -142,6 +147,7 @@ export class StartupDashboardComponent implements OnInit {
       this.UpdateTotalInvestment();
       this.UpdateSales();
       this.UpdateEvaluation();
+      this.getMilestonesList();
     }
 
     UpdateTotalEarn()
@@ -227,6 +233,15 @@ export class StartupDashboardComponent implements OnInit {
           {data: arr}
         ];
       });
+    }
+
+    getMilestonesList () {
+      this.milestonesService.GetMilestons( this.auth.Me.id,  this.auth.Me.company_id)
+        .subscribe(
+          (res) => {
+            this.Milestones = res.json()['items'];
+          }
+        );
     }
 
 
