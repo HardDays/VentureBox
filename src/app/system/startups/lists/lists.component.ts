@@ -19,6 +19,7 @@ export class StartupsListsComponent implements OnInit {
     isModalOpened = false;
     InvestedCompanyID = 0;
     InvestedInfo = new InvestedModel();
+    ScrollDisabled = false;
 
     ItemsCount = 0;
 
@@ -53,6 +54,7 @@ export class StartupsListsComponent implements OnInit {
               const oldSize = this.Startups.length;
               this.Startups.push(...res.items);
               this.GetImages(oldSize);
+              this.ScrollDisabled = false;
             }
           }
         );
@@ -120,6 +122,7 @@ export class StartupsListsComponent implements OnInit {
     }
 
   onScroll() {
+    this.ScrollDisabled = true;
     this.GetList();
   }
 
