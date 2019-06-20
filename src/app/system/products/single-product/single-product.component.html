@@ -8,7 +8,7 @@
         <p class="product__price">{{product.price | moneypipe}}</p>
     </div>
     <div class="product__flex-wrapper">
-        <a [routerLink]="['/system','startups','my-profile']" class="product__name-statup">{{product.company_name}}</a>
+        <a [routerLink]="['/system','startups','profile', product.company_id]" class="product__name-statup">{{product.company_name}}</a>
     </div>
     <p class="product__description">{{product.description}}</p>
     <ul class="product-tags product__tags">

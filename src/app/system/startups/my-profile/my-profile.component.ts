@@ -21,6 +21,7 @@ import { NewsService } from 'src/app/core/services/news.service';
 export class StartupsMyProfileComponent implements OnInit {
 
   Mode = 'MyProfile';
+  Me = this.auth.Me;
   StartupId = 0;
   Startup = new CompanyModel();
 
