@@ -13,7 +13,8 @@ import { Validator } from '../../core/base/field.validator';
 export class LoginComponent implements OnInit {
 
     LoginModel: LoginModel = new LoginModel();
-    Error:string = "";
+    PasswordError:string = "";
+    EmailError:string = "";
     constructor(private auth: AuthService,
         private router: Router) {
     }
@@ -24,22 +25,27 @@ export class LoginComponent implements OnInit {
 
     Login ()
     {
-      this.Error = "";
+      this.EmailError = "";
+      this.PasswordError = "";
 
-      var res = Validator.ValidateEmail(this.LoginModel.email);
-      if(!res)
+      if(!this.LoginModel.email)
       {
-        this.Error = "Email is incorrect";;
+        this.EmailError = "Email is required!";
+        return;
+      }
+      else if(!Validator.ValidateEmail(this.LoginModel.email))
+      {
+        this.EmailError = "Email is incorrect";;
         return;
       }
       if (!this.LoginModel.password)
       {
-        this.Error = "Password can't be blank!";
+        this.PasswordError = "Password can't be blank!";
         return;
       }
       if (this.LoginModel.password.length < 4)
       {
-        this.Error = "Password must be over 4 characters";
+        this.PasswordError = "Password must be over 4 characters";
         return;
       }
 
@@ -56,7 +62,7 @@ export class LoginComponent implements OnInit {
           {
             if(err.status === 404 || err.status === 403)
             {
-              this.Error = "Incorrect E-mail or password!";
+              this.PasswordError = "Incorrect E-mail or password!";
             }
           }
         )

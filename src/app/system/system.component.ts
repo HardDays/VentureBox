@@ -13,6 +13,8 @@ export class SystemComponent implements OnInit{
     IsLoggedIn = false;
     Me: UserModel = new UserModel();
     Initials = '';
+
+    SideBarVisible = false;
     constructor(private cdr: ChangeDetectorRef,
         private auth: AuthService, private router: Router)
     {

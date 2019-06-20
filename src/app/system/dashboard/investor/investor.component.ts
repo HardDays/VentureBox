@@ -1,4 +1,4 @@
-import { Component, OnInit, Input, ViewChild } from '@angular/core';
+import { Component, OnInit, Input, ViewChild, OnDestroy } from '@angular/core';
 import { UserModel } from 'src/app/core/models/user.model';
 import { DashboardService } from '../dashboard.service';
 import { MoneyPipe } from '../../../core/pipes/money.pipe';
@@ -192,6 +192,7 @@ export class InvestorDashboardComponent implements OnInit {
             this.NewsTotal = this._dashboardService.NewsTotal;
           }
         });
+        this._dashboardService.BaseInit();
     }
 
     ngOnInit() 
@@ -247,6 +248,13 @@ export class InvestorDashboardComponent implements OnInit {
               this.totalChartLabels.push(i);
             }
           }
+          // const LastLabel = this.totalChartLabels[this.totalChartLabels.length - 1];
+
+          // const lastIndex = arr.findIndex((obj) => obj.x == LastLabel);
+
+          // this.totalChartValue = lastIndex > -1 ? arr[lastIndex].y : 0;
+
+          // console.log(lastIndex, LastLabel, this.totalChartValue, arr[lastIndex]);
 
           this.totalChartValue = arr[arr.length - 1].y;
 

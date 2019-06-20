@@ -11,7 +11,7 @@ export class SelectInputComponent implements OnInit {
     IsTagsOpened = false;
     @Output() ChangeData = new EventEmitter<any>();
 
-    Selected:any;
+    Selected:any = {};
     constructor() 
     {
 
@@ -19,11 +19,15 @@ export class SelectInputComponent implements OnInit {
 
     ngOnInit() 
     {
-      if(this.Mode == 'single')
+      if(this.Data && this.Data.length > 0)
       {
-        this.Selected = this.Data.find(obj => obj.isSelected);
-        this.ChangeData.emit(this.Selected);
+        if(this.Mode == 'single')
+        {
+          this.Selected = this.Data.find(obj => obj.isSelected);
+          this.ChangeData.emit(this.Selected);
+        }
       }
+      
     }
 
     UpdateSelected(selected:any)

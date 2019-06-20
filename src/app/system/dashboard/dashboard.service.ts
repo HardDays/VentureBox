@@ -1,6 +1,6 @@
 import { UserModel } from 'src/app/core/models/user.model';
 import { HttpService } from 'src/app/core/services/http.service';
-import { Injectable } from '@angular/core';
+import { Injectable, OnDestroy } from '@angular/core';
 import { Subject } from 'rxjs';
 import { AuthService } from 'src/app/core/services/auth.service';
 import { TypeService } from 'src/app/core/services/type.service';
@@ -8,8 +8,9 @@ import { NewsModel } from '../../core/models/news.model';
 
 
 @Injectable()
-export class DashboardService 
+export class DashboardService
 {
+    
     CompanyDics = [];
     CompanyDicsUpdated: Subject<boolean> = new Subject<boolean>();
     Me:UserModel = new UserModel();
@@ -17,6 +18,8 @@ export class DashboardService
 
     InvestedCompaniesDics = [];
     InvestedCompaniesDicsUpdated: Subject<boolean> = new Subject<boolean>();
+
+    IsCompaniesUpdating = false;
 
     News: NewsModel[] = [];
     NewsUpdated: Subject<boolean> = new Subject<boolean>();
@@ -53,21 +56,27 @@ export class DashboardService
 
     UpdateInvestedCompaniesDics()
     {
-        this.InvestedCompaniesDics = [
-            {name: 'All companies', value: '', isSelected: true}
-        ];
-        this.RefreshCompanies("invested",
-            (result) => {
-                if(result)
-                {
-                    result.forEach(element => {
-                        this.InvestedCompaniesDics[element.company_id] = {name: element.company_name, value: element.company_id, isSelected:false};
-                    });
+        if(!this.IsCompaniesUpdating)
+        {
+            this.IsCompaniesUpdating = true;
+            this.InvestedCompaniesDics = [
+                {name: 'All companies', value: '', isSelected: true}
+            ];
+            this.RefreshCompanies("invested",
+                (result) => {
+                    if(result)
+                    {
+                        result.forEach(element => {
+                            this.InvestedCompaniesDics[element.company_id] = {name: element.company_name, value: element.company_id, isSelected:false};
+                        });
+                    }
+                    this.InvestedCompaniesDics = this.InvestedCompaniesDics.filter(Val => Val != null);
+                    this.InvestedCompaniesDicsUpdated.next(true);
+                    this.IsCompaniesUpdating = false;
                 }
-                this.InvestedCompaniesDics = this.InvestedCompaniesDics.filter(Val => Val != null);
-                this.InvestedCompaniesDicsUpdated.next(true);
-            }
-        );
+            );
+        }
+        
     }
 
     RefreshCompanies(Type?, callback?: (res) => void)

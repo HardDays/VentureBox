@@ -4,12 +4,16 @@
     <label class="input-groupe__label" for="email">E-mail</label>
     <!-- input-groupe__input--error класс ошибки для инпута-->
     <input [(ngModel)]="LoginModel.email" type="text" class="input-groupe__input" id="email" name="email" autocomplete="off">
-    <!-- <p class="input-groupe__error">сюда текст ошибки если есть</p> -->
+    <p class="input-groupe__error">
+        <span *ngIf="EmailError">{{EmailError}}</span>
+    </p>
 </div>
 <div class="input-groupe auth-form__input-groupe">
     <label class="input-groupe__label" for="password">Password</label>
     <input [(ngModel)]="LoginModel.password" type="password" class="input-groupe__input" id="password" name="password">
-    <p class="input-groupe__error" *ngIf="Error">{{Error}}</p>
+    <p class="input-groupe__error">
+        <span *ngIf="PasswordError">{{PasswordError}}</span>
+    </p>
 </div>
 <div class="auth-form__forgot-pass">
     <a class="auth-form__forgot-pass-link" routerLink="../remind">Forgot your password?</a>

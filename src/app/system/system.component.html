@@ -1,6 +1,6 @@
 <!-- main--visible_sidebar добавляем при клике на кнопку "system-header__open-sidebar" делаем remove класса при клике на body-->
-<section class="main">
-    <div class="side-bar main__side-bar">
+<section class="main" [ngClass]="{'main--visible_sidebar': SideBarVisible}" (click)="SideBarVisible = !SideBarVisible">
+    <div class="side-bar main__side-bar" >
         <div class="side-bar__logo">
             <img src="assets/img/logo.svg" class="img-responsive" alt="">
         </div>
@@ -40,7 +40,7 @@
                     </ul>
                 </div>
             </div>
-            <div class="system__wrapper">
+            <div class="system__wrapper" (click)="SideBarVisible = false">
                 <router-outlet></router-outlet>
             </div>
         </div>
