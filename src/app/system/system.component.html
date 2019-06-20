@@ -1,6 +1,6 @@
 <!-- main--visible_sidebar добавляем при клике на кнопку "system-header__open-sidebar" делаем remove класса при клике на body-->
-<section class="main" [ngClass]="{'main--visible_sidebar': SideBarVisible}" (click)="SideBarVisible = !SideBarVisible">
-    <div class="side-bar main__side-bar" >
+<section class="main" [ngClass]="{'main--visible_sidebar': SideBarVisible}">
+    <div class="side-bar main__side-bar"  (click)="SideBarVisible = false">
         <div class="side-bar__logo">
             <img src="assets/img/logo.svg" class="img-responsive" alt="">
         </div>
@@ -11,15 +11,15 @@
     <div class="system main__system">
         <div class="system__content">
             <div class="system-header">
-                <button class="system-header__open-sidebar">
+                <button class="system-header__open-sidebar" (click)="SideBarVisible = true">
                     <span></span>
                     <span></span>
                     <span></span>
                 </button>
-                <div class="system-header__no-auth" *ngIf="!IsLoggedIn">
+                <div class="system-header__no-auth" *ngIf="!IsLoggedIn"  (click)="SideBarVisible = false">
                     <a [routerLink]="['/auth']" class="system-header__auth-link">Log in</a>
                 </div>
-                <div class="system-header__user" *ngIf="IsLoggedIn && Me && Me.id">
+                <div class="system-header__user" *ngIf="IsLoggedIn && Me && Me.id"  (click)="SideBarVisible = false">
                     <div class="header-user">
                         <div class="header-user__ava">{{Initials}}</div>
                         <div class="header-user__info">
@@ -44,7 +44,7 @@
                 <router-outlet></router-outlet>
             </div>
         </div>
-        <div class="system-copyright system__copyright">
+        <div class="system-copyright system__copyright"  (click)="SideBarVisible = false">
             <p class="system-copyright__text">©2019 Venture Box. All right recerved. <a href="#" class="system-copyright__link">Privacy policy</a> & <a href="#" class="system-copyright__link">Terms of servise</a></p>
         </div>
     </div>

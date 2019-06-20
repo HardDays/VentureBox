@@ -35,7 +35,6 @@ export class SystemComponent implements OnInit{
         this.Me = this.auth.GetMe();
         this.getInitials();
 
-        // console.log(`user = `, this.googleService.getCurrentUser());
     }
 
     getInitials()
