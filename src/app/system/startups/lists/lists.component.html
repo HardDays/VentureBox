@@ -4,8 +4,9 @@
 
 <div class="sturtups-list"
       infiniteScroll
-      [infiniteScrollDistance]="10"
-      [infiniteScrollThrottle]="200"
+      [infiniteScrollDistance]="1"
+      [infiniteScrollThrottle]="500"
+      [infiniteScrollDisabled]="ScrollDisabled"
       (scrolled)="onScroll()"
 >
     <div *ngFor="let item of Startups" class="sturtups-list__item">

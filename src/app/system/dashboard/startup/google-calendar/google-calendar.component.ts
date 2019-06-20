@@ -28,9 +28,11 @@ export class GoogleCalendarComponent implements OnInit {
     }
     this.authService.onMeChange$.subscribe(
       () => {
-        this.HasGoogleCalendar = this.authService.Me.has_google_calendar;
-        if (this.HasGoogleCalendar) {
-          this.GetEvents();
+        if (this.authService.Me){
+          this.HasGoogleCalendar = this.authService.Me.has_google_calendar;
+          if (this.HasGoogleCalendar) {
+            this.GetEvents();
+          }
         }
       }
     );
