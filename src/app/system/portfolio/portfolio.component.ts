@@ -123,7 +123,7 @@ export class PortfolioComponent implements OnInit {
         this.InvestedCompanyID,
         this.InvestedInfo,
         (res) => {
-          this.Intresting.splice(this.Intresting.findIndex(x => x.id === this.InvestedCompanyID), 1);
+          this.GetInteresting();
           this.GetInvested();
           this.isModalOpened = false;
           this.isModalSuccess = true;

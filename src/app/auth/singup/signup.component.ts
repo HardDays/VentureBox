@@ -172,6 +172,9 @@ export class SignUpComponent implements OnInit {
         } else {
           this.ErrorsUserPage2.image = '';
         }
+        if (this.User.investment_amount) {
+          this.User.investment_amount = +(this.User.investment_amount + '').split(' ').join('');
+        }
       }
       this.RegisterUser();
     }
