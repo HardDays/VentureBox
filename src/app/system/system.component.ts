@@ -32,12 +32,14 @@ export class SystemComponent implements OnInit{
 
         this.Me = this.auth.GetMe();
         this.getInitials();
+
+        // console.log(`user = `, this.googleService.getCurrentUser());
     }
 
-    getInitials() 
+    getInitials()
     {
         let initials = "";
-        if (this.Me && this.Me.name && this.Me.surname) 
+        if (this.Me && this.Me.name && this.Me.surname)
         {
             if(this.Me.name && this.Me.name.length > 0)
             {
@@ -48,7 +50,7 @@ export class SystemComponent implements OnInit{
             {
                 initials += this.Me.surname[0].toUpperCase();
             }
-        }   
+        }
         this.Initials = initials;
     }
 
@@ -56,4 +58,6 @@ export class SystemComponent implements OnInit{
     {
         this.auth.Logout();
     }
+
+
 }

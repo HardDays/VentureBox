@@ -22,7 +22,8 @@ export class UserModel {
         public is_email_notifications_available?: boolean,
 
         public company_id?: number,
-        public token?: string
+        public token?: string,
+        public has_google_calendar?: boolean
     ) {
       if (!role) {
         this.role = 'startup';

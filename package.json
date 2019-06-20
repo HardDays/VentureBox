@@ -27,6 +27,7 @@
     "express": "^4.17.1",
     "express-history-api-fallback": "^2.2.0",
     "mydatepicker": "^2.6.6",
+    "ng-gapi": "0.0.73",
     "ng2-charts": "~2.2.5",
     "ngx-infinite-scroll": "^7.2.0",
     "npm": "^6.9.0",

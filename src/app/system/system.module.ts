@@ -15,6 +15,24 @@ import { NewsComponent } from './news/news.component';
 import { ProductDetailComponent } from './product_detail/product_detail.component';
 import { SettingsComponent } from './settings/settings.component';
 
+import {
+    GoogleApiModule,
+    GoogleApiService,
+    GoogleAuthService,
+    NgGapiClientConfig,
+    NG_GAPI_CONFIG,
+    GoogleApiConfig
+} from "ng-gapi";
+import { GoogleService } from '../core/services/google.service';
+
+let gapiClientConfig: NgGapiClientConfig = {
+    client_id: "261425662871-9kivhka8a8ts4vmrhj0fk93u1rauu7p4.apps.googleusercontent.com",
+    discoveryDocs: ["https://analyticsreporting.googleapis.com/$discovery/rest?version=v4"],
+    scope: [
+        "https://www.googleapis.com/auth/calendar.events.readonly",
+        "https://www.googleapis.com/auth/calendar.readonly"
+    ].join(" ")
+};
 
 @NgModule({
   declarations: [
@@ -34,8 +52,12 @@ import { SettingsComponent } from './settings/settings.component';
     RouterModule,
     SystemRoutingModule,
     ReactiveFormsModule,
-    TextMaskModule
+    TextMaskModule,
+    GoogleApiModule.forRoot({
+      provide: NG_GAPI_CONFIG,
+      useValue: gapiClientConfig
+    })
   ],
-  providers: [ SystemAccessGuard]
+  providers: [ SystemAccessGuard, GoogleService]
 })
 export class SystemModule {}

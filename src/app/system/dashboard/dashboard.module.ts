@@ -14,13 +14,15 @@ import { DashboardService } from './dashboard.service';
 import { ChartsModule } from 'ng2-charts';
 import { PipesModule } from '../../core/pipes/pipes.module';
 import { DashboardNewsComponent } from './news/dashboard_news.component';
+import { GoogleCalendarComponent } from './startup/google-calendar/google-calendar.component';
 
 @NgModule({
   declarations: [
       DashboardComponent,
       InvestorDashboardComponent,
       StartupDashboardComponent,
-      DashboardNewsComponent
+      DashboardNewsComponent,
+      GoogleCalendarComponent
   ],
   imports: [
     CommonModule,

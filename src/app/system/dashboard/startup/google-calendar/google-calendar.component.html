@@ -1,0 +1,40 @@
+<p class="dashboard-events__title">My events</p>
+<ng-container *ngIf="!HasGoogleCalendar">
+  <div *ngIf="CalendarSignInStep === 1" (click)="googleIn()" class="button-wrapper button-wrapper--select_theme">
+    <button class="button-wrapper__button">Login Google</button>
+  </div>
+  <div *ngIf="CalendarSignInStep === 2">
+    <p class="my-milestone__label">Please, select work calendar</p>
+    <form class="my-milestone__flex-select">
+      <div class="input-groupe my-milestone__input-groupe">
+          <!--select--opened если открытый селект-->
+          <div class="select" (click)="IsOpenCalendarSelected = !IsOpenCalendarSelected" [ngClass]="{'select--opened':IsOpenCalendarSelected}">
+              <div class="select__lable">
+                  <p class="select__picked">{{CalendarSelected.name}}</p>
+              </div>
+              <div (click)="IsOpenCalendarSelected = !IsOpenCalendarSelected" class="select-dropdown select__dropdown">
+                  <ul class="select-dropdown__list">
+                      <!-- select-dropdown__item--active для активного элемента -->
+                      <li *ngFor="let item of CalendarsList" (click)="CalendarSelected = item; IsOpenCalendarSelected = !IsOpenCalendarSelected" class="select-dropdown__item">{{item.name}}</li>
+                  </ul>
+              </div>
+          </div>
+      </div>
+      <div class="button-wrapper button-wrapper--select_theme my-milestone__button-wrapper">
+          <button (click)="setGoogleCalendar()" class="button-wrapper__button" [disabled]="!CalendarSelected.id">Ok</button>
+      </div>
+    </form>
+  </div>
+</ng-container>
+<ng-container *ngIf="HasGoogleCalendar">
+  <div *ngIf="EventsList&&EventsList.length" class="dashboard-events__list">
+      <div *ngFor="let item of EventsList" class="dashboard-event dashboard-events__item">
+          <img (click)="openInNewTab(item.link)" src="assets/img/blue-cal.svg" class="dashboard-event__img img-responsive" alt="">
+          <div class="dashboard-event__text-wr">
+              <p *ngIf="item.start.split('T').length > 1" class="dashboard-event__date">{{item.start | date: 'dd.MM.yyyy hh:mm'}}</p>
+              <p *ngIf="item.start.split('T').length == 1" class="dashboard-event__date">{{item.start | date: 'dd.MM.yyyy'}}</p>
+              <p class="dashboard-event__name">{{item.name}}</p>
+          </div>
+      </div>
+  </div>
+</ng-container>

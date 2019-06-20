@@ -131,12 +131,12 @@ export class StartupDashboardComponent implements OnInit {
       }
     ];
 
-    constructor(private _dashboardService: DashboardService) 
+    constructor(private _dashboardService: DashboardService)
     {
 
     }
 
-    ngOnInit() 
+    ngOnInit()
     {
       this.UpdateTotalEarn();
       this.UpdateTotalInvestment();
@@ -226,6 +226,8 @@ export class StartupDashboardComponent implements OnInit {
         this.evalChartData = [
           {data: arr}
         ];
-      })
+      });
     }
+
+
 }
