@@ -109,7 +109,10 @@
                         <div class="input-groupe invest-modal-form__input-groupe">
                             <label class="input-groupe__label" for="investments">Investments</label>
                             <!-- input-groupe__input--error класс ошибки для инпута-->
-                            <input [(ngModel)]="InvestedInfo.investment" type="text" [ngClass]="{'input-groupe__input--error':ErrorsInvest.investment}" class="input-groupe__input" id="investments" name="investments">
+                            <div class="with-value">
+                              <input [(ngModel)]="InvestedInfo.investment" type="text" [ngClass]="{'input-groupe__input--error':ErrorsInvest.investment}" class="input-groupe__input input-groupe__input--value-left" id="investments" name="investments">
+                              <span class="with-value__value">$</span>
+                            </div>
                             <p class="input-groupe__error">{{ErrorsInvest.investment}}</p>
                         </div>
                     </div>
@@ -117,7 +120,10 @@
                         <div class="input-groupe invest-modal-form__input-groupe">
                             <label class="input-groupe__label" for="evaluation">Equity</label>
                             <!-- input-groupe__input--error класс ошибки для инпута-->
-                            <input [textMask]="{mask: mask, guide: false}" [(ngModel)]="InvestedInfo.evaluation" [ngClass]="{'input-groupe__input--error':ErrorsInvest.evaluation}" type="text" class="input-groupe__input" id="evaluation" name="evaluation">
+                            <div class="with-value">
+                              <input [textMask]="{mask: mask, guide: false}" [(ngModel)]="InvestedInfo.evaluation" [ngClass]="{'input-groupe__input--error':ErrorsInvest.evaluation}" type="text" class="input-groupe__input input-groupe__input--value-right" id="evaluation" name="evaluation">
+                              <span class="with-value__value with-value__value--right">%</span>
+                            </div>
                             <p class="input-groupe__error">{{ErrorsInvest.evaluation}}</p>
                         </div>
                     </div>
