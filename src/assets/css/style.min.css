@@ -723,7 +723,6 @@ button, input {
   display: -ms-flexbox;
   display: flex;
   position: relative;
-  z-index: 2;
 }
 
 @media (max-width: 767px) {
