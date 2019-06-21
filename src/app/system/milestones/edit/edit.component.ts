@@ -8,6 +8,7 @@ import { TypeService } from 'src/app/core/services/type.service';
 import { Router } from '@angular/router';
 import {IMyDpOptions} from 'mydatepicker';
 
+
 @Component({
   selector: 'milestones-edit-cmp',
   templateUrl: './edit.component.html',
@@ -34,7 +35,8 @@ export class MilestonesEditComponent implements OnInit {
                 private milsestonesService: MilestonesService,
                 private type: TypeService,
                 private router: Router,
-                private actRoute: ActivatedRoute) {
+                private actRoute: ActivatedRoute,
+                private _location: Location) {
       actRoute.params.subscribe(params => {
         this.Id = +params['id'];
       });
@@ -66,7 +68,8 @@ export class MilestonesEditComponent implements OnInit {
       this.milsestonesService.PatchMileston(this.Milestone)
         .subscribe(
           (res) => {
-            this.router.navigate(['/system', 'my_milestones']);
+            // this.router.navigate(['/system', 'my_milestones']);
+            this._location.back();
           },
           (err) => {
             this.Errors = this.type.GetErrorsDictByResponse(err.json(), this.Errors);
