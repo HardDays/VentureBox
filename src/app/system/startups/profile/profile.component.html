@@ -36,7 +36,7 @@
                 </div>
               </ng-container>
             </ng-container>
-            <ng-container *ngIf="Mode === 'MyProfile' && Me && Me.role == 'investor'">
+            <ng-container *ngIf="Mode === 'MyProfile' && Me && Me.role == 'startup'">
               <div class="button-wrapper">
                   <button [routerLink]="['/system','startups','edit']" class="button-wrapper__button button-wrapper__button--border_theme button-wrapper__button--full_width button-wrapper__button--sm_height">Edit profile</button>
               </div>
