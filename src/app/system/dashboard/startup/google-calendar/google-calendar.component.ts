@@ -59,6 +59,7 @@ export class GoogleCalendarComponent implements OnInit {
         (res) => {
           console.log(res);
           this.HasGoogleCalendar = true;
+          this.authService.Me.has_google_calendar = true;
           this.GetEvents();
         }
       );
@@ -73,6 +74,7 @@ export class GoogleCalendarComponent implements OnInit {
       (err) => {
         this.CalendarSignInStep = 1;
         this.HasGoogleCalendar = false;
+        this.authService.Me.has_google_calendar = false;
       }
     );
   }
