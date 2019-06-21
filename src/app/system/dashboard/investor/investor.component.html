@@ -15,16 +15,16 @@
                     <p class="graph-block__count">{{totalChartValue | moneypipe}}</p>
                     <ul class="graph-actions graph-actions--in_left_pos">
                         <li class="graph-actions__item">
-                            <span [ngClass]="{'graph-actions__action--active': TotalValueSelector == 'month'}" 
+                            <span [ngClass]="{'graph-actions__action--active': TotalValueSelector == 'month'}"
                             class="graph-actions__action"
                             (click)="OnTotalValueSelectorUpdate('month')">Month</span>
                         </li>
                         <li class="graph-actions__item">
-                            <span class="graph-actions__action"  [ngClass]="{'graph-actions__action--active': TotalValueSelector == 'year'}" 
+                            <span class="graph-actions__action"  [ngClass]="{'graph-actions__action--active': TotalValueSelector == 'year'}"
                             (click)="OnTotalValueSelectorUpdate('year')">Year</span>
                         </li>
                         <li class="graph-actions__item">
-                            <span class="graph-actions__action"  [ngClass]="{'graph-actions__action--active': TotalValueSelector == 'all'}" 
+                            <span class="graph-actions__action"  [ngClass]="{'graph-actions__action--active': TotalValueSelector == 'all'}"
                             (click)="OnTotalValueSelectorUpdate('all')">All time</span>
                         </li>
                     </ul>
@@ -52,7 +52,7 @@
                     <p class="dashboard-inform-block__value">{{InvestmentAmount | moneypipe}}</p>
                 </div>
             </div>
-            
+
         </div>
     </div>
     <div class="graph-block">
@@ -60,16 +60,16 @@
             <p class="graph-block__title graph-block__title--once">Rate of return - <span>{{rateChartValue}}%</span></p>
             <ul class="graph-actions graph-actions--in_left_pos">
                 <li class="graph-actions__item">
-                    <span [ngClass]="{'graph-actions__action--active': RateValueSelector == 'month'}" 
+                    <span [ngClass]="{'graph-actions__action--active': RateValueSelector == 'month'}"
                     class="graph-actions__action"
                     (click)="OnRateValueSelectorUpdate('month')">Month</span>
                 </li>
                 <li class="graph-actions__item">
-                    <span class="graph-actions__action"  [ngClass]="{'graph-actions__action--active': RateValueSelector == 'year'}" 
+                    <span class="graph-actions__action"  [ngClass]="{'graph-actions__action--active': RateValueSelector == 'year'}"
                     (click)="OnRateValueSelectorUpdate('year')">Year</span>
                 </li>
                 <li class="graph-actions__item">
-                    <span class="graph-actions__action"  [ngClass]="{'graph-actions__action--active': RateValueSelector == 'all'}" 
+                    <span class="graph-actions__action"  [ngClass]="{'graph-actions__action--active': RateValueSelector == 'all'}"
                     (click)="OnRateValueSelectorUpdate('all')">All time</span>
                 </li>
             </ul>
@@ -92,16 +92,19 @@
                     <app-select-input-cmp [Data]="CompaniesNews" [Mode]="'single'" (ChangeData)="OnCompaniesNewsSelectChange($event)"></app-select-input-cmp>
                 </div>
             </div>
-            <div class="news-block__news">
+            <div *ngIf="News.length" class="news-block__news">
                     <ng-container *ngFor='let item of News'>
                             <app-dashboard-news-cmp [Model]="item"></app-dashboard-news-cmp>
                     </ng-container>
             </div>
+            <div *ngIf="!News.length" class="news-block__news">
+              <p>No news yet</p>
+            </div>
         </div>
-        <button class="news-block__show-more" *ngIf='News.length < NewsTotal' (click)='LoadMoreNews()'>
+        <button class="news-block__show-more" *ngIf='News.length && News.length < NewsTotal' (click)='LoadMoreNews()'>
             <svg width="12" height="7" viewBox="0 0 12 7" fill="none" xmlns="http://www.w3.org/2000/svg">
                 <path fill-rule="evenodd" clip-rule="evenodd" d="M6.00098 4.59955L10.6678 0.0834212C10.783 -0.0300222 10.9732 -0.0273212 11.0911 0.0888233L11.9109 0.896432C12.0287 1.01258 12.0314 1.20165 11.9162 1.31509L6.21798 6.8306C6.15904 6.89003 6.07867 6.91704 6.00098 6.91163C5.92061 6.91433 5.84292 6.88732 5.78398 6.8306L0.0857262 1.31509C-0.0294712 1.20165 -0.0267922 1.01258 0.0910842 0.896432L0.910861 0.0888233C1.02874 -0.0273212 1.21895 -0.0300222 1.33414 0.0834212L6.00098 4.59955Z" fill="#001B36"/>
-            </svg>     
+            </svg>
             <span>See more</span>
         </button>
     </div>

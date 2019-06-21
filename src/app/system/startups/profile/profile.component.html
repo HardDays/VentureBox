@@ -22,7 +22,7 @@
             </div> -->
             <p *ngIf="Startup.stage_of_funding" class="sturtup-card__info"><span>Stage of funding:</span> {{Startup.stage_of_funding.replace('_',' ')|titlecase}}</p>
             <p class="sturtup-card__info"><span>Investment amount: </span> ${{Startup.investment_amount}}</p>
-            <p class="sturtup-card__info"><span>Equity amount: </span> {{Startup.equality_amount?Startup.equality_amount:0}}%</p>
+            <p class="sturtup-card__info"><span>Investor’s equity amount: </span> {{Startup.equality_amount?Startup.equality_amount:0}}%</p>
             <ng-container *ngIf="Mode === 'Profile' && Me && Me.role == 'investor'">
               <div class="button-wrapper">
                   <button (click)="openModalInvest(Startup.id)" class="button-wrapper__button button-wrapper__button--border_theme button-wrapper__button--full_width button-wrapper__button--sm_height">invest</button>
@@ -115,7 +115,7 @@
                     </div>
                     <div class="invest-modal-form__side">
                         <div class="input-groupe invest-modal-form__input-groupe">
-                            <label class="input-groupe__label" for="evaluation">Evaluation</label>
+                            <label class="input-groupe__label" for="evaluation">Equity</label>
                             <!-- input-groupe__input--error класс ошибки для инпута-->
                             <input [textMask]="{mask: mask, guide: false}" [(ngModel)]="InvestedInfo.evaluation" [ngClass]="{'input-groupe__input--error':ErrorsInvest.evaluation}" type="text" class="input-groupe__input" id="evaluation" name="evaluation">
                             <p class="input-groupe__error">{{ErrorsInvest.evaluation}}</p>
