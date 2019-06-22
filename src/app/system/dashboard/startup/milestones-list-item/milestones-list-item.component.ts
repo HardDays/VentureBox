@@ -21,6 +21,7 @@ export class MilestonesListItemComponent implements OnInit {
   ngOnInit() {
     this.Item.user_id = this.auth.Me.id;
     this.Item.company_id = this.auth.Me.company_id;
+    delete this.Item.finish_date;
   }
 
   saveMilestone() {

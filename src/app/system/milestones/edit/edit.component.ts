@@ -44,7 +44,7 @@ export class MilestonesEditComponent implements OnInit {
 
     ngOnInit() {
       this.GetCurrenMilestone();
-
+      // delete this.Item.finish_date;
     }
 
     GetCurrenMilestone() {
@@ -81,7 +81,7 @@ export class MilestonesEditComponent implements OnInit {
     public myDatePickerOptions: IMyDpOptions = {
         dateFormat: 'yyyy-mm-dd',
         inline: true,
-        disableUntil: {year: this.Today.getFullYear(), month: this.Today.getMonth() + 1, day: this.Today.getDate() - 1}
+        // disableUntil: {year: this.Today.getFullYear(), month: this.Today.getMonth() + 1, day: this.Today.getDate() - 1}
     };
 
     onDateChanged(event) {
