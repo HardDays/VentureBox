@@ -44,18 +44,19 @@ export class MilestonesEditComponent implements OnInit {
 
     ngOnInit() {
       this.GetCurrenMilestone();
-      // delete this.Item.finish_date;
     }
 
     GetCurrenMilestone() {
       this.milsestonesService.GetMilestonsById(this.auth.Me.id,  this.auth.Me.company_id, this.Id)
         .subscribe(
           (res) => {
-             this.Milestone = res.json();
-             this.Milestone.user_id = this.auth.Me.id;
-             this.Milestone.company_id = this.auth.Me.company_id;
+            this.Milestone = res.json();
+            this.Milestone.user_id = this.auth.Me.id;
+            this.Milestone.company_id = this.auth.Me.company_id;
 
-             this.Milestone.finish_date = this.Milestone.finish_date ? this.Milestone.finish_date.split('T')[0] : '';
+            this.Milestone.finish_date = this.Milestone.finish_date ? this.Milestone.finish_date.split('T')[0] : '';
+
+            // delete this.Item.finish_date;
           }
         );
     }
@@ -65,6 +66,11 @@ export class MilestonesEditComponent implements OnInit {
     }
 
     saveMilestone() {
+      const date = new Date(new Date(this.Milestone.finish_date).toDateString());
+      const curDate = new Date(new Date().toDateString());
+      if ( date < curDate) {
+        delete this.Milestone.finish_date;
+      }
       this.milsestonesService.PatchMileston(this.Milestone)
         .subscribe(
           (res) => {
@@ -81,7 +87,7 @@ export class MilestonesEditComponent implements OnInit {
     public myDatePickerOptions: IMyDpOptions = {
         dateFormat: 'yyyy-mm-dd',
         inline: true,
-        // disableUntil: {year: this.Today.getFullYear(), month: this.Today.getMonth() + 1, day: this.Today.getDate() - 1}
+        disableUntil: {year: this.Today.getFullYear(), month: this.Today.getMonth() + 1, day: this.Today.getDate() - 1}
     };
 
     onDateChanged(event) {
