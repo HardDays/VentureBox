@@ -15,8 +15,8 @@
                 <!-- также если загружено фото вставляем его в style этого блока свойством "background-image" -->
                 <!-- upload-image__label--uploaded если загружено фото -->
                 <label class="upload-image__label"
-                [ngClass]="{'upload-image__label--error': !Product.image, 'upload-image__label--uploaded': Product.image}" 
-                [ngStyle]="{'background-image': Product.image ? 'url(' + Product.image + ')' : none}"
+                [ngClass]="{'upload-image__label--error': !Product.image, 'upload-image__label--uploaded': Product.image}"
+                [ngStyle]="{'background-image': Product.image ? 'url(' + Product.image + ')' : 'none'}"
                 for="upload-image">
                     <span class="upload-image__add">
                         <img  src="assets/img/plus.svg" class="upload-image__plus img-responsive" alt="">
@@ -41,8 +41,8 @@
                 <label class="input-groupe__label" for="price">Price</label>
                 <!-- input-groupe__input--error класс ошибки для инпута -->
                 <div class="with-value">
-                    <input type="text" class="input-groupe__input input-groupe__input--value-left" 
-                        [ngClass]="{'input-groupe__input--error': ErrorMsgs['price']}" id="price" name="price" 
+                    <input type="text" class="input-groupe__input input-groupe__input--value-left"
+                        [ngClass]="{'input-groupe__input--error': ErrorMsgs['price']}" id="price" name="price"
                         [ngModel]="Product.price" (ngModelChange)="Product.price = $event">
                     <span class="with-value__value">$</span>
                 </div>
@@ -54,11 +54,11 @@
             <div class="input-groupe create-product__input-groupe">
                 <label class="input-groupe__label" for="product-link">Product link</label>
                 <!-- input-groupe__input--error класс ошибки для инпута -->
-                <input type="url" class="input-groupe__input"  
+                <input type="url" class="input-groupe__input"
                     placeholder="https://example.com"
                     pattern="https://.*"
-                    [ngClass]="{'input-groupe__input--error': ErrorMsgs['link_to_store']}" id="product-link" 
-                    [ngModel]="Product.link_to_store" (ngModelChange)="Product.link_to_store = $event" 
+                    [ngClass]="{'input-groupe__input--error': ErrorMsgs['link_to_store']}" id="product-link"
+                    [ngModel]="Product.link_to_store" (ngModelChange)="Product.link_to_store = $event"
                     name="product-link">
                 <!-- сюда текст ошибки если есть -->
                 <p class="input-groupe__error" *ngIf="ErrorMsgs['link_to_store']">{{ErrorMsgs['link_to_store']}}</p>
@@ -81,14 +81,14 @@
                                 <button class="select__tag-delete" (click)="item.isSelected = !item.isSelected"></button>
                             </div>
                         </ng-container>
-                        
+
                     </div>
                     <div class="select-dropdown select__dropdown">
                         <ul class="select-dropdown__list">
-                            <li class="select-dropdown__item select-dropdown__item--active" 
-                                *ngFor="let item of Tags" 
-                                (click)="item.isSelected = !item.isSelected" 
-                                class="select-dropdown__item" 
+                            <li class="select-dropdown__item select-dropdown__item--active"
+                                *ngFor="let item of Tags"
+                                (click)="item.isSelected = !item.isSelected"
+                                class="select-dropdown__item"
                                 [ngClass]="{'select-dropdown__item--active': item.isSelected}">{{item.name}}</li>
                         </ul>
                     </div>
@@ -102,8 +102,8 @@
     <div class="input-groupe create-product__input-groupe">
         <label class="input-groupe__label" for="description">Description</label>
         <!-- input-groupe__input--error класс ошибки для инпута -->
-        <textarea class="input-groupe__input input-groupe__input--textarea_lg" 
-            [ngClass]="{'input-groupe__input--error': ErrorMsgs['description']}"  id="description"  
+        <textarea class="input-groupe__input input-groupe__input--textarea_lg"
+            [ngClass]="{'input-groupe__input--error': ErrorMsgs['description']}"  id="description"
             [ngModel]="Product.description" (ngModelChange)="Product.description = $event" name="description"></textarea>
         <!-- сюда текст ошибки если есть -->
         <p class="input-groupe__error" *ngIf="ErrorMsgs['description']">{{ErrorMsgs['description']}}</p>
