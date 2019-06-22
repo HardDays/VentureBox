@@ -101,6 +101,7 @@ export class ProductsCreateComponent implements OnInit {
 
   ReadImage($event:any)
   {
+    console.log($event);
     if(!$event.target.files[0])
     {
       this.Product.image = null;

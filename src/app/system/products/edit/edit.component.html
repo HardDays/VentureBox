@@ -9,14 +9,14 @@
 <form class="create-product">
     <div class="create-product__row">
         <div class="upload-image create-product__upload-image">
-            <div class="input-groupe create-product__input-groupe" >
-                <input id="upload-image" accept=".jpg, .jpeg, .png" type="file" (change)="ReadImage($event)" class="upload-image__input">
+            <div class="input-groupe create-product__input-groupe">
+                <input id="upload-image" name="upload-image" type="file" (change)="ReadImage($event)" class="upload-image__input" />
                 <!-- upload-image__label--error если ничего не загружено -->
                 <!-- также если загружено фото вставляем его в style этого блока свойством "background-image" -->
                 <!-- upload-image__label--uploaded если загружено фото -->
-                <label class="upload-image__label" 
+                <label class="upload-image__label"
                 [ngClass]="{'upload-image__label--error': !Product.image, 'upload-image__label--uploaded': Product.image}" 
-                [ngStyle]="{'background-image': 'url(' + Product.image + ')'}"
+                [ngStyle]="{'background-image': Product.image ? 'url(' + Product.image + ')' : none}"
                 for="upload-image">
                     <span class="upload-image__add">
                         <img  src="assets/img/plus.svg" class="upload-image__plus img-responsive" alt="">
@@ -24,7 +24,9 @@
                     </span>
                 </label>
                 <!-- сюда текст ошибки если есть -->
-                <p class="input-groupe__error" *ngIf="ErrorMsgs['image']">{{ErrorMsgs['image']}}</p>
+                <p class="input-groupe__error">
+                    <span *ngIf="ErrorMsgs['image']">{{ErrorMsgs['image']}}</span>
+                </p>
             </div>
         </div>
         <div class="create-product__coll">

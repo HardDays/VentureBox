@@ -148,6 +148,7 @@ export class StartupDashboardComponent implements OnInit {
       this.UpdateSales();
       this.UpdateEvaluation();
       this.getMilestonesList();
+      this.UpdateScore();
     }
 
     UpdateTotalEarn()

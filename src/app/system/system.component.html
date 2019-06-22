@@ -11,15 +11,15 @@
     <div class="system main__system">
         <div class="system__content">
             <div class="system-header">
-                <button class="system-header__open-sidebar" (click)="SideBarVisible = true">
+                <button class="system-header__open-sidebar">
                     <span></span>
                     <span></span>
                     <span></span>
                 </button>
-                <div class="system-header__no-auth" *ngIf="!IsLoggedIn"  (click)="SideBarVisible = false">
+                <div class="system-header__no-auth" *ngIf="!IsLoggedIn">
                     <a [routerLink]="['/auth']" class="system-header__auth-link">Log in</a>
                 </div>
-                <div class="system-header__user" *ngIf="IsLoggedIn && Me && Me.id"  (click)="SideBarVisible = false">
+                <div class="system-header__user" *ngIf="IsLoggedIn && Me && Me.id">
                     <div class="header-user">
                         <div class="header-user__ava">{{Initials}}</div>
                         <div class="header-user__info">
@@ -40,11 +40,11 @@
                     </ul>
                 </div>
             </div>
-            <div class="system__wrapper" (click)="SideBarVisible = false">
+            <div class="system__wrapper">
                 <router-outlet></router-outlet>
             </div>
         </div>
-        <div class="system-copyright system__copyright"  (click)="SideBarVisible = false">
+        <div class="system-copyright system__copyright">
             <p class="system-copyright__text">©2019 Venture Box. All right recerved. <a href="#" class="system-copyright__link">Privacy policy</a> & <a href="#" class="system-copyright__link">Terms of servise</a></p>
         </div>
     </div>
