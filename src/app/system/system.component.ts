@@ -1,8 +1,9 @@
-import { Component, OnInit, OnDestroy, ChangeDetectorRef } from '@angular/core';
+import { Component, OnInit, OnDestroy, ChangeDetectorRef, HostListener } from '@angular/core';
 import { Router, NavigationStart } from '@angular/router';
 import { AuthService } from '../core/services/auth.service';
 import { Subscription } from 'rxjs';
 import { UserModel } from '../core/models/user.model';
+import { Button } from 'protractor';
 
 
 @Component({
@@ -15,6 +16,19 @@ export class SystemComponent implements OnInit{
     Initials = '';
 
     SideBarVisible = false;
+
+    @HostListener('body:click', ['$event'])
+    clickhout(event)
+    {
+        const elem = event.path[1];
+        if(elem.classList.contains('system-header__open-sidebar'))
+        {
+            this.SideBarVisible = !this.SideBarVisible;
+        }
+        else{
+            this.SideBarVisible = false;
+        }
+    }
     constructor(private cdr: ChangeDetectorRef,
         private auth: AuthService, private router: Router)
     {
