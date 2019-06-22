@@ -20,13 +20,16 @@ export class SystemComponent implements OnInit{
     @HostListener('body:click', ['$event'])
     clickhout(event)
     {
-        const elem = event.path[1];
-        if(elem.classList.contains('system-header__open-sidebar'))
+        if(event.path && event.path.length > 1)
         {
-            this.SideBarVisible = !this.SideBarVisible;
-        }
-        else{
-            this.SideBarVisible = false;
+            const elem = event.path[1];
+            if(elem.classList.contains('system-header__open-sidebar'))
+            {
+                this.SideBarVisible = !this.SideBarVisible;
+            }
+            else{
+                this.SideBarVisible = false;
+            }
         }
     }
     constructor(private cdr: ChangeDetectorRef,
