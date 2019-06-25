@@ -16,11 +16,14 @@ export class MilestonesListItemComponent implements OnInit {
 
   isCompletedListOpened =  false;
 
+  Date = '';
+
   constructor(private milsestonesService: MilestonesService, private auth: AuthService) { }
 
   ngOnInit() {
     this.Item.user_id = this.auth.Me.id;
     this.Item.company_id = this.auth.Me.company_id;
+    this.Date = this.Item.finish_date;
     delete this.Item.finish_date;
   }
 

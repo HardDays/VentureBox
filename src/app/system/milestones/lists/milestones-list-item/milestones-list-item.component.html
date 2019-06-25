@@ -20,7 +20,7 @@
                 </span>
                 <span *ngIf="Item.description.length > 100" (click)="isShowFullDescription = !isShowFullDescription"  class="my-milestone__show-hide">{{isShowFullDescription?'Less':'More'}}</span>
             </p>
-            <p class="my-milestone__date">{{Item.finish_date | date: 'dd.MM.yyyy'}}</p>
+            <p class="my-milestone__date">{{ Date | date: 'dd.MM.yyyy'}}</p>
             <p *ngIf="!Item.is_done" class="my-milestone__label">Complete</p>
             <form *ngIf="!Item.is_done" class="my-milestone__flex-select">
                 <div class="input-groupe my-milestone__input-groupe">

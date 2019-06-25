@@ -129,8 +129,8 @@
                             <div class="input-groupe auth-form__input-groupe">
                                 <label class="input-groupe__label" for="investment">Investment amount</label>
                                 <!-- input-groupe__input--error класс ошибки для инпута-->
-                                <input [(ngModel)]="User.investment_amount" type="text" class="input-groupe__input" id="investment" name="investment">
-                                <p class="input-groupe__error"><!--сюда текст ошибки если есть--></p>
+                                <input [(ngModel)]="User.investment_amount" type="text" class="input-groupe__input" [ngClass]="{'input-groupe__input--error':ErrorsUserPage2.investment_amount}" id="investment" name="investment">
+                                <p class="input-groupe__error">{{ErrorsUserPage2.investment_amount}}</p>
                             </div>
                         </div>
                         <div class="row-generate__coll">
@@ -138,10 +138,10 @@
                                 <label class="input-groupe__label" for="percent">Equity amount</label>
                                 <!-- input-groupe__input--error класс ошибки для инпута-->
                                 <div class="with-value">
-                                    <input [textMask]="{mask: mask, guide: false}" [(ngModel)]="User.equality_amount" type="text" class="input-groupe__input input-groupe__input--value-right" id="percent" name="percent">
+                                    <input [textMask]="{mask: mask, guide: false}" [(ngModel)]="User.equality_amount" [ngClass]="{'input-groupe__input--error':ErrorsUserPage2.equality_amount}" type="text" class="input-groupe__input input-groupe__input--value-right" id="percent" name="percent">
                                     <span class="with-value__value with-value__value--right">%</span>
                                 </div>
-                                <p class="input-groupe__error"><!--сюда текст ошибки если есть--></p>
+                                <p class="input-groupe__error">{{ErrorsUserPage2.equality_amount}}</p>
                             </div>
                         </div>
                     </div>

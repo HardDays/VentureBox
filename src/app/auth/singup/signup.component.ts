@@ -35,7 +35,9 @@ export class SignUpComponent implements OnInit {
       stage_of_funding: '',
       c_level: '',
       team_member_name: '',
-      image: ''
+      image: '',
+      investment_amount: '',
+      equality_amount: ''
     };
 
     Company: CompanyModel = new CompanyModel();
@@ -171,6 +173,18 @@ export class SignUpComponent implements OnInit {
           return;
         } else {
           this.ErrorsUserPage2.image = '';
+        }
+        if (!this.User.equality_amount) {
+          this.ErrorsUserPage2.equality_amount = 'Equality amount can\'t be blank.';
+          return;
+        } else {
+          this.ErrorsUserPage2.equality_amount = '';
+        }
+        if (!this.User.investment_amount) {
+          this.ErrorsUserPage2.investment_amount = 'Investment amount can\'t be blank.';
+          return;
+        } else {
+          this.ErrorsUserPage2.investment_amount = '';
         }
         if (this.User.investment_amount) {
           this.User.investment_amount = +(this.User.investment_amount + '').split(' ').join('');
