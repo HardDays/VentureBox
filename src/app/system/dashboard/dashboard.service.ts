@@ -19,7 +19,11 @@ export class DashboardService
     InvestedCompaniesDics = [];
     InvestedCompaniesDicsUpdated: Subject<boolean> = new Subject<boolean>();
 
+    InterestingCompaniesDics = [];
+    InterestingCompaniesDicsUpdated: Subject<boolean> = new Subject<boolean>();
+
     IsCompaniesUpdating = false;
+    IsInterestingUpdating = false;
 
     News: NewsModel[] = [];
     NewsUpdated: Subject<boolean> = new Subject<boolean>();
@@ -46,11 +50,36 @@ export class DashboardService
             if(this.Me.role == 'investor')
             {
                 this.UpdateInvestedCompaniesDics();
+                this.UpdateInterestingCompaniesDics();
             }
             else
             {
 
             }
+        }
+    }
+
+    UpdateInterestingCompaniesDics()
+    {
+        if(!this.IsInterestingUpdating)
+        {
+            this.IsInterestingUpdating = true;
+            this.InterestingCompaniesDics = [
+                {name: 'All companies', value: '', isSelected: true}
+            ];
+            this.RefreshCompanies("",
+                (result) => {
+                    if(result)
+                    {
+                        result.forEach(element => {
+                            this.InterestingCompaniesDics[element.company_id] = {name: element.company_name, value: element.company_id, isSelected:false};
+                        });
+                    }
+                    this.InterestingCompaniesDics = this.InterestingCompaniesDics.filter(Val => Val != null);
+                    this.InterestingCompaniesDicsUpdated.next(true);
+                    this.IsInterestingUpdating = false;
+                }
+            );
         }
     }
 

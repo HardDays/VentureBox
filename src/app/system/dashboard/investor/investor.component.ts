@@ -182,7 +182,11 @@ export class InvestorDashboardComponent implements OnInit {
     constructor(private _dashboardService: DashboardService) 
     {
         this._dashboardService.InvestedCompaniesDicsUpdated.subscribe((val) => {
-          this.UpdateCompaniesDics();
+          this.UpdateCompaniesDics({graphics:true});
+        });
+
+        this._dashboardService.InterestingCompaniesDicsUpdated.subscribe((val) => {
+          this.UpdateCompaniesDics({news:true});
         });
 
         this._dashboardService.NewsUpdated.subscribe((val) => {
@@ -200,10 +204,25 @@ export class InvestorDashboardComponent implements OnInit {
         this.UpdateCompaniesDics();
     }
 
-    UpdateCompaniesDics()
+    UpdateCompaniesDics(Params?: any)
     {
-      this.CompaniesGraphics =  JSON.parse(JSON.stringify(this._dashboardService.InvestedCompaniesDics));
-      this.CompaniesNews =  JSON.parse(JSON.stringify(this._dashboardService.InvestedCompaniesDics));
+      if(Params)
+      {
+        if(Params.news)
+        {
+          this.CompaniesNews =  JSON.parse(JSON.stringify(this._dashboardService.InterestingCompaniesDics));
+        }
+
+        if(Params.graphics)
+        {
+          this.CompaniesGraphics =  JSON.parse(JSON.stringify(this._dashboardService.InvestedCompaniesDics));
+        }
+      }
+      else
+      {
+        this.CompaniesGraphics =  JSON.parse(JSON.stringify(this._dashboardService.InvestedCompaniesDics));
+        this.CompaniesNews =  JSON.parse(JSON.stringify(this._dashboardService.InterestingCompaniesDics));
+      }
     }
 
     OnCompaniesGraphicSelectChange(obj)
