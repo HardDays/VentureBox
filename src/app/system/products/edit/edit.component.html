@@ -10,7 +10,7 @@
     <div class="create-product__row">
         <div class="upload-image create-product__upload-image">
             <div class="input-groupe create-product__input-groupe">
-                <input id="upload-image" name="upload-image" type="file" (change)="ReadImage($event)" class="upload-image__input" />
+                <input id="upload-image" name="upload-image" type="file" accept="image/x-png,image/gif,image/jpeg" (change)="ReadImage($event)" class="upload-image__input" />
                 <!-- upload-image__label--error если ничего не загружено -->
                 <!-- также если загружено фото вставляем его в style этого блока свойством "background-image" -->
                 <!-- upload-image__label--uploaded если загружено фото -->
