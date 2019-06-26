@@ -12,8 +12,8 @@ export class CrmComponent implements OnInit {
 
     constructor(private sanitizer: DomSanitizer)
     {
-      console.log(window.location.hostname);
-      this.URL = this.sanitizer.bypassSecurityTrustResourceUrl(window.location.hostname + "/crm");
+      // console.log(window.location.hostname);
+      this.URL = this.sanitizer.bypassSecurityTrustResourceUrl("http://ec2-18-222-201-141.us-east-2.compute.amazonaws.com:8080");
     }
     ngOnInit(): void {
     }
