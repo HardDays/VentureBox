@@ -17,6 +17,7 @@ export class MilestonesListItemComponent implements OnInit {
   isCompletedListOpened =  false;
 
   Date = '';
+  InPast = false;
 
   constructor(private milsestonesService: MilestonesService, private auth: AuthService) { }
 
@@ -25,6 +26,10 @@ export class MilestonesListItemComponent implements OnInit {
     this.Item.company_id = this.auth.Me.company_id;
     this.Date = this.Item.finish_date;
     delete this.Item.finish_date;
+
+    const today = new Date(new Date().toDateString());
+    const item = new Date(new Date(this.Date).toDateString());
+    this.InPast = item < today;
   }
 
   saveMilestone() {

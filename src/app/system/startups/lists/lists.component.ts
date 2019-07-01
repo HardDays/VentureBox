@@ -83,7 +83,7 @@ export class StartupsListsComponent implements OnInit {
       this.Errors.email = '';
 
       if (this.InvestedInfo.investment) {
-        this.InvestedInfo.investment = this.InvestedInfo.investment.split(' ').join('');
+        this.InvestedInfo.investment = this.InvestedInfo.investment.replace(',', '.').split(' ').join('');
       }
 
       this.startupsService.InvestingCompany(

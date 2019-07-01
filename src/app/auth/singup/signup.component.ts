@@ -187,7 +187,7 @@ export class SignUpComponent implements OnInit {
           this.ErrorsUserPage2.investment_amount = '';
         }
         if (this.User.investment_amount) {
-          this.User.investment_amount = +(this.User.investment_amount + '').split(' ').join('');
+          this.User.investment_amount = +((this.User.investment_amount + '').replace(',', '.').split(' ').join(''));
         }
       }
       this.RegisterUser();
@@ -234,6 +234,7 @@ export class SignUpComponent implements OnInit {
   }
 
   public mask = [/[1-9]/, /[0-9]/];
+  public maskNumbers = [/[1-9]/, /[0-9]/, /[0-9]/, /[0-9]/, /[0-9]/, /[0-9]/, /[0-9]/, /[0-9]/, /[0-9]/, /[0-9]/, /[0-9]/];
 
 
 }

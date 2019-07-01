@@ -146,7 +146,7 @@ export class StartupsProfileComponent implements OnInit {
 
     InvestToCompany () {
       if (this.InvestedInfo.investment) {
-        this.InvestedInfo.investment = this.InvestedInfo.investment.split(' ').join('');
+        this.InvestedInfo.investment = this.InvestedInfo.investment.replace(',', '.').split(' ').join('');
       }
       this.startupsService.InvestingCompany(
         this.InvestedCompanyID,

@@ -16,11 +16,18 @@ export class MilestonesListItemComponent implements OnInit {
 
   isCompletedListOpened =  false;
 
+  InPast = false;
+
   constructor(private milsestonesService: MilestonesService, private auth: AuthService) { }
 
   ngOnInit() {
     this.Item.user_id = this.auth.Me.id;
     this.Item.company_id = this.auth.Me.company_id;
+
+    const today = new Date(new Date().toDateString());
+    const item = new Date(new Date(this.Item.finish_date).toDateString());
+    this.InPast = item < today;
+
     delete this.Item.finish_date;
   }
 
