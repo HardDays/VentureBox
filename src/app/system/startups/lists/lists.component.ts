@@ -58,6 +58,8 @@ export class StartupsListsComponent implements OnInit {
             }
           }
         );
+      } else {
+        this.ScrollDisabled = true;
       }
     }
 
