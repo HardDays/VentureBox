@@ -41,6 +41,13 @@ export class SystemComponent implements OnInit{
             this.SideBarVisible = false;
         }
     }
+
+    @HostListener('window:scroll', ['$event'])
+    onWindowScroll(event)
+    {
+        if(this.SideBarVisible)
+            this.SideBarVisible = false;
+    }
     constructor(private cdr: ChangeDetectorRef,
         private auth: AuthService, private router: Router,
         private eRef: ElementRef)
