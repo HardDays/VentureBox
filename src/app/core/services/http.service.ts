@@ -9,6 +9,7 @@ declare var Buffer: any;
 export class HttpService {
 
     serverUrl = 'https://venture-box-back.herokuapp.com';
+    // serverUrl = 'http://venture-box-back-test.herokuapp.com/';
 
     public headers: Headers = new Headers([]);
     public token: TokenModel = new TokenModel('');

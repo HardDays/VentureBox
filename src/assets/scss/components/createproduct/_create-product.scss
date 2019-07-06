@@ -3,6 +3,8 @@
 .create-product {
     background: #fff;
     padding: 28px 40px;
+    margin-bottom: 10px;
+    position: relative;
 
     @media (max-width: 767px) {
         padding: 25px 15px;
@@ -39,5 +41,11 @@
 
     &__input-groupe {
         margin-bottom: 6px;
+    }
+
+    &__line {
+        height: 1px;
+        background: $grey400;
+        margin: 13px 0;
     }
 }

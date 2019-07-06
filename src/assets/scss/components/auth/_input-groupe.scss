@@ -9,6 +9,12 @@
         font-weight: $semiBold;
     }
 
+    &__sub-label {
+        color: #6D6D6D;
+        font-size: 12px;
+        margin-bottom: 10px;
+    }
+
     &__input {
         padding: 9px 15px;
         display: block;
