@@ -1,4 +1,4 @@
-import { Component, OnInit, OnDestroy, ChangeDetectorRef, HostListener } from '@angular/core';
+import { Component, OnInit, OnDestroy, ChangeDetectorRef, HostListener, ElementRef } from '@angular/core';
 import { Router, NavigationStart } from '@angular/router';
 import { AuthService } from '../core/services/auth.service';
 import { Subscription } from 'rxjs';
@@ -20,20 +20,30 @@ export class SystemComponent implements OnInit{
     @HostListener('body:click', ['$event'])
     clickhout(event)
     {
+        const button = document.getElementsByClassName("system-header__open-sidebar")[0];
+        if(event.target == button || button.contains(event.target))
+        {
+            this.SideBarVisible = true;
+            return;
+        }
         if(event.path && event.path.length > 1)
         {
             const elem = event.path[1];
             if(elem.classList.contains('system-header__open-sidebar'))
             {
-                this.SideBarVisible = !this.SideBarVisible;
+                this.SideBarVisible = true;
             }
             else{
                 this.SideBarVisible = false;
             }
         }
+        else{
+            this.SideBarVisible = false;
+        }
     }
     constructor(private cdr: ChangeDetectorRef,
-        private auth: AuthService, private router: Router)
+        private auth: AuthService, private router: Router,
+        private eRef: ElementRef)
     {
         this.auth.onAuthChange$.subscribe((val) => {
             this.IsLoggedIn = val;
@@ -75,6 +85,13 @@ export class SystemComponent implements OnInit{
     Logout()
     {
         this.auth.Logout();
+    }
+
+
+    SetSideBarVisible(value)
+    {
+        this.SideBarVisible = value;
+        console.log(this.SideBarVisible);
     }
 
 

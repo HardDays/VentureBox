@@ -7,7 +7,7 @@ import { AuthComponent } from './auth/auth.component';
 import { AuthAccessGuard } from './auth/auth.guard';
 
 const routes: Routes = [
-    { path: '', redirectTo: 'system', pathMatch: 'full'},
+    { path: '', redirectTo: 'auth', pathMatch: 'full'},
     { path: 'auth', loadChildren: './auth/auth.module#AuthModule', canActivate:[AppAccessGuard]},
     { path: 'system', loadChildren: './system/system.module#SystemModule',canActivate:[AppAccessGuard]}
 ];
