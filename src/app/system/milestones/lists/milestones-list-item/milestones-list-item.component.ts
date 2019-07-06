@@ -29,7 +29,7 @@ export class MilestonesListItemComponent implements OnInit {
 
     const today = new Date(new Date().toDateString());
     const item = new Date(new Date(this.Date).toDateString());
-    this.InPast = item < today;
+    this.InPast = false;
   }
 
   saveMilestone() {
