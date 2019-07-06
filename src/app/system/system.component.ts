@@ -16,30 +16,45 @@ export class SystemComponent implements OnInit{
     Initials = '';
 
     SideBarVisible = false;
+    TopBarVisible = false;
 
     @HostListener('body:click', ['$event'])
     clickhout(event)
     {
-        const button = document.getElementsByClassName("system-header__open-sidebar")[0];
-        if(event.target == button || button.contains(event.target))
+        if(this.SideBarVisible)
         {
-            this.SideBarVisible = true;
-            return;
+            this.SideBarVisible = false;
         }
-        if(event.path && event.path.length > 1)
+        else
         {
-            const elem = event.path[1];
-            if(elem.classList.contains('system-header__open-sidebar'))
+            const button = document.getElementsByClassName("system-header__open-sidebar")[0];
+            if(event.target == button || button.contains(event.target))
             {
                 this.SideBarVisible = true;
             }
-            else{
-                this.SideBarVisible = false;
+        }
+
+        if(this.TopBarVisible)
+        {
+            this.TopBarVisible = false;
+        }
+        else
+        {
+            const elems = document.getElementsByClassName("system-header__user");
+            if(elems && elems.length > 0)
+            {
+                const elem = elems[0];
+                if(elem)
+                {
+                    if(event.target == elem || elem.contains(event.target))
+                    {
+                        this.TopBarVisible = true;
+                    }
+                }
             }
         }
-        else{
-            this.SideBarVisible = false;
-        }
+
+        return true;
     }
 
     @HostListener('window:scroll', ['$event'])
@@ -47,7 +62,11 @@ export class SystemComponent implements OnInit{
     {
         if(this.SideBarVisible)
             this.SideBarVisible = false;
+
+        if(this.TopBarVisible)
+            this.TopBarVisible = false;
     }
+
     constructor(private cdr: ChangeDetectorRef,
         private auth: AuthService, private router: Router,
         private eRef: ElementRef)
