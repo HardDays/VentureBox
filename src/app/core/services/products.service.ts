@@ -14,6 +14,7 @@ export enum ProductCreateFields
     name = 'Product name',
     price = 'Price',
     link_to_store = 'Product link',
+    product_type = 'Product type',
     description = 'Product description'
 }
 
@@ -150,9 +151,9 @@ export class ProductsService {
             validate['name'] = 'long';
         }
 
-        if(!Validator.ValidateUrl(product.link_to_store))
+        if(!product.product_type)
         {
-            validate['link_to_store'] = 'invalid';
+            validate['product_type'] = 'empty';
         }
 
         if(!product.description)

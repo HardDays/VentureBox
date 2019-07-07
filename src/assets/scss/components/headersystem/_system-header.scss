@@ -25,15 +25,14 @@
             max-width: 230px;
         }
 
-        &:hover {
-            .system-header__dropdown {
-                display: block;
-            }
-        }
+        // &:hover {
+        //     .system-header__dropdown {
+        //         display: block;
+        //     }
+        // }
     }
 
     &__dropdown {
-        display: none;
         position: absolute;
         top: 100%;
         right: 0;
