@@ -4,6 +4,7 @@ import { Router, NavigationEnd } from '@angular/router';
 import { IMenuItem } from '../../core/interfaces/menu.item.interface';
 import { UserModel } from 'src/app/core/models/user.model';
 import { CompanyModel } from '../../core/models/company.model';
+import { DomSanitizer } from '@angular/platform-browser';
 
 @Component({
   selector: 'navigation-cmp',
@@ -65,13 +66,13 @@ export class NavigationComponent implements OnInit {
             visible: this.IsLoggedIn && this.Me && this.Me.role != 'startup'
         },
         {
-            url: "marketplace",
+            url: "https://marketplace.venture-box.com/collections/all",
             image : "assets/img/marketplace.svg",
             label : "Marketplace",
             visible: true
         }
     ];
-    constructor(private router: Router, private auth: AuthService)
+    constructor(private router: Router, private auth: AuthService, private sanitizer: DomSanitizer)
     {
         this.router.events.subscribe((event) =>{
             if(event instanceof NavigationEnd)
@@ -167,7 +168,7 @@ export class NavigationComponent implements OnInit {
                 visible: this.IsLoggedIn && this.Me && this.Me.role != 'startup'
             },
             {
-                url: "marketplace",
+                url: "https://marketplace.venture-box.com/collections/all",
                 image : "assets/img/marketplace.svg",
                 label : "Marketplace",
                 visible: true
@@ -179,6 +180,12 @@ export class NavigationComponent implements OnInit {
                 visible: true
             }
         ];
+    }
+
+    OpenLink(item)
+    {
+        const url = this.sanitizer.bypassSecurityTrustResourceUrl(item.url);
+        window.open(item.url, "_blank");
     }
 
 

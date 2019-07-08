@@ -35,9 +35,9 @@ const routes: Routes =
           {
             path: 'dashboard', loadChildren: './dashboard/dashboard.module#DashboardModule', canActivate: [SystemAccessGuard], data: {auth: true}
           },
-          {
-            path: 'marketplace', loadChildren: './marketplace/marketplace.module#MarketplaceModule', canActivate: [SystemAccessGuard]
-          },
+          // {
+          //   path: 'marketplace', loadChildren: './marketplace/marketplace.module#MarketplaceModule', canActivate: [SystemAccessGuard]
+          // },
           {
             path: 'settings', component: SettingsComponent, canActivate: [SystemAccessGuard], data: {role: null, auth: true}
           },
