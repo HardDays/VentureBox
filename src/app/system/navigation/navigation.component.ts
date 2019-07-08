@@ -171,6 +171,12 @@ export class NavigationComponent implements OnInit {
                 image : "assets/img/marketplace.svg",
                 label : "Marketplace",
                 visible: true
+            },
+            {
+                url: "tracking",
+                image : "assets/img/tracking.svg",
+                label : "Tracking",
+                visible: true
             }
         ];
     }

@@ -18,10 +18,9 @@ import { TypeService } from './core/services/type.service';
 import { ProductsService } from './core/services/products.service';
 import { MilestonesService } from './core/services/milestones.service';
 import { StartupsService } from './core/services/startups.service';
-
+import { TrackingService } from './core/services/tracking.service';
 
 import { platformBrowserDynamic } from '@angular/platform-browser-dynamic';
-
 
 @NgModule({
   declarations: [
@@ -47,7 +46,8 @@ import { platformBrowserDynamic } from '@angular/platform-browser-dynamic';
     NewsService,
     ProductsService,
     MilestonesService,
-    StartupsService
+    StartupsService,
+    TrackingService
   ],
   bootstrap: [AppComponent]
 })

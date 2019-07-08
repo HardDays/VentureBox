@@ -21,9 +21,13 @@ export class DashboardComponent implements OnInit {
       )
     }
 
-    ngOnInit() 
+    ngOnInit()
     {
       this.Me = this.dashboard.Me;
+      if (!this.Me || !this.Me.id) {
+        this._router.navigate(['/auth']);
+        return;
+      }
     }
 
     CheckMe()

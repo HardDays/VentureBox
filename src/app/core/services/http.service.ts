@@ -8,8 +8,8 @@ declare var Buffer: any;
 @Injectable()
 export class HttpService {
 
-    serverUrl = 'https://venture-box-back.herokuapp.com';
-    // serverUrl = 'http://venture-box-back-test.herokuapp.com/';
+    // serverUrl = 'https://venture-box-back.herokuapp.com';
+    serverUrl = 'http://venture-box-back-test.herokuapp.com/';
 
     public headers: Headers = new Headers([]);
     public token: TokenModel = new TokenModel('');
@@ -17,7 +17,7 @@ export class HttpService {
         this.BaseHeadersInit();
     }
 
-    BaseInitByToken(data: string) 
+    BaseInitByToken(data: string)
     {
         if (data) {
             if (this.headers.has('Authorization')) {
@@ -28,15 +28,15 @@ export class HttpService {
         }
     }
 
-    BaseHeadersInit() 
+    BaseHeadersInit()
     {
-        if (!this.headers.has('Content-Type')) 
+        if (!this.headers.has('Content-Type'))
         {
             this.headers.append('Content-Type', 'application/json');
         }
     }
 
-    GetToken(): TokenModel 
+    GetToken(): TokenModel
     {
         return this.token;
     }
@@ -68,26 +68,26 @@ export class HttpService {
                         errObj.body = this.validResp(error)?error.json():""
                         fail(errObj);
                     }
-                } 
+                }
             )
     }
 
-    GetQueryStr(method: string, params?: string) 
+    GetQueryStr(method: string, params?: string)
     {
         return this.serverUrl + method + '?' + params;
     }
 
-    GetData(method: string, params?: string) 
+    GetData(method: string, params?: string)
     {
         return this.http.get(this.serverUrl + method + '?' + params, {headers: this.headers});
     }
 
-    DeleteData(method: string) 
+    DeleteData(method: string)
     {
         return this.http.delete(this.serverUrl + method, {headers: this.headers});
     }
 
-    DeleteDataWithBody(method: string, body: any) 
+    DeleteDataWithBody(method: string, body: any)
     {
         return this.http.delete(this.serverUrl + method, new RequestOptions({
             headers: this.headers,
@@ -95,27 +95,27 @@ export class HttpService {
           }));
     }
 
-    DeleteDataWithParam(method: string, param) 
+    DeleteDataWithParam(method: string, param)
     {
         return this.http.delete(this.serverUrl + method + '?' + param, {headers: this.headers});
     }
 
-    PostData(method: string, data: any) 
+    PostData(method: string, data: any)
     {
         return this.http.post(this.serverUrl + method, data, {headers: this.headers});
     }
 
-    PatchData(method: string, data: any) 
+    PatchData(method: string, data: any)
     {
         return this.http.patch(this.serverUrl + method, data, {headers: this.headers});
     }
 
-    PutData(method: string, data: string) 
+    PutData(method: string, data: string)
     {
         return this.http.put(this.serverUrl + method, data, {headers: this.headers});
     }
 
-    GetDataFromOtherUrl(url: string) 
+    GetDataFromOtherUrl(url: string)
     {
         return this.http.get(url);
     }

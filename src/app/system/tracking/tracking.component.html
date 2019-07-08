@@ -1,0 +1,46 @@
+<h1 class="system__title">
+    Tracking
+</h1>
+
+<div class="tracking">
+    <div class="tracking-item tracking-item--header">
+        <div class="tracking-item__column">
+            <p class="tracking-item__info">Investor name</p>
+        </div>
+        <div *ngFor="let item of Axis" class="tracking-item__column">
+            <p class="tracking-item__info">{{item}}</p>
+        </div>
+        <div class="tracking-item__column">
+            <p class="tracking-item__info">Total investment</p>
+        </div>
+        <div class="tracking-item__column">
+            <p class="tracking-item__info">Debt</p>
+        </div>
+    </div>
+    <div class="tracking-item tracking__item">
+        <div class="tracking-item__column">
+            <p class="tracking-item__info tracking-item__info--strong">Mark Smith</p>
+        </div>
+        <div class="tracking-item__column">
+            <p class="tracking-item__info">$5 000</p>
+        </div>
+        <div class="tracking-item__column">
+            <p class="tracking-item__info">$4 050</p>
+        </div>
+        <div class="tracking-item__column">
+            <p class="tracking-item__info">$7 500</p>
+        </div>
+        <div class="tracking-item__column">
+            <p class="tracking-item__info">$1 500</p>
+        </div>
+        <div class="tracking-item__column">
+            <p class="tracking-item__info">$1 800</p>
+        </div>
+        <div class="tracking-item__column">
+            <p class="tracking-item__info">$100 800</p>
+        </div>
+        <div class="tracking-item__column">
+            <p class="tracking-item__info">$50 800</p>
+        </div>
+    </div>
+</div>

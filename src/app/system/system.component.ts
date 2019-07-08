@@ -120,5 +120,9 @@ export class SystemComponent implements OnInit{
         console.log(this.SideBarVisible);
     }
 
+    DownloadFile(name) {
+      window.open('../../assets/files/Privacy_Policy_13V.docx');
+    }
+
 
 }

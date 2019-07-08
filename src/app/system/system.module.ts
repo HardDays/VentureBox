@@ -24,6 +24,7 @@ import {
     GoogleApiConfig
 } from "ng-gapi";
 import { GoogleService } from '../core/services/google.service';
+import { TrackingComponent } from './tracking/tracking.component';
 
 let gapiClientConfig: NgGapiClientConfig = {
     client_id: "261425662871-9kivhka8a8ts4vmrhj0fk93u1rauu7p4.apps.googleusercontent.com",
@@ -42,7 +43,8 @@ let gapiClientConfig: NgGapiClientConfig = {
     NewsComponent,
     ProductDetailComponent,
     SettingsComponent,
-    PortfolioComponent
+    PortfolioComponent,
+    TrackingComponent
   ],
   imports: [
     CommonModule,

@@ -7,7 +7,7 @@ import { UserModel } from '../models/user.model';
 import { TokenModel } from '../models/token.model';
 import { Router } from '@angular/router';
 @Injectable()
-export class AuthService 
+export class AuthService
 {
     protected token_field:string = "token";
 
@@ -43,11 +43,11 @@ export class AuthService
           {
             this.IsLoggedIn = val;
 
-            if (this.IsLoggedIn) 
+            if (this.IsLoggedIn)
             {
               this.GetMeByToken();
             }
-            else 
+            else
             {
               this.Me = null;
               this.onMeChange$.next(this.Me);
@@ -71,7 +71,7 @@ export class AuthService
       }
     }
 
-    SetCurrentUser(user) 
+    SetCurrentUser(user)
     {
       this.Me = user;
       this.SetCurrentToken(this.Me.token);
@@ -109,7 +109,7 @@ export class AuthService
         }
       )
     }
-    
+
     ForgotPassword(email: string,  success?: (data) => void, fail?: (err) => void)
     {
       return this.http.CommonRequest(
@@ -119,7 +119,7 @@ export class AuthService
       )
     }
 
-    GetMeByToken() 
+    GetMeByToken()
     {
       return this.http.CommonRequest(
         () => this.http.GetData('/users/me', ''),
@@ -127,8 +127,13 @@ export class AuthService
         {
           this.Me = res;
           this.onMeChange$.next(this.Me);
+        },
+        (err) => {
+          this.ClearSession();
+          this.router.navigate(['/auth']);
+          return;
         }
-      )
+      );
     }
 
     GetMyCompany()
@@ -150,7 +155,7 @@ export class AuthService
       );
     }
 
-    GetMe() 
+    GetMe()
     {
       return this.Me;
     }

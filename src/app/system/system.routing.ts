@@ -7,12 +7,13 @@ import { NewsComponent } from './news/news.component';
 import { ProductDetailComponent } from './product_detail/product_detail.component';
 import { SettingsComponent } from './settings/settings.component';
 import { PortfolioComponent } from './portfolio/portfolio.component';
+import { TrackingComponent } from './tracking/tracking.component';
 
 const routes: Routes =
 [
     { path: '', component: SystemComponent, children:
         [
-          { path: "", pathMatch:"full", redirectTo: "marketplace"},
+          { path: "", pathMatch:"full", redirectTo: "dashboard"},
           {
             path: 'my_products', loadChildren: './products/products.module#ProductsModule',canActivate:[SystemAccessGuard], data: {role: 'startup', auth: true}
           },
@@ -45,6 +46,9 @@ const routes: Routes =
           },
           {
             path: 'crm', loadChildren: './crm/crm.module#CrmModule', canActivate: [SystemAccessGuard], data: {role: 'startup', auth: true}
+          },
+          {
+            path: 'tracking', component: TrackingComponent, canActivate: [SystemAccessGuard], data: {auth: true}
           },
           { path: '**', component: MainComponent}
         ]
