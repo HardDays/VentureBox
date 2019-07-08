@@ -2,7 +2,16 @@
 
 <ng-container *ngFor="let item of MenuItems">
     <li class="side-bar-menu__item"  *ngIf="item.visible">
-        <a [routerLink]="item.url" [ngClass]="{'side-bar-menu__link--active': item.url === CurrentPage}"  class="side-bar-menu__link">
+        <a *ngIf="item.label !== 'Marketplace'" [routerLink]="item.url" [ngClass]="{'side-bar-menu__link--active': item.url === CurrentPage}"  class="side-bar-menu__link">
+            <img [src]="item.image" class="side-bar-menu__icon img-responsive" alt="">
+            <span class="side-bar-menu__text">{{item.label}}</span>
+        </a>
+        <a 
+            *ngIf="item.label === 'Marketplace'" 
+            class="side-bar-menu__link"
+            (click)="OpenLink(item)"
+            style="cursor: pointer"
+        >
             <img [src]="item.image" class="side-bar-menu__icon img-responsive" alt="">
             <span class="side-bar-menu__text">{{item.label}}</span>
         </a>

@@ -1,7 +1,6 @@
-<form class="form-filter">
+<!-- <form class="form-filter">
     <div class="form-filter__flex-groupe">
         <div class="input-groupe form-filter__search-from-name">
-            <!-- input-groupe__input--error класс ошибки для инпута-->
             <div class="input-groupe__with-sm-butt">
                 <input type="text" class="input-groupe__input" name="name" placeholder="Search" [ngModel]="SearchParams.text" (ngModelChange)="SearchParams.text = $event">
                 <button class="input-groupe__sm-butt input-groupe__sm-butt--sentered_inside" (click)="OnSearch()">
@@ -16,9 +15,9 @@
                 <path d="M18.1231 0H1.87723C0.211679 0 -0.628673 2.02074 0.551405 3.20082L6.875 9.52663V16.25C6.875 16.8401 7.15285 17.3959 7.625 17.8125L10.125 19.651C11.3466 20.5047 13.125 19.7111 13.125 18.151V9.52663L19.4489 3.20082C20.6266 2.02312 19.792 0 18.1231 0ZM11.25 8.74999V18.125L8.75 16.25V8.74999L1.875 1.875H18.125L11.25 8.74999Z" fill="white"/>
             </svg>  
         </button>
-    </div>
+    </div> -->
     <!--ngIf-->
-    <div class="form-filter__checkboxes" *ngIf="ShowCategories">
+    <!-- <div class="form-filter__checkboxes" *ngIf="ShowCategories">
         <div class="marketplace-checkboxes">
             <div class="one-checkbox marketplace-checkboxes__check-box" *ngFor="let item of Categories; let i = index">
                 <div class="one-checkbox__check-style">
@@ -26,7 +25,7 @@
                     <label for="checkbox-{{i+1}}"></label>
                 </div>
                 <p class="one-checkbox__label">{{item.name}}</p>
-            </div>
+            </div> -->
             <!-- <div class="one-checkbox marketplace-checkboxes__check-box">
                 <div class="one-checkbox__check-style">
                     <input type="checkbox" class="one-checkbox__checkbox" name="role" id="checkbox-2">
@@ -41,11 +40,11 @@
                 </div>
                 <p class="one-checkbox__label">Category</p>
             </div> -->
-        </div>
+        <!-- </div>
     </div>
-</form>
+</form> -->
 
-
+<!-- 
 <div class="my-products marketplace-products" 
     infiniteScroll
     [infiniteScrollDistance]="1"
@@ -56,4 +55,7 @@
         <app-single-product-cmp [product]="item" [isMarketplace]="true"></app-single-product-cmp>
     </div>
     
-</div>
+</div> -->
+<iframe class="mp-block" [srcdoc]="URL">
+
+</iframe>
