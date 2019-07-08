@@ -4,7 +4,7 @@ export class ProductModel{
         public company_id?: number,
         public name?: string,
         public price?: number,
-        public link_to_store?: string,
+        public product_type?: string,
         public description?: string,
         public company_name?: string,
         public created_at?: Date,

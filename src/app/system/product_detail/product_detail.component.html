@@ -19,7 +19,8 @@
                 <a [routerLink]="['/system','startups','profile', Product.company_id]" class="product__product-link">{{Product.company_name}}</a>
             </div>
             <div class="product__product-link-wrapper">
-                <a [href]="Product.link_to_store" class="product__product-link" target="_blank">Product link</a>
+                <p class="sturtup-info__title">{{Product.product_type}}</p>
+                <!-- <a [href]="Product.link_to_store" class="product__product-link" target="_blank">Product link</a> -->
             </div>
             <div class="product__product-link-wrapper">
                 <p class="product__price">${{Product.price}}</p>

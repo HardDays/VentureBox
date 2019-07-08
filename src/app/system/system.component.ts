@@ -1,4 +1,4 @@
-import { Component, OnInit, OnDestroy, ChangeDetectorRef, HostListener } from '@angular/core';
+import { Component, OnInit, OnDestroy, ChangeDetectorRef, HostListener, ElementRef } from '@angular/core';
 import { Router, NavigationStart } from '@angular/router';
 import { AuthService } from '../core/services/auth.service';
 import { Subscription } from 'rxjs';
@@ -16,24 +16,60 @@ export class SystemComponent implements OnInit{
     Initials = '';
 
     SideBarVisible = false;
+    TopBarVisible = false;
 
     @HostListener('body:click', ['$event'])
     clickhout(event)
     {
-        if(event.path && event.path.length > 1)
+        if(this.SideBarVisible)
         {
-            const elem = event.path[1];
-            if(elem.classList.contains('system-header__open-sidebar'))
+            this.SideBarVisible = false;
+        }
+        else
+        {
+            const button = document.getElementsByClassName("system-header__open-sidebar")[0];
+            if(event.target == button || button.contains(event.target))
             {
-                this.SideBarVisible = !this.SideBarVisible;
-            }
-            else{
-                this.SideBarVisible = false;
+                this.SideBarVisible = true;
             }
         }
+
+        if(this.TopBarVisible)
+        {
+            this.TopBarVisible = false;
+        }
+        else
+        {
+            const elems = document.getElementsByClassName("system-header__user");
+            if(elems && elems.length > 0)
+            {
+                const elem = elems[0];
+                if(elem)
+                {
+                    if(event.target == elem || elem.contains(event.target))
+                    {
+                        this.TopBarVisible = true;
+                    }
+                }
+            }
+        }
+
+        return true;
     }
+
+    @HostListener('window:scroll', ['$event'])
+    onWindowScroll(event)
+    {
+        if(this.SideBarVisible)
+            this.SideBarVisible = false;
+
+        if(this.TopBarVisible)
+            this.TopBarVisible = false;
+    }
+
     constructor(private cdr: ChangeDetectorRef,
-        private auth: AuthService, private router: Router)
+        private auth: AuthService, private router: Router,
+        private eRef: ElementRef)
     {
         this.auth.onAuthChange$.subscribe((val) => {
             this.IsLoggedIn = val;
@@ -75,6 +111,13 @@ export class SystemComponent implements OnInit{
     Logout()
     {
         this.auth.Logout();
+    }
+
+
+    SetSideBarVisible(value)
+    {
+        this.SideBarVisible = value;
+        console.log(this.SideBarVisible);
     }
 
 

@@ -52,16 +52,15 @@
         </div>
         <div class="create-product__coll">
             <div class="input-groupe create-product__input-groupe">
-                <label class="input-groupe__label" for="product-link">Product link</label>
+                <label class="input-groupe__label" for="product-type">Product type</label>
                 <!-- input-groupe__input--error класс ошибки для инпута -->
                 <input type="url" class="input-groupe__input"
-                    placeholder="https://example.com"
-                    pattern="https://.*"
-                    [ngClass]="{'input-groupe__input--error': ErrorMsgs['link_to_store']}" id="product-link"
-                    [ngModel]="Product.link_to_store" (ngModelChange)="Product.link_to_store = $event"
-                    name="product-link">
+                    required
+                    [ngClass]="{'input-groupe__input--error': ErrorMsgs['product_type']}" id="product-type"
+                    [ngModel]="Product.product_type" (ngModelChange)="Product.product_type = $event"
+                    name="product-type">
                 <!-- сюда текст ошибки если есть -->
-                <p class="input-groupe__error" *ngIf="ErrorMsgs['link_to_store']">{{ErrorMsgs['link_to_store']}}</p>
+                <p class="input-groupe__error" *ngIf="ErrorMsgs['product_type']">{{ErrorMsgs['product_type']}}</p>
             </div>
 
             <div class="input-groupe create-product__input-groupe">

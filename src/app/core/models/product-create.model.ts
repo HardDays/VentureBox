@@ -4,7 +4,7 @@ export class ProductCreateModel{
         public image?: string,
         public name?: string,
         public price?: number,
-        public link_to_store?: string,
+        public product_type?: string,
         public description?: string,
         public tags?: string[]
     ){}
@@ -15,7 +15,7 @@ export class ProductCreateModel{
 
         cproduct.name = product.name;
         cproduct.price = product.price;
-        cproduct.link_to_store = product.link_to_store;
+        cproduct.product_type = product.product_type;
         cproduct.description = product.description;
         cproduct.tags = product.tags;
         

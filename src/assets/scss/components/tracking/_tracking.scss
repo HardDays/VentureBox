@@ -1,0 +1,71 @@
+@import "layout/var";
+
+.tracking {
+    background: #fff;
+
+    @media (max-width: 767px) {
+        position: relative;
+        overflow: auto;
+    }
+
+    &__item {
+        margin-top: -1px;
+
+        
+    }
+}
+
+.tracking-item {
+    display: flex;
+    border: 1px solid #EAEAEA;
+
+    @media (max-width: 767px) {
+        width: 800px;
+    }
+
+    &__column {
+        border-right: 1px solid #EAEAEA;
+        padding: 12px 15px;
+        width: 12%;
+
+        @media (max-width: 1199px) {
+            padding: 12px 10px;
+        }
+
+        &:first-child {
+            width: 16%;
+
+            .tracking-item__info {
+                text-align: left;
+            }
+        }
+
+        &:last-child {
+            border-right: none;
+        }
+
+        
+    }
+
+    &__info {
+        font-size: 14px;
+        line-height: 19px;
+        text-align: center;
+
+        &--strong {
+            font-weight: $bold;
+        }
+    }
+
+    &--header {
+        background: $black;
+
+        .tracking-item__column {
+            border-color: #434343;
+        }
+        
+        .tracking-item__info {
+            color: #fff;
+        }
+    }
+}

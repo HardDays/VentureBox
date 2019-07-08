@@ -27,7 +27,7 @@
                             <p class="header-user__role">{{Me.role | titlecase}}</p>
                         </div>
                     </div>
-                    <ul class="system-header__dropdown">
+                    <ul class="system-header__dropdown" [ngStyle]="{'display': TopBarVisible ? 'block' : 'none'}">
                         <li class="system-header__dropdown-item">
                             <a routerLink='settings' class="system-header__dropdown-link">Settings</a>
                         </li>
