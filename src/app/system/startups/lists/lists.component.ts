@@ -7,6 +7,7 @@ import { ProductsService } from '../../../core/services/products.service';
 import { ProductModel } from '../../../core/models/product.model';
 import { AuthService } from '../../../core/services/auth.service';
 import { IDictionary } from 'src/app/core/interfaces/dictionary.interface';
+import { IMyDpOptions } from 'mydatepicker';
 
 @Component({
   selector: 'startups-lists-cmp',
@@ -36,7 +37,9 @@ export class StartupsListsComponent implements OnInit {
       investment: '',
       evaluation: '',
       email: '',
-      contact_email: ''
+      contact_email: '',
+      date_from: '',
+      date_to: ''
     };
 
     ngOnInit() {
@@ -99,7 +102,9 @@ export class StartupsListsComponent implements OnInit {
             investment: '',
             evaluation: '',
             email: '',
-            contact_email: ''
+            contact_email: '',
+            date_from: '',
+            date_to: ''
           };
           this.Startups.find(x => x.id === this.InvestedCompanyID).is_invested = true;
         }, (err) => {
@@ -135,10 +140,29 @@ export class StartupsListsComponent implements OnInit {
             investment: '',
             evaluation: '',
             email: '',
-            contact_email: ''
+            contact_email: '',
+            date_from: '',
+            date_to: ''
           };
   }
 
+
+  IsShowFrom = false;
+  IsShowTo = false;
+  Today = new Date();
+  public myDatePickerOptions: IMyDpOptions = {
+        dateFormat: 'yyyy-mm-dd',
+        inline: true,
+        disableUntil: {year: this.Today.getFullYear(), month: this.Today.getMonth() + 1, day: this.Today.getDate() - 1}
+    };
+    onDateFromChanged(event) {
+      this.InvestedInfo.date_from = event.formatted;
+      this.IsShowFrom = false;
+    }
+    onDateToChanged(event) {
+      this.InvestedInfo.date_to = event.formatted;
+      this.IsShowTo = false;
+    }
 
 
 }

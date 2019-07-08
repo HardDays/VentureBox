@@ -13,6 +13,7 @@ import { StartupsMyProfileComponent } from './my-profile/my-profile.component';
 import { StartupsEditComponent } from './edit/edit.component';
 import { TextMaskModule } from 'angular2-text-mask';
 import { InfiniteScrollModule } from 'ngx-infinite-scroll';
+import { MyDatePickerModule } from 'mydatepicker';
 
 @NgModule({
   declarations: [
@@ -31,7 +32,8 @@ import { InfiniteScrollModule } from 'ngx-infinite-scroll';
     StartupsRoutingModule,
     ReactiveFormsModule,
     TextMaskModule,
-    InfiniteScrollModule
+    InfiniteScrollModule,
+    MyDatePickerModule
   ],
   providers: [
        StartupsAccessGuard

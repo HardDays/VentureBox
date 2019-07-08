@@ -2788,6 +2788,12 @@ button, input {
   display: flex;
 }
 
+@media (max-width: 767px) {
+  .invest-modal-form__flex--sm_blick {
+    display: block;
+  }
+}
+
 .invest-modal-form__side:first-child {
   width: 65%;
   padding-right: 12px;
@@ -2795,6 +2801,30 @@ button, input {
 
 .invest-modal-form__side:last-child {
   width: 35%;
+}
+
+.invest-modal-form__side--half:first-child {
+  width: 50%;
+  padding-right: 6px;
+}
+
+@media (max-width: 767px) {
+  .invest-modal-form__side--half:first-child {
+    width: 100%;
+    padding: 0;
+  }
+}
+
+.invest-modal-form__side--half:last-child {
+  width: 50%;
+  padding-left: 6px;
+}
+
+@media (max-width: 767px) {
+  .invest-modal-form__side--half:last-child {
+    width: 100%;
+    padding: 0;
+  }
 }
 
 .invest-modal-form__msg {
@@ -3665,6 +3695,42 @@ button, input {
   border-right: none;
 }
 
+.tracking-item__column--with_option {
+  background: #F2F2F2;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-pack: justify;
+      justify-content: space-between;
+  -ms-flex-align: center;
+      align-items: center;
+  cursor: pointer;
+}
+
+.tracking-item__column--with_option .tracking-item__info {
+  text-align: left;
+  color: #A4A0A0;
+}
+
+.tracking-item__column--with_option .tracking-item__info-button {
+  display: none;
+}
+
+.tracking-item__column--checked {
+  background: #fff;
+}
+
+.tracking-item__column--checked .tracking-item__info-button {
+  display: block;
+}
+
+.tracking-item__column--checked .tracking-item__info {
+  color: #000;
+}
+
+.tracking-item__column--today {
+  background: rgba(101, 154, 255, 0.1);
+}
+
 .tracking-item__info {
   font-size: 14px;
   line-height: 19px;
@@ -3685,4 +3751,41 @@ button, input {
 
 .tracking-item--header .tracking-item__info {
   color: #fff;
+}
+
+.tracking-checkbox {
+  position: relative;
+}
+
+.tracking-checkbox__label {
+  display: none;
+  position: absolute;
+  bottom: calc(100% + 4px);
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 10;
+  border: 1px solid #C4C4C4;
+  background: #fff;
+  padding: 4px 10px;
+  font-size: 14px;
+  line-height: 19px;
+  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.09);
+}
+
+.tracking-checkbox__button {
+  display: block;
+  border-radius: 0;
+  border: 1px solid #303030;
+  width: 18px;
+  height: 18px;
+  background-color: transparent;
+  padding: 0;
+  background-repeat: no-repeat;
+  background-position: center;
+  background-image: url(../img/checked-black.svg);
+  cursor: pointer;
+}
+
+.tracking-checkbox:hover .tracking-checkbox__label {
+  display: block;
 }

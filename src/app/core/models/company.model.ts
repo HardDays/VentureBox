@@ -27,6 +27,8 @@ export class InvestedModel {
         public evaluation?: string,
         public contact_email?: string,
         public investor_name?: string,
-        public investor_email?: string
+        public investor_email?: string,
+        public date_from?: string,
+        public date_to?: string
     ) {}
 }

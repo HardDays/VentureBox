@@ -13,6 +13,10 @@ export class TrackingComponent implements OnInit {
   Axis: string[] = [];
   Investors: any[] = [];
 
+  isOpenModal = false;
+  Date = '';
+  CompanyId = 0;
+
   constructor(private authService: AuthService, private trackingService: TrackingService) { }
 
   ngOnInit() {
@@ -35,13 +39,31 @@ export class TrackingComponent implements OnInit {
         (res) => {
           this.Axis = res.axis;
           this.Investors = res.investors;
-          console.log(`Axis = `, this.Axis);
+          console.log(`Investors = `, this.Investors);
         },
         (err) => {
           console.log(`err = `, err);
         }
       );
     }
+  }
+
+  OpenModal (dateId: number, companyId: number) {
+    this.isOpenModal = true;
+    this.Date = this.Axis[dateId];
+    this.CompanyId = companyId;
+    console.log(this.Date, this.CompanyId);
+  }
+
+  PaidToProject() {
+    this.isOpenModal = false;
+    this.trackingService.AddTracking(
+      this.Date,
+      this.CompanyId,
+      (res) => {
+        console.log(`Success: `, res);
+      }
+    );
   }
 
 }

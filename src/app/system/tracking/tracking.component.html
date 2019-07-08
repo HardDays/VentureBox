@@ -7,7 +7,7 @@
         <div class="tracking-item__column">
             <p class="tracking-item__info">Investor name</p>
         </div>
-        <div *ngFor="let item of Axis" class="tracking-item__column">
+        <div *ngFor="let item of Axis; let i = index" class="tracking-item__column">
             <p class="tracking-item__info">{{item}}</p>
         </div>
         <div class="tracking-item__column">
@@ -17,30 +17,43 @@
             <p class="tracking-item__info">Debt</p>
         </div>
     </div>
-    <div class="tracking-item tracking__item">
-        <div class="tracking-item__column">
-            <p class="tracking-item__info tracking-item__info--strong">Mark Smith</p>
-        </div>
-        <div class="tracking-item__column">
-            <p class="tracking-item__info">$5 000</p>
-        </div>
-        <div class="tracking-item__column">
-            <p class="tracking-item__info">$4 050</p>
-        </div>
-        <div class="tracking-item__column">
-            <p class="tracking-item__info">$7 500</p>
-        </div>
-        <div class="tracking-item__column">
-            <p class="tracking-item__info">$1 500</p>
-        </div>
-        <div class="tracking-item__column">
-            <p class="tracking-item__info">$1 800</p>
-        </div>
-        <div class="tracking-item__column">
-            <p class="tracking-item__info">$100 800</p>
-        </div>
-        <div class="tracking-item__column">
-            <p class="tracking-item__info">$50 800</p>
-        </div>
-    </div>
+        <div class="tracking-item tracking__item">
+          <div class="tracking-item__column">
+              <p class="tracking-item__info tracking-item__info--strong">Mark Smith</p>
+          </div>
+          <!-- tracking-item__column--checked tracking-item__column--today -->
+          <div *ngFor="let item of Axis; let i = index" class="tracking-item__column tracking-item__column tracking-item__column--with_option tracking-item__column--checked" [ngClass]="{'tracking-item__column--today': i == 2}" >
+              <p class="tracking-item__info">$5 000</p>
+              <div class="tracking-checkbox tracking-item__info-button">
+                  <div class="tracking-checkbox__label">Paid</div>
+                  <button (click)="OpenModal(i, 1)" class="tracking-checkbox__button"></button>
+              </div>
+          </div>
+          <div class="tracking-item__column">
+              <p class="tracking-item__info">$100 800</p>
+          </div>
+          <div class="tracking-item__column">
+              <p class="tracking-item__info">$50 800</p>
+          </div>
+      </div>
 </div>
+
+<ng-container *ngIf="isOpenModal">
+  <div class="modal">
+      <div class="invest-modal modal__body">
+          <div class="invest-modal-form">
+              <p class="invest-modal-form__msg invest-modal-form__msg--big">Are you sure you want mark
+                  Mouse paid you a debt of $5000 for May?</p>
+              <div class="two-col-buttons">
+                  <div class="button-wrapper two-col-buttons__item">
+                      <a (click)="isOpenModal = false" class="button-wrapper__button button-wrapper__button--border_theme">No</a>
+                  </div>
+                  <div (click)="PaidToProject()" class="button-wrapper two-col-buttons__item">
+                      <button class="button-wrapper__button">Yes</button>
+                  </div>
+              </div>
+          </div>
+      </div>
+  </div>
+  <div class="modal__backdrop"></div>
+</ng-container>
