@@ -17,23 +17,25 @@
             <p class="tracking-item__info">Debt</p>
         </div>
     </div>
-        <div class="tracking-item tracking__item">
+        <div *ngFor="let investors of Investors; let j = index" class="tracking-item tracking__item">
           <div class="tracking-item__column">
-              <p class="tracking-item__info tracking-item__info--strong">Mark Smith</p>
+              <p class="tracking-item__info tracking-item__info--strong">{{investors.name}}</p>
           </div>
           <!-- tracking-item__column--checked tracking-item__column--today -->
-          <div *ngFor="let item of Axis; let i = index" class="tracking-item__column tracking-item__column tracking-item__column--with_option tracking-item__column--checked" [ngClass]="{'tracking-item__column--today': i == 2}" >
-              <p class="tracking-item__info">$5 000</p>
-              <div class="tracking-checkbox tracking-item__info-button">
-                  <div class="tracking-checkbox__label">Paid</div>
-                  <button (click)="OpenModal(i, 1)" class="tracking-checkbox__button"></button>
-              </div>
+          <ng-container *ngFor="let item of investors.months; let i = index" >
+            <div *ngIf="item.title" class="tracking-item__column tracking-item__column" [ngClass]="{'tracking-item__column--today': i == 3,'tracking-item__column--with_option': MyRole && MyRole == 'investor','tracking-item__column--checked': MyRole && MyRole == 'investor' && !item.payed}" >
+                <p class="tracking-item__info">${{item.amount}}</p>
+                <div *ngIf="MyRole && MyRole == 'investor' && i <= 3" class="tracking-checkbox tracking-item__info-button">
+                    <div class="tracking-checkbox__label">Paid</div>
+                    <button (click)="OpenModal(i-1, investors.company_id)" class="tracking-checkbox__button"></button>
+                </div>
+            </div>
+          </ng-container>
+          <div class="tracking-item__column">
+              <p class="tracking-item__info">${{investors.total_investment}}</p>
           </div>
           <div class="tracking-item__column">
-              <p class="tracking-item__info">$100 800</p>
-          </div>
-          <div class="tracking-item__column">
-              <p class="tracking-item__info">$50 800</p>
+              <p class="tracking-item__info">${{investors.debt}}</p>
           </div>
       </div>
 </div>
