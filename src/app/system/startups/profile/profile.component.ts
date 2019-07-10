@@ -12,6 +12,7 @@ import { TypeService } from 'src/app/core/services/type.service';
 import { CompanyModel, InvestedModel } from 'src/app/core/models/company.model';
 import { StartupsService } from 'src/app/core/services/startups.service';
 import { NewsService } from 'src/app/core/services/news.service';
+import { IMyDpOptions } from 'mydatepicker';
 
 @Component({
   selector: 'app-startups-profile-cmp',
@@ -30,17 +31,20 @@ export class StartupsProfileComponent implements OnInit {
   News: NewsModel[] = [];
 
   isModalOpened = false;
-  isModalSuccess = false;
-  InvestedCompanyID = 0;
-  InvestedInfo = new InvestedModel();
-  public mask = [/[1-9]/, /[0-9]/];
 
   ErrorsInvest = {
     investment: '',
     evaluation: '',
     email: '',
-    contact_email: ''
+    contact_email: '',
+    date_from: '',
+    date_to: ''
   };
+
+  isModalSuccess = false;
+  InvestedCompanyID = 0;
+  InvestedInfo = new InvestedModel();
+  public mask = [/[1-9]/, /[0-9]/];
 
   StageOfFunding: {name: string, value: string}[] = [];
   TeamLevels: {name: string, value: string}[] = [];
@@ -174,6 +178,24 @@ export class StartupsProfileComponent implements OnInit {
           this.Startup.is_interested = false;
         });
     }
+
+    IsShowFrom = false;
+    IsShowTo = false;
+    Today = new Date();
+    public myDatePickerOptions: IMyDpOptions = {
+        dateFormat: 'yyyy-mm-dd',
+        inline: true,
+        disableUntil: {year: this.Today.getFullYear(), month: this.Today.getMonth() + 1, day: this.Today.getDate() - 1}
+    };
+    onDateFromChanged(event) {
+      this.InvestedInfo.date_from = event.formatted;
+      this.IsShowFrom = false;
+    }
+    onDateToChanged(event) {
+      this.InvestedInfo.date_to = event.formatted;
+      this.IsShowTo = false;
+    }
+
 
 
 

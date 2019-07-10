@@ -14,6 +14,7 @@ import { NavigationComponent } from './navigation/navigation.component';
 import { NewsComponent } from './news/news.component';
 import { ProductDetailComponent } from './product_detail/product_detail.component';
 import { SettingsComponent } from './settings/settings.component';
+import { MyDatePickerModule } from 'mydatepicker';
 
 import {
     GoogleApiModule,
@@ -58,7 +59,8 @@ let gapiClientConfig: NgGapiClientConfig = {
     GoogleApiModule.forRoot({
       provide: NG_GAPI_CONFIG,
       useValue: gapiClientConfig
-    })
+    }),
+    MyDatePickerModule
   ],
   providers: [ SystemAccessGuard, GoogleService]
 })

@@ -11,6 +11,7 @@ import { IDictionary } from '../../../core/interfaces/dictionary.interface';
 import { Router } from '@angular/router';
 import { NewsModel } from 'src/app/core/models/news.model';
 import { NewsService } from 'src/app/core/services/news.service';
+import { IMyDpOptions } from 'mydatepicker';
 
 
 @Component({
@@ -38,7 +39,9 @@ export class StartupsMyProfileComponent implements OnInit {
       investment: '',
       evaluation: '',
       email: '',
-      contact_email: ''
+      contact_email: '',
+      date_from: '',
+      date_to: ''
     };
 
   constructor(private _location: Location,
@@ -122,6 +125,23 @@ export class StartupsMyProfileComponent implements OnInit {
 
   NotInterestedCompany (id: number) {
   }
+
+  IsShowFrom = false;
+  IsShowTo = false;
+  Today = new Date();
+  public myDatePickerOptions: IMyDpOptions = {
+        dateFormat: 'yyyy-mm-dd',
+        inline: true,
+        disableUntil: {year: this.Today.getFullYear(), month: this.Today.getMonth() + 1, day: this.Today.getDate() - 1}
+    };
+    onDateFromChanged(event) {
+      this.InvestedInfo.date_from = event.formatted;
+      this.IsShowFrom = false;
+    }
+    onDateToChanged(event) {
+      this.InvestedInfo.date_to = event.formatted;
+      this.IsShowTo = false;
+    }
 
 
 

@@ -12,6 +12,7 @@ import { UserModel } from '../../core/models/user.model';
 import { FormGroup, FormControl, Validators, AbstractControl } from '@angular/forms';
 import { Validator } from '../../core/base/field.validator';
 import { InvestedModel } from 'src/app/core/models/company.model';
+import { IMyDpOptions } from 'mydatepicker';
 
 @Component({
   selector: 'app-portfolio-cmp',
@@ -41,7 +42,9 @@ export class PortfolioComponent implements OnInit {
       investment: '',
       evaluation: '',
       email: '',
-      contact_email: ''
+      contact_email: '',
+      date_from: '',
+      date_to: ''
     };
 
     constructor(
@@ -132,7 +135,9 @@ export class PortfolioComponent implements OnInit {
             investment: '',
             evaluation: '',
             email: '',
-            contact_email: ''
+            contact_email: '',
+            date_from: '',
+            date_to: ''
           };
         }, (err) => {
            this.Errors = this.typeService.GetErrorsDictByResponse(err.json(), this.Errors);
@@ -156,8 +161,27 @@ export class PortfolioComponent implements OnInit {
               investment: '',
               evaluation: '',
               email: '',
-              contact_email: ''
+              contact_email: '',
+              date_from: '',
+              date_to: ''
             };
+    }
+
+    IsShowFrom = false;
+    IsShowTo = false;
+    Today = new Date();
+    public myDatePickerOptions: IMyDpOptions = {
+        dateFormat: 'yyyy-mm-dd',
+        inline: true,
+        disableUntil: {year: this.Today.getFullYear(), month: this.Today.getMonth() + 1, day: this.Today.getDate() - 1}
+    };
+    onDateFromChanged(event) {
+      this.InvestedInfo.date_from = event.formatted;
+      this.IsShowFrom = false;
+    }
+    onDateToChanged(event) {
+      this.InvestedInfo.date_to = event.formatted;
+      this.IsShowTo = false;
     }
 
 

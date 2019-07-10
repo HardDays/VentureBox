@@ -104,6 +104,43 @@
                     <input [(ngModel)]="InvestedInfo.contact_email" [ngClass]="{'input-groupe__input--error':ErrorsInvest.contact_email}" type="text" class="input-groupe__input" id="email-modal" name="email-modal">
                     <p class="input-groupe__error">{{ErrorsInvest.contact_email}}</p>
                 </div>
+                <div class="input-groupe invest-modal-form__input-groupe">
+                    <label class="input-groupe__label" for="date">Debt return period</label>
+                </div>
+                <div class="invest-modal-form__flex invest-modal-form__flex--sm_blick">
+                    <div class="invest-modal-form__side invest-modal-form__side--half">
+                        <div class="input-groupe create-milestone__input-groupe">
+                            <label class="input-groupe__label" for="date-start">From</label>
+                            <!-- input-groupe__input--error класс ошибки для инпута-->
+                            <div class="input-groupe__with-sm-butt">
+                                <input [(ngModel)]="InvestedInfo.date_from" type="text" class="input-groupe__input" id="date_from" name="date-start">
+                                <button (click)="IsShowFrom = !IsShowFrom" class="input-groupe__sm-butt">
+                                    <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                        <path d="M13.5998 1.60001H12.7998V0H11.1998V1.60001H4.79981V0H3.1998V1.60001H2.39982C1.51583 1.60001 0.80783 2.316 0.80783 3.20002L0.799805 14.4C0.799805 15.284 1.51579 16 2.39982 16H13.5998C14.4838 16 15.1998 15.284 15.1998 14.4V3.19999C15.1998 2.316 14.4838 1.60001 13.5998 1.60001ZM13.5998 14.4H2.39982V5.59998H13.5998V14.4Z" fill="white"/>
+                                    </svg>
+                                </button>
+                            </div>
+                            <my-date-picker *ngIf="IsShowFrom" style="margin-left: calc(100% - 252px );" (dateChanged)="onDateFromChanged($event)" [options]="myDatePickerOptions" ></my-date-picker>
+                            <p class="input-groupe__error">{{ErrorsInvest.date_from}}</p>
+                        </div>
+                    </div>
+                    <div class="invest-modal-form__side invest-modal-form__side--half">
+                        <div class="input-groupe create-milestone__input-groupe">
+                            <label class="input-groupe__label" for="date-start">To</label>
+                            <!-- input-groupe__input--error класс ошибки для инпута-->
+                            <div class="input-groupe__with-sm-butt">
+                                <input [(ngModel)]="InvestedInfo.date_to" type="text" class="input-groupe__input" id="date_to" name="date-end">
+                                <button (click)="IsShowTo = !IsShowTo" class="input-groupe__sm-butt">
+                                    <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                        <path d="M13.5998 1.60001H12.7998V0H11.1998V1.60001H4.79981V0H3.1998V1.60001H2.39982C1.51583 1.60001 0.80783 2.316 0.80783 3.20002L0.799805 14.4C0.799805 15.284 1.51579 16 2.39982 16H13.5998C14.4838 16 15.1998 15.284 15.1998 14.4V3.19999C15.1998 2.316 14.4838 1.60001 13.5998 1.60001ZM13.5998 14.4H2.39982V5.59998H13.5998V14.4Z" fill="white"/>
+                                    </svg>
+                                </button>
+                            </div>
+                            <my-date-picker *ngIf="IsShowTo" style="margin-left: calc(100% - 252px );" (dateChanged)="onDateToChanged($event)" [options]="myDatePickerOptions" ></my-date-picker>
+                            <p class="input-groupe__error">{{ErrorsInvest.date_to}}</p>
+                        </div>
+                    </div>
+                </div>
                 <div class="invest-modal-form__flex">
                     <div class="invest-modal-form__side">
                         <div class="input-groupe invest-modal-form__input-groupe">
