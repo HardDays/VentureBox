@@ -130,7 +130,7 @@
                                 <label class="input-groupe__label" for="investment">Investment amount</label>
                                 <!-- input-groupe__input--error класс ошибки для инпута-->
                                 <div class="with-value">
-                                  <input [(ngModel)]="User.investment_amount" type="text" class="input-groupe__input input-groupe__input--value-left" [ngClass]="{'input-groupe__input--error':ErrorsUserPage2.investment_amount}" id="investment" name="investment">
+                                  <input [textMask]="{mask:getMask(), guide: false}" [(ngModel)]="User.investment_amount" type="text" class="input-groupe__input input-groupe__input--value-left" [ngClass]="{'input-groupe__input--error':ErrorsUserPage2.investment_amount}" id="investment" name="investment">
                                   <span class="with-value__value">$</span>
                                 </div>
                                 <p class="input-groupe__error">{{ErrorsUserPage2.investment_amount}}</p>
