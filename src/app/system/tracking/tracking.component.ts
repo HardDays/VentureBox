@@ -53,7 +53,7 @@ export class TrackingComponent implements OnInit {
           this.Axis = res.axis;
           if(this.MyRole === 'startup')
             this.GetInvestorsInfo(res.investors);
-          else 
+          else
             this.GetInvestorsInfo(res.companies);
         },
         (err) => {
@@ -66,7 +66,8 @@ export class TrackingComponent implements OnInit {
   GetInvestorsInfo (investors) {
     this.Investors = [];
     // tslint:disable-next-line: forin
-    for (const item in investors) {
+    for (const el in investors) {
+    for (const item in investors[el]) {
       const tmp: InvestorsModel = {
         name: '',
         months: [{
@@ -79,18 +80,18 @@ export class TrackingComponent implements OnInit {
         company_id: 0
       };
       tmp.name = item;
-      tmp.debt = investors[item].debt;
-      tmp.total_investment = investors[item].total_investment;
-      if(investors[item].company_id)
-        tmp.company_id = investors[item].company_id;
+      tmp.debt = investors[el][item].debt;
+      tmp.total_investment = investors[el][item].total_investment;
+      if(investors[el][item].company_id)
+        tmp.company_id = investors[el][item].company_id;
 
       for (const month of this.Axis) {
-        for (const info in investors[item]) {
+        for (const info in investors[el][item]) {
           if (info.length && month === info) {
              tmp.months.push({
                title: info,
-               payed: investors[item][info]['payed'],
-               amount: investors[item][info]['amount']
+               payed: investors[el][item][info]['payed'],
+               amount: investors[el][item][info]['amount']
              });
           }
         }
@@ -98,9 +99,10 @@ export class TrackingComponent implements OnInit {
 
       this.Investors.push(tmp);
     }
+    }
   }
 
-  
+
 
   OpenModal (dateId: number, companyId: number) {
     this.isOpenModal = true;
