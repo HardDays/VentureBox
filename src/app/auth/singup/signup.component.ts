@@ -15,7 +15,7 @@ import { Validator } from '../../core/base/field.validator';
 })
 export class SignUpComponent implements OnInit {
 
-    Step = 2;
+    Step = 1;
 
     User: UserModel = new UserModel();
     Value = this.User.role;
@@ -249,7 +249,6 @@ export class SignUpComponent implements OnInit {
     }
     
     mask = mask.reverse()
-    console.log(mask);
     return mask;
   }
 
