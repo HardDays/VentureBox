@@ -137,6 +137,13 @@ export class ProductsEditComponent implements OnInit {
       },
       (err) => {
         this.Validate();
+        if(err && err.body)
+        {
+          if(err.body.shopify)
+          {
+            this.ErrorMsgs['shopify'] = err.body.shopify[0];
+          }
+        }
       })
 
   }

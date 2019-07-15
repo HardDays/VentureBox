@@ -105,7 +105,10 @@
             [ngClass]="{'input-groupe__input--error': ErrorMsgs['description']}"  id="description"
             [ngModel]="Product.description" (ngModelChange)="Product.description = $event" name="description"></textarea>
         <!-- сюда текст ошибки если есть -->
-        <p class="input-groupe__error" *ngIf="ErrorMsgs['description']">{{ErrorMsgs['description']}}</p>
+        <p class="input-groupe__error" >
+            <span *ngIf="ErrorMsgs['description']">Description: {{ErrorMsgs['description']}}</span>
+            <span *ngIf="ErrorMsgs['shopify']">Shopify: {{ErrorMsgs['shopify']}}</span>
+        </p>
     </div>
     <div class="button-wrapper ">
         <button type="submit" (click)="Save()" class="button-wrapper__button">Save product</button>
