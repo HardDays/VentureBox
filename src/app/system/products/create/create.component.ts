@@ -65,7 +65,6 @@ export class ProductsCreateComponent implements OnInit {
       },
       (err) => {
         this.Validate();
-        console.log(err);
         if(err && err.body)
         {
           if(err.body.shopify)
