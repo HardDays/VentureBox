@@ -29,6 +29,7 @@ export class TrackingComponent implements OnInit {
   isOpenModal = false;
   Date = '';
   CompanyId = 0;
+  Amount = 0;
 
   constructor(private authService: AuthService, private trackingService: TrackingService) { }
 
@@ -104,10 +105,11 @@ export class TrackingComponent implements OnInit {
 
 
 
-  OpenModal (dateId: number, companyId: number) {
+  OpenModal (dateId: number, companyId: number, amount: number) {
     this.isOpenModal = true;
     this.Date = this.Axis[dateId];
     this.CompanyId = companyId;
+    this.Amount = amount;
   }
 
   PaidToProject() {

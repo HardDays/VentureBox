@@ -11,13 +11,15 @@ import { AuthRoutingModule } from './auth.routing';
 import { PasswordComponent } from './password/password.component';
 import { SignUpComponent } from './singup/signup.component';
 import { TextMaskModule } from 'angular2-text-mask';
+import { PreloaderComponent } from '../core/preloader/preloader.component';
 
 @NgModule({
   declarations: [
     AuthComponent,
     LoginComponent,
     PasswordComponent,
-    SignUpComponent
+    SignUpComponent,
+    PreloaderComponent
   ],
   imports: [
     CommonModule,

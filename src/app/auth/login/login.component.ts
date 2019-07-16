@@ -15,6 +15,9 @@ export class LoginComponent implements OnInit {
     LoginModel: LoginModel = new LoginModel();
     PasswordError:string = "";
     EmailError:string = "";
+
+    isLoading = false;
+
     constructor(private auth: AuthService,
         private router: Router) {
     }
@@ -49,6 +52,7 @@ export class LoginComponent implements OnInit {
         return;
       }
 
+      this.isLoading = true;
       this.auth.Login(
         this.LoginModel,
         (res : TokenModel) => {
@@ -56,7 +60,11 @@ export class LoginComponent implements OnInit {
           {
             this.auth.BaseInitAfterLogin(res);
             this.router.navigate(["/system"]);
+            setTimeout(() => {
+              this.isLoading = false;
+            }, 400);
           }
+
         },
         (err) =>
           {
@@ -64,6 +72,9 @@ export class LoginComponent implements OnInit {
             {
               this.PasswordError = "Incorrect E-mail or password!";
             }
+            setTimeout(() => {
+              this.isLoading = false;
+            }, 400);
           }
         )
     }
