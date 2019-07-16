@@ -1,3 +1,5 @@
+<app-preloader *ngIf="isLoading"></app-preloader>
+<ng-container *ngIf="!isLoading">
 <h1 class="system__title system__title--whith-arrow" [ngClass]="{'system__title--whith-arrow': Mode == 'edit'}">
     <button class="system__title-arrow" *ngIf="Mode == 'edit'" (click)="GoBack()">
         <svg width="27" height="27" viewBox="0 0 27 27" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -114,3 +116,4 @@
         <button type="submit" (click)="Save()" class="button-wrapper__button">Save product</button>
     </div>
 </form>
+</ng-container>

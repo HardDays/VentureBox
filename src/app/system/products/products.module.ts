@@ -12,6 +12,7 @@ import { ProductsEditComponent } from './edit/edit.component';
 import { ProductsCreateComponent } from './create/create.component';
 import { SingleProductComponent } from './single-product/single-product.component';
 import { PipesModule } from '../../core/pipes/pipes.module';
+import { PreloaderComponent } from 'src/app/core/preloader/preloader.component';
 
 
 @NgModule({
@@ -20,7 +21,8 @@ import { PipesModule } from '../../core/pipes/pipes.module';
       ProductsListsComponent,
       ProductsEditComponent,
       ProductsCreateComponent,
-      SingleProductComponent
+      SingleProductComponent,
+      PreloaderComponent
   ],
   imports: [
     CommonModule,
