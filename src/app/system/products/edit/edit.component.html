@@ -1,4 +1,4 @@
-<app-preloader *ngIf="isLoading"></app-preloader>
+<app-preloader2 *ngIf="isLoading"></app-preloader2>
 <ng-container *ngIf="!isLoading">
 <h1 class="system__title system__title--whith-arrow" [ngClass]="{'system__title--whith-arrow': Mode == 'edit'}">
     <button class="system__title-arrow" *ngIf="Mode == 'edit'" (click)="GoBack()">
