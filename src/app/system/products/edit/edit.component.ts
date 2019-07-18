@@ -25,11 +25,13 @@ export class ProductsEditComponent implements OnInit {
 
   IsTagsOpened = false;
   Tags: any[] = [];
+
+  isLoading = false;
   constructor(private _location: Location, private auth: AuthService,
     private productsService: ProductsService, private router: Router,
-    private route: ActivatedRoute, private typeService: TypeService) 
+    private route: ActivatedRoute, private typeService: TypeService)
   {
-    
+
     this.route.params.subscribe(params=> {
       if(params && params['id'])
       {
@@ -44,10 +46,10 @@ export class ProductsEditComponent implements OnInit {
     });
   }
 
-  ngOnInit() 
+  ngOnInit()
   {
     this.UpdateTagsList();
-    
+
     this.InitProductModel();
   }
 
@@ -130,12 +132,14 @@ export class ProductsEditComponent implements OnInit {
       if(item.isSelected)
         this.Product.tags.push(item.value);
     }
-
+    this.isLoading = true;
     this.productsService.UpdateProduct(this.ProductId, this.Product,
       (res) => {
+        this.isLoading = false;
         this.router.navigate(['/system', 'my_products']);
       },
       (err) => {
+        this.isLoading = false;
         this.Validate();
         if(err && err.body)
         {

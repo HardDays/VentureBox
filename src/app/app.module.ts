@@ -21,6 +21,7 @@ import { StartupsService } from './core/services/startups.service';
 import { TrackingService } from './core/services/tracking.service';
 
 import { platformBrowserDynamic } from '@angular/platform-browser-dynamic';
+import { PreloaderComponent } from './core/preloader/preloader.component';
 
 @NgModule({
   declarations: [
@@ -35,7 +36,6 @@ import { platformBrowserDynamic } from '@angular/platform-browser-dynamic';
     AppRoutingModule,
     HttpClientModule,
     TextMaskModule,
-
   ],
   providers: [
     AppAccessGuard,

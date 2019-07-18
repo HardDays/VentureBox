@@ -15,6 +15,7 @@ import { Validator } from '../../core/base/field.validator';
 })
 export class SignUpComponent implements OnInit {
 
+    isLoading = false;
     Step = 1;
 
     User: UserModel = new UserModel();
@@ -194,12 +195,16 @@ export class SignUpComponent implements OnInit {
     }
 
     RegisterUser () {
+ this.isLoading = true;
       this.auth.CreateUser(this.User)
         .subscribe(
           (res) => {
             this.auth.SetCurrentToken(res.json()['token']);
             this.auth.TryToLoginWithToken();
             this.router.navigate(['/system']);
+            setTimeout(() => {
+              this.isLoading = false;
+            }, 200);
           },
           (err) => {
             this.ErrorsUserPage1 = this.type.GetErrorsDictByResponse(err.json(), this.ErrorsUserPage1);
@@ -209,6 +214,9 @@ export class SignUpComponent implements OnInit {
                 this.Step = 1;
               }
             }
+            setTimeout(() => {
+              this.isLoading = false;
+            }, 200);
           }
         );
     }
@@ -236,7 +244,7 @@ export class SignUpComponent implements OnInit {
   public mask = [/[1-9]/, /[0-9]/];
   public maskNumbers = [/[1-9]/, /[0-9]/, /[0-9]/, /[0-9]/, /[0-9]/, /[0-9]/, /[0-9]/, /[0-9]/, /[0-9]/, /[0-9]/, /[0-9]/];
 
- 
+
   getMask() {
     const size = this.User ? (this.User.investment_amount+'').split('').filter(x=>x!='.').length + 1:1;
     let mask = [];
@@ -247,7 +255,7 @@ export class SignUpComponent implements OnInit {
       if(i%3==0 && i!=0 && i!= size-1)
       mask.push('.');
     }
-    
+
     mask = mask.reverse()
     return mask;
   }

@@ -23,7 +23,9 @@ export class ProductsCreateComponent implements OnInit {
 
   IsTagsOpened = false;
   Tags: any[] = [];
-  constructor(private _location: Location, private auth: AuthService, private productsService: ProductsService, private router: Router) 
+  isLoading = false;
+
+  constructor(private _location: Location, private auth: AuthService, private productsService: ProductsService, private router: Router)
   {
     this.productsService.TagsUpdated.subscribe((val) => {
       if(val){
@@ -31,11 +33,11 @@ export class ProductsCreateComponent implements OnInit {
       }
     });
 
-    
+
 
   }
 
-  ngOnInit() 
+  ngOnInit()
   {
     this.UpdateTagsList();
   }
@@ -59,11 +61,14 @@ export class ProductsCreateComponent implements OnInit {
         this.Product.tags.push(item.value);
     }
 
+    this.isLoading = true;
     this.productsService.CreateProduct(this.Product,
       (res) => {
+        this.isLoading = false;
         this.router.navigate(['/system', 'my_products']);
       },
       (err) => {
+        this.isLoading = false;
         this.Validate();
         if(err && err.body)
         {

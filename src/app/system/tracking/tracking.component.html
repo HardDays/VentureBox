@@ -25,9 +25,9 @@
           <ng-container *ngFor="let item of investors.months; let i = index" >
             <div *ngIf="item.title" class="tracking-item__column tracking-item__column" [ngClass]="{'tracking-item__column--today': i == 3,'tracking-item__column--with_option': MyRole && MyRole == 'investor','tracking-item__column--checked': MyRole && MyRole == 'investor' && !item.payed}" >
                 <p class="tracking-item__info">${{item.amount}}</p>
-                <div *ngIf="MyRole && MyRole == 'investor' && i <= 3" class="tracking-checkbox tracking-item__info-button">
+                <div *ngIf="MyRole && MyRole == 'investor' && i <= 3 && item.amount" class="tracking-checkbox tracking-item__info-button">
                     <div class="tracking-checkbox__label">Paid</div>
-                    <button (click)="OpenModal(i-1, investors.company_id)" class="tracking-checkbox__button"></button>
+                    <button (click)="OpenModal(i-1, investors.company_id, item.amount)" class="tracking-checkbox__button"></button>
                 </div>
             </div>
           </ng-container>
@@ -44,8 +44,7 @@
   <div class="modal">
       <div class="invest-modal modal__body">
           <div class="invest-modal-form">
-              <p class="invest-modal-form__msg invest-modal-form__msg--big">Are you sure you want mark
-                  Mouse paid you a debt of $5000 for May?</p>
+              <p class="invest-modal-form__msg invest-modal-form__msg--big">Are you sure you want mark paid you a debt of ${{Amount}} for {{Date}}?</p>
               <div class="two-col-buttons">
                   <div class="button-wrapper two-col-buttons__item">
                       <a (click)="isOpenModal = false" class="button-wrapper__button button-wrapper__button--border_theme">No</a>
