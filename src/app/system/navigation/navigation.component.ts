@@ -66,7 +66,7 @@ export class NavigationComponent implements OnInit {
             visible: this.IsLoggedIn && this.Me && this.Me.role != 'startup'
         },
         {
-            url: "https://marketplace.venture-box.com/collections/all",
+            url: "https://vb-test-back2.myshopify.com/collections/all",
             image : "assets/img/marketplace.svg",
             label : "Marketplace",
             visible: true
