@@ -6,6 +6,20 @@ import { UserModel } from 'src/app/core/models/user.model';
 import { CompanyModel } from '../../core/models/company.model';
 import { DomSanitizer } from '@angular/platform-browser';
 
+export enum MenuUrls
+{
+    dashboard = 'dashboard',
+    my_products = 'my_products',
+    my_investors = 'my_investors',
+    crm = 'crm',
+    portfolio = 'portfolio',
+    my_news = 'my_news',
+    my_milestones = 'my_milestones',
+    startups = 'startups',
+    marketplace = 'https://vb-test-back2.myshopify.com/collections/all',
+    tracking = 'tracking'
+}
+
 @Component({
   selector: 'navigation-cmp',
   templateUrl: './navigation.component.html',
@@ -18,57 +32,63 @@ export class NavigationComponent implements OnInit {
     CurrentPage = "";
     MenuItems: IMenuItem[] = [
         {
-            url : "dashboard",
+            url : MenuUrls.dashboard,//"dashboard",
             image : "assets/img/dashboard.svg",
             label : "Dashboard",
             visible: this.IsLoggedIn
         },
         {
-            url : "my_products",
+            url : MenuUrls.my_products,//"my_products",
             image : "assets/img/my-products.svg",
             label : "My products",
             visible: this.IsLoggedIn && this.Me && this.Me.role == 'startup' && this.MyCompany && this.MyCompany.id != null
         },
         {
-            url : "my_investors",
+            url : MenuUrls.my_investors,//"my_investors",
             image : "assets/img/my-investors.svg",
             label : "My investors",
             visible: this.IsLoggedIn && this.Me && this.Me.role == 'startup' && this.MyCompany && this.MyCompany.id != null
         },
         {
-            url : "crm",
+            url : MenuUrls.crm,//"crm",
             image : "assets/img/crm.svg",
             label : "CRM",
             visible : this.IsLoggedIn && this.Me && this.Me.role == 'startup'
         },
         {
-            url : "portfolio",
+            url : MenuUrls.portfolio,//"portfolio",
             image : "assets/img/portfolio.svg",
             label : "Portfolio Management",
             visible : this.IsLoggedIn && this.Me && this.Me.role != 'startup'
         },
         {
-            url : "my_news",
+            url : MenuUrls.my_news,//"my_news",
             image : "assets/img/my-news.svg",
             label : "My news",
             visible: this.IsLoggedIn && this.Me && this.Me.role == 'startup'
         },
         {
-            url : "my_milestones",
+            url : MenuUrls.my_milestones,//"my_milestones",
             image : "assets/img/my-milestones.svg",
             label : "My milestones",
             visible: this.IsLoggedIn && this.Me && this.Me.role == 'startup' && this.MyCompany && this.MyCompany.id != null
         },
         {
-            url : "startups",
+            url : MenuUrls.startups,//"startups",
             image : "assets/img/startups-upp.svg",
             label : "Startups Application",
             visible: this.IsLoggedIn && this.Me && this.Me.role != 'startup'
         },
         {
-            url: "https://vb-test-back2.myshopify.com/collections/all",
+            url: MenuUrls.marketplace,//"https://vb-test-back2.myshopify.com/collections/all",
             image : "assets/img/marketplace.svg",
             label : "Marketplace",
+            visible: true
+        },
+        {
+            url: MenuUrls.tracking,
+            image : "assets/img/tracking.svg",
+            label : "Tracking",
             visible: true
         }
     ];
@@ -120,61 +140,61 @@ export class NavigationComponent implements OnInit {
     {
         this.MenuItems = [
             {
-                url : "dashboard",
+                url : MenuUrls.dashboard,//"dashboard",
                 image : "assets/img/dashboard.svg",
                 label : "Dashboard",
                 visible: this.IsLoggedIn
             },
             {
-                url : "my_products",
+                url : MenuUrls.my_products,//"my_products",
                 image : "assets/img/my-products.svg",
                 label : "My products",
                 visible: this.IsLoggedIn && this.Me && this.Me.role == 'startup' && this.MyCompany && this.MyCompany.id != null
             },
             {
-                url : "my_investors",
+                url : MenuUrls.my_investors,//"my_investors",
                 image : "assets/img/my-investors.svg",
                 label : "My investors",
                 visible: this.IsLoggedIn && this.Me && this.Me.role == 'startup' && this.MyCompany && this.MyCompany.id != null
             },
             {
-                url : "crm",
+                url : MenuUrls.crm,//"crm",
                 image : "assets/img/crm.svg",
                 label : "CRM",
                 visible : this.IsLoggedIn && this.Me && this.Me.role == 'startup'
             },
             {
-                url : "portfolio",
+                url : MenuUrls.portfolio,//"portfolio",
                 image : "assets/img/portfolio.svg",
                 label : "Portfolio Management",
                 visible : this.IsLoggedIn && this.Me && this.Me.role != 'startup'
             },
             {
-                url : "my_news",
+                url : MenuUrls.my_news,//"my_news",
                 image : "assets/img/my-news.svg",
                 label : "My news",
                 visible: this.IsLoggedIn && this.Me && this.Me.role == 'startup'
             },
             {
-                url : "my_milestones",
+                url : MenuUrls.my_milestones,//"my_milestones",
                 image : "assets/img/my-milestones.svg",
                 label : "My milestones",
                 visible: this.IsLoggedIn && this.Me && this.Me.role == 'startup' && this.MyCompany && this.MyCompany.id != null
             },
             {
-                url : "startups",
+                url : MenuUrls.startups,//"startups",
                 image : "assets/img/startups-upp.svg",
                 label : "Startups Application",
                 visible: this.IsLoggedIn && this.Me && this.Me.role != 'startup'
             },
             {
-                url: "https://marketplace.venture-box.com/collections/all",
+                url: MenuUrls.marketplace,//"https://vb-test-back2.myshopify.com/collections/all",
                 image : "assets/img/marketplace.svg",
                 label : "Marketplace",
                 visible: true
             },
             {
-                url: "tracking",
+                url: MenuUrls.tracking,
                 image : "assets/img/tracking.svg",
                 label : "Tracking",
                 visible: true
