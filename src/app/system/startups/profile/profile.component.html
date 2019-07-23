@@ -51,6 +51,7 @@
                 <a [routerLink]="['/system','products', product.id]" class="product__name">{{product.name}}</a>
                 <p class="product__price">${{product.price}}</p>
             </div>
+            <p class="product__name">{{product.product_type}}</p>
             <p class="product__description">{{product.description}}</p>
             <ul class="product-tags product__tags">
                 <li *ngFor="let tag of product.tags" class="product-tags__item">{{tag?tag.replace('_',' '):''}}</li>

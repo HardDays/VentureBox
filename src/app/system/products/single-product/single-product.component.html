@@ -10,6 +10,10 @@
     <div class="product__flex-wrapper">
         <a [routerLink]="['/system','startups','profile', product.company_id]" class="product__name-statup">{{product.company_name}}</a>
     </div>
+    <div class="product__product-link-wrapper">
+        <p class="sturtup-info__title">{{product.product_type}}</p>
+        <!-- <a [href]="Product.link_to_store" class="product__product-link" target="_blank">Product link</a> -->
+    </div>
     <p class="product__description">{{product.description}}</p>
     <ul class="product-tags product__tags">
         <li class="product-tags__item" *ngFor="let tag of product.tags">{{Tags[tag]}}</li>
