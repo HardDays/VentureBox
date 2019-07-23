@@ -1,6 +1,6 @@
 
-<app-preloader *ngIf="isLoading"></app-preloader>
-<ng-container *ngIf="!isLoading">
+<app-preloader *ngIf="isLoading || isCreating"></app-preloader>
+<ng-container *ngIf="!isLoading && !isCreating">
 <ng-container *ngIf="Step == 1">
     <h1 class="auth-form__title">Register account</h1>
     <div class="auth-two-cols">

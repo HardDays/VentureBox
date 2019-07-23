@@ -73,7 +73,7 @@ export class StartupsEditComponent implements OnInit {
 
 
   GetMyStartup() {
-    this.startupsService.GetCompanyInfo(
+    this.startupsService.GetMyCompanyInfo(
       this.auth.Me.company_id,
       (res) => {
         this.CompanyOld = res;

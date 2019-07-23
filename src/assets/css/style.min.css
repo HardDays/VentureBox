@@ -3715,6 +3715,14 @@ button, input {
   display: none;
 }
 
+.tracking-item__column--center {
+  display: block;
+}
+
+.tracking-item__column--center .tracking-item__info{
+  text-align: center;
+}
+
 .tracking-item__column--checked {
   background: #fff;
 }

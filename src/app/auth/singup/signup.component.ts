@@ -55,6 +55,8 @@ export class SignUpComponent implements OnInit {
       contact_email: ''
     };
 
+    isCreating = false;
+
 
     constructor(private auth: AuthService, private type: TypeService,
             private router: Router
@@ -195,7 +197,8 @@ export class SignUpComponent implements OnInit {
     }
 
     RegisterUser () {
- this.isLoading = true;
+      this.isLoading = true;
+      this.isCreating = true;
       this.auth.CreateUser(this.User)
         .subscribe(
           (res) => {
@@ -204,9 +207,10 @@ export class SignUpComponent implements OnInit {
             this.router.navigate(['/system']);
             setTimeout(() => {
               this.isLoading = false;
-            }, 200);
+            }, 1200);
           },
           (err) => {
+             this.isCreating = false;
             this.ErrorsUserPage1 = this.type.GetErrorsDictByResponse(err.json(), this.ErrorsUserPage1);
             this.ErrorsUserPage2 = this.type.GetErrorsDictByResponse(err.json(), this.ErrorsUserPage2);
             for (let key in this.ErrorsUserPage1) {

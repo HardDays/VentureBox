@@ -23,7 +23,15 @@
           </div>
           <!-- tracking-item__column--checked tracking-item__column--today -->
           <ng-container *ngFor="let item of investors.months; let i = index" >
-            <div *ngIf="item.title" class="tracking-item__column tracking-item__column" [ngClass]="{'tracking-item__column--today': i == 3,'tracking-item__column--with_option': MyRole && MyRole == 'investor','tracking-item__column--checked': MyRole && MyRole == 'investor' && !item.payed}" >
+            <div *ngIf="item.title" class="tracking-item__column tracking-item__column"
+              [ngClass]=
+              "{
+                'tracking-item__column--today': i == 3,
+                'tracking-item__column--with_option': MyRole && ( MyRole == 'investor' || MyRole == 'startup' && item.payed),
+                'tracking-item__column--center': MyRole && ( MyRole == 'startup' && item.payed),
+                'tracking-item__column--checked': MyRole && (MyRole == 'investor' && !item.payed)
+              }"
+            >
                 <p class="tracking-item__info">${{item.amount}}</p>
                 <div *ngIf="MyRole && MyRole == 'investor' && i <= 3 && item.amount" class="tracking-checkbox tracking-item__info-button">
                     <div class="tracking-checkbox__label">Paid</div>

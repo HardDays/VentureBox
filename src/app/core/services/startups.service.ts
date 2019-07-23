@@ -53,6 +53,15 @@ export class StartupsService {
         );
     }
 
+    GetMyCompanyInfo(Id, success?: (ok) => void, fail?: (err) => void)
+    {
+        this.http.CommonRequest(
+            () => this.http.GetData("/users/" + this.auth.Me.id + '/companies/' + this.auth.Me.company_id ),
+            success,
+            fail
+        );
+    }
+
     PatchCompany(CompanyId: number, Company: CompanyModel, success?: (ok) => void, fail?:(err) => void)
     {
         if(this.auth.Me && this.auth.Me.id && this.auth.Me.company_id)
