@@ -7,6 +7,7 @@
         <div class="input-groupe my-news__input-groupe">
             <label class="input-groupe__label" for="article">New article</label>
             <textarea maxlength="500" [(ngModel)]="News.text" class="input-groupe__input input-groupe__input--textarea-sm" id="article" name="article"></textarea>
+            <p>*The article length up to 500 characters.</p>
             <p class="input-groupe__error">{{ErrorText}}</p>
         </div>
         <div class="button-wrapper">

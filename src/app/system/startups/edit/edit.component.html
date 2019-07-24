@@ -9,7 +9,7 @@
                 <div class="input-groupe auth-form__input-groupe">
                     <label class="input-groupe__label" for="name">Company name</label>
                     <!-- input-groupe__input--error класс ошибки для инпута-->
-                    <input [(ngModel)]="Company.company_name" [ngClass]="{'input-groupe__input--error':Errors.company_name}" type="text" class="input-groupe__input" id="name" name="name">
+                    <input disabled [(ngModel)]="Company.company_name" [ngClass]="{'input-groupe__input--error':Errors.company_name}" type="text" class="input-groupe__input" id="name" name="name">
                     <p class="input-groupe__error">{{Errors.company_name}}</p>
                 </div>
                 <div class="input-groupe auth-form__input-groupe">
