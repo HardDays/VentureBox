@@ -26,7 +26,7 @@ export class UserModel {
         public has_google_calendar?: boolean
     ) {
       if (!role) {
-        this.role = 'startup';
+        this.role = 'investor';
       }
       if (! team_members) {
         this.team_members = [];
