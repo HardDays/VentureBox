@@ -1,6 +1,9 @@
 
 <app-preloader *ngIf="isLoading || isCreating"></app-preloader>
-<ng-container *ngIf="!isLoading && !isCreating">
+<div *ngIf="isCreated">
+  <p>Thank you! Please, check your e-mail to complete registration!</p>
+</div>
+<ng-container *ngIf="!isLoading && !isCreating && !isCreated">
 <ng-container *ngIf="Step == 1">
     <h1 class="auth-form__title">Registration as investor</h1>
     <div class="auth-two-cols">

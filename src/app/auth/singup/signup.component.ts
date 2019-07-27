@@ -56,6 +56,7 @@ export class SignUpComponent implements OnInit {
     };
 
     isCreating = false;
+    isCreated = false;
 
 
     constructor(private auth: AuthService, private type: TypeService,
@@ -202,12 +203,19 @@ export class SignUpComponent implements OnInit {
       this.auth.CreateUser(this.User)
         .subscribe(
           (res) => {
-            this.auth.SetCurrentToken(res.json()['token']);
-            this.auth.TryToLoginWithToken();
-            this.router.navigate(['/system']);
+            // this.auth.SetCurrentToken(res.json()['token']);
+            // this.auth.TryToLoginWithToken();
+            // this.router.navigate(['/system']);
             setTimeout(() => {
               this.isLoading = false;
+              this.isCreating = false;
+              this.isCreated = true;
             }, 1200);
+
+
+            setTimeout(() => {
+               this.router.navigate(['/auth']);
+            }, 9200);
           },
           (err) => {
              this.isCreating = false;
