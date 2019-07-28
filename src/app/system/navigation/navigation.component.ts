@@ -16,7 +16,7 @@ export enum MenuUrls
     my_news = 'my_news',
     my_milestones = 'my_milestones',
     startups = 'startups',
-    marketplace = 'https://vb-test-back2.myshopify.com/collections/all',
+    marketplace = 'https://venturebox.myshopify.com/collections/all',
     tracking = 'tracking'
 }
 

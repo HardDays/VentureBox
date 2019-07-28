@@ -7,6 +7,12 @@
 
     &__flex {
         display: flex;
+
+        &--sm_blick {
+            @media (max-width: 767px) {
+                display: block;
+            }
+        }
     }
 
     &__side {
@@ -17,6 +23,29 @@
 
         &:last-child {
             width: 35%;
+        }
+
+        &--half {
+            
+            &:first-child {
+                width: 50%;
+                padding-right: 6px;
+                
+                @media (max-width: 767px) {
+                    width: 100%;
+                    padding: 0;
+                }
+            }
+
+            &:last-child {
+                width: 50%;
+                padding-left: 6px;
+
+                @media (max-width: 767px) {
+                    width: 100%;
+                    padding: 0;
+                }
+            }
         }
     }
 
