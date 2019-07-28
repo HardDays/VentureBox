@@ -17,7 +17,17 @@ export enum MenuUrls
     my_milestones = 'my_milestones',
     startups = 'startups',
     marketplace = 'https://venturebox.myshopify.com/collections/all',
-    tracking = 'tracking'
+    tracking = 'tracking',
+
+    applications = 'applications',
+    my_portfolio_performance = 'my_portfolio_performance',
+    scoring = 'scoring',
+
+
+    community = 'community',
+    events = 'events',
+    roadmap = 'roadmap',
+    toolbox = 'toolbox',
 }
 
 @Component({
@@ -90,6 +100,52 @@ export class NavigationComponent implements OnInit {
             image : "assets/img/tracking.svg",
             label : "Tracking",
             visible: true
+        },
+
+
+        {
+            url: MenuUrls.applications,
+            image : "assets/img/tracking.svg",
+            label : "Applications",
+            visible: this.IsLoggedIn && this.Me && this.Me.role != 'startup'
+        },
+        {
+            url: MenuUrls.my_portfolio_performance,
+            image : "assets/img/tracking.svg",
+            label : "My portfolio performance",
+            visible: this.IsLoggedIn && this.Me && this.Me.role != 'startup'
+        },
+        {
+            url: MenuUrls.scoring,
+            image : "assets/img/tracking.svg",
+            label : "Scoring",
+            visible: this.IsLoggedIn && this.Me && this.Me.role != 'startup'
+        },
+
+
+        {
+            url: MenuUrls.community,
+            image : "",
+            label : "Community",
+            visible: this.IsLoggedIn && this.Me && this.Me.role == 'startup'
+        },
+        {
+            url: MenuUrls.events,
+            image : "",
+            label : "Events",
+            visible: this.IsLoggedIn && this.Me && this.Me.role == 'startup'
+        },
+        {
+            url: MenuUrls.roadmap,
+            image : "",
+            label : "Roadmap",
+            visible: this.IsLoggedIn && this.Me && this.Me.role == 'startup'
+        },
+        {
+            url: MenuUrls.toolbox,
+            image : "",
+            label : "Toolbox",
+            visible: this.IsLoggedIn && this.Me && this.Me.role == 'startup'
         }
     ];
     constructor(private router: Router, private auth: AuthService, private sanitizer: DomSanitizer)
@@ -198,7 +254,53 @@ export class NavigationComponent implements OnInit {
                 image : "assets/img/tracking.svg",
                 label : "Tracking",
                 visible: true
-            }
+            },
+
+
+        {
+            url: MenuUrls.applications,
+            image : "",
+            label : "Applications",
+            visible: this.IsLoggedIn && this.Me && this.Me.role != 'startup'
+        },
+        {
+            url: MenuUrls.my_portfolio_performance,
+            image : "a",
+            label : "My portfolio performance",
+            visible: this.IsLoggedIn && this.Me && this.Me.role != 'startup'
+        },
+        {
+            url: MenuUrls.scoring,
+            image : "",
+            label : "Scoring",
+            visible: this.IsLoggedIn && this.Me && this.Me.role != 'startup'
+        },
+
+
+        {
+            url: MenuUrls.community,
+            image : "",
+            label : "Community",
+            visible: this.IsLoggedIn && this.Me && this.Me.role == 'startup'
+        },
+        {
+            url: MenuUrls.events,
+            image : "",
+            label : "Events",
+            visible: this.IsLoggedIn && this.Me && this.Me.role == 'startup'
+        },
+        {
+            url: MenuUrls.roadmap,
+            image : "",
+            label : "Roadmap",
+            visible: this.IsLoggedIn && this.Me && this.Me.role == 'startup'
+        },
+        {
+            url: MenuUrls.toolbox,
+            image : "",
+            label : "Toolbox",
+            visible: this.IsLoggedIn && this.Me && this.Me.role == 'startup'
+        }
         ];
     }
 
