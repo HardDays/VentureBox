@@ -102,22 +102,21 @@ export class NavigationComponent implements OnInit {
             visible: true
         },
 
-
         {
             url: MenuUrls.applications,
-            image : "assets/img/tracking.svg",
+            image : "assets/img/resume.svg",
             label : "Applications",
             visible: this.IsLoggedIn && this.Me && this.Me.role != 'startup'
         },
         {
             url: MenuUrls.my_portfolio_performance,
-            image : "assets/img/tracking.svg",
+            image : "assets/img/business-cards.svg",
             label : "My portfolio performance",
             visible: this.IsLoggedIn && this.Me && this.Me.role != 'startup'
         },
         {
             url: MenuUrls.scoring,
-            image : "assets/img/tracking.svg",
+            image : "assets/img/star (5).svg",
             label : "Scoring",
             visible: this.IsLoggedIn && this.Me && this.Me.role != 'startup'
         },
@@ -125,25 +124,25 @@ export class NavigationComponent implements OnInit {
 
         {
             url: MenuUrls.community,
-            image : "",
+            image : "assets/img/collaboration.svg",
             label : "Community",
             visible: this.IsLoggedIn && this.Me && this.Me.role == 'startup'
         },
         {
             url: MenuUrls.events,
-            image : "",
+            image : "assets/img/calendar (4).svg",
             label : "Events",
             visible: this.IsLoggedIn && this.Me && this.Me.role == 'startup'
         },
         {
             url: MenuUrls.roadmap,
-            image : "",
+            image : "assets/img/distance (2).svg",
             label : "Roadmap",
             visible: this.IsLoggedIn && this.Me && this.Me.role == 'startup'
         },
         {
             url: MenuUrls.toolbox,
-            image : "",
+            image : "assets/img/toolbox.svg",
             label : "Toolbox",
             visible: this.IsLoggedIn && this.Me && this.Me.role == 'startup'
         }
@@ -259,19 +258,19 @@ export class NavigationComponent implements OnInit {
 
         {
             url: MenuUrls.applications,
-            image : "",
+            image : "assets/img/resume.svg",
             label : "Applications",
             visible: this.IsLoggedIn && this.Me && this.Me.role != 'startup'
         },
         {
             url: MenuUrls.my_portfolio_performance,
-            image : "a",
+            image : "assets/img/business-cards.svg",
             label : "My portfolio performance",
             visible: this.IsLoggedIn && this.Me && this.Me.role != 'startup'
         },
         {
             url: MenuUrls.scoring,
-            image : "",
+            image : "assets/img/star (5).svg",
             label : "Scoring",
             visible: this.IsLoggedIn && this.Me && this.Me.role != 'startup'
         },
@@ -279,25 +278,25 @@ export class NavigationComponent implements OnInit {
 
         {
             url: MenuUrls.community,
-            image : "",
+            image : "assets/img/collaboration.svg",
             label : "Community",
             visible: this.IsLoggedIn && this.Me && this.Me.role == 'startup'
         },
         {
             url: MenuUrls.events,
-            image : "",
+            image : "assets/img/calendar (4).svg",
             label : "Events",
             visible: this.IsLoggedIn && this.Me && this.Me.role == 'startup'
         },
         {
             url: MenuUrls.roadmap,
-            image : "",
+            image : "assets/img/distance (2).svg",
             label : "Roadmap",
             visible: this.IsLoggedIn && this.Me && this.Me.role == 'startup'
         },
         {
             url: MenuUrls.toolbox,
-            image : "",
+            image : "assets/img/toolbox.svg",
             label : "Toolbox",
             visible: this.IsLoggedIn && this.Me && this.Me.role == 'startup'
         }
