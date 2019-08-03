@@ -259,7 +259,7 @@ export class NavigationComponent implements OnInit {
         {
             url: MenuUrls.applications,
             image : "assets/img/resume.svg",
-            label : "Applications",
+            label : "CRM",
             visible: this.IsLoggedIn && this.Me && this.Me.role != 'startup'
         },
         {
