@@ -23,7 +23,8 @@ export class UserModel {
 
         public company_id?: number,
         public token?: string,
-        public has_google_calendar?: boolean
+        public has_google_calendar?: boolean,
+        public c_level?: string
     ) {
       if (!role) {
         this.role = 'investor';

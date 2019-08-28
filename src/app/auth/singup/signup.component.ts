@@ -193,6 +193,7 @@ export class SignUpComponent implements OnInit {
         if (this.User.investment_amount) {
           this.User.investment_amount = +((this.User.investment_amount + '').split('.').join(''));
         }
+        this.User.c_level = this.User.team_members[0].c_level;
       }
       this.RegisterUser();
     }
