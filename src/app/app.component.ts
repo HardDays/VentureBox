@@ -8,7 +8,7 @@ import { AuthService } from './core/services/auth.service';
 })
 export class AppComponent implements OnInit
 {
-  title = 'VentureBox';
+  title = '';
   isLoggedIn:boolean = false;
   constructor(private auth: AuthService)
   {
