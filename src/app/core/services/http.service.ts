@@ -8,7 +8,7 @@ declare var Buffer: any;
 @Injectable()
 export class HttpService {
 
-    // serverUrl = 'https://venture-box-back.herokuapp.com';
+    // serverUrl = 'https://wesee-back.herokuapp.com';
     serverUrl = 'https://venture-box-back-test.herokuapp.com';
 
     public headers: Headers = new Headers([]);
