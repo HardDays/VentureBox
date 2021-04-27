@@ -15,13 +15,14 @@ export class Validator
 
     public static ValidateUrl(str: string)
     {
-        const REGEXP = /^((http|https):\/\/)[\w.-]+(?:\.[\w\.-]+)+[\w\-\._~:\/\?#[\]@!\$&'\(\)\*\+,;=.]+$/i;
+        // const REGEXP = /^((http|https):\/\/)[\w.-]+(?:\.[\w\.-]+)+[\w\-\._~:\/\?#[\]@!\$&'\(\)\*\+,;=.]+$/i;
 
-        if ( str !== '' && REGEXP.test(str))
-        {
-            return true;
-        }
+        // if ( str !== '' && REGEXP.test(str))
+        // {
+        //     return true;
+        // }
 
-        return false;
+        // return false;
+        return true;
     }
 }
